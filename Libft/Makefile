@@ -1,5 +1,6 @@
 #.c file to turn into .o files
-SRCS		= ft_memmove.c ft_isalpha ft_isdigit ft_isalnum ft_isprint ft_isascii ft_memset ft_strlen ft_bzero
+SRCS		= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isprint.c ft_isascii.c ft_memset.c ft_strlen.c \
+				ft_atoi.c ft_memset.c ft_bzero.c ft_memmove.c 
 
 OBJS		= $(SRCS:.c=.o)
 
