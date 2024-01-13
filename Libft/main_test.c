@@ -14,7 +14,13 @@ int main(int argc, char **argv)
     printf("%s %s\n", argv[1], argv[2]); 
 }
 
-
+int main (int argc, char **argv)
+{
+    if (argc != 4)
+        return 0;
+    int x = ft_strncmp(argv[1], argv[2], ft_atoi(argv[3]));
+    printf("%d\n", x);
+}
 
 int main (int argc, char **argv)
 {
@@ -30,8 +36,6 @@ int main (int argc, char **argv)
     
 }
 
-
-
 int main()
 {
     char a = 'c';
@@ -39,4 +43,14 @@ int main()
     char x = ft_toupper(a);
 
     printf("%c\n", x);
+}
+
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+        return 0;
+    char a = 'a';
+    char *x = ft_strrchr(argv[1], a);
+
+    printf("%s\n", x);
 }
