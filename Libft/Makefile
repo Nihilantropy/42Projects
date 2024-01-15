@@ -8,14 +8,14 @@ OBJS		= $(SRCS:.c=.o)
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-RM = del /F /Q
+RM			= rm -f
 
 NAME		= libft.a
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			ar rcs $(NAME) $(OBJS)
+			ar -rcs $(NAME) $(OBJS)
 
 clean:
 			$(RM) $(OBJS)
