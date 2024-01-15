@@ -6,7 +6,7 @@
 /*   By: crea <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:57:52 by crea              #+#    #+#             */
-/*   Updated: 2024/01/15 21:42:05 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/15 23:16:55 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 	if (!dest && !src)
 		return (0);
 	i = 0;
-	if (((size_t)dest - (size_t)src) < len)
+	if (((size_t)dest - (size_t)src < len))
 	{
 		i = len -1;
 		while (i < len)

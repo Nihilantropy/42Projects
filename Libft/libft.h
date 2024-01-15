@@ -6,7 +6,7 @@
 /*   By: crea <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:56:04 by crea              #+#    #+#             */
-/*   Updated: 2024/01/15 21:58:41 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/15 23:54:29 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ char	*ft_strchr(const char *str, int c);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 char	*ft_strdup(const char *str);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-
+char	*ft_substr(const char *str, unsigned int start, size_t len);
+char	*ft_strjoin(const char *s1, const char *s2);
 #endif

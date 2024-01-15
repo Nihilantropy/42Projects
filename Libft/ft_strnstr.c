@@ -6,7 +6,7 @@
 /*   By: crea <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:30:59 by crea              #+#    #+#             */
-/*   Updated: 2024/01/15 22:54:39 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/15 23:23:31 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -17,8 +17,8 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 	size_t	j;
 
 	i = 0;
-	if (len == 0 || len == SIZE_MAX)
-		return (0);
+	if (!to_find || ft_strlen(to_find) == 0)
+		return ((char *)str);
 	while (str[i])
 	{
 		j = 0;

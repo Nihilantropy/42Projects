@@ -6,7 +6,7 @@
 /*   By: crea <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:53:28 by crea              #+#    #+#             */
-/*   Updated: 2024/01/15 21:38:54 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/16 00:03:12 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void	*ft_calloc(size_t count, size_t size)
 	void	*dest;
 
 	tot_size = count * size;
-	dest = (void *)malloc(tot_size);
-	if (!dest)
+	if (tot_size > 2147483647)
 		return (0);
-	ft_bzero(dest, tot_size);
+	dest = malloc(tot_size);
+	if (!dest || (count < 0 && size < 0))
+		return (0);
+	ft_memset(dest, 0, tot_size);
 	return (dest);
 }
