@@ -41,4 +41,7 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 char	*ft_strdup(const char *str);
 char	*ft_substr(const char *str, unsigned int start, size_t len);
 char	*ft_strjoin(const char *s1, const char *s2);
+char    *ft_itoa(int n);
+char    **ft_split(const char *str, char c);
+
 #endif
