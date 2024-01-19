@@ -6,15 +6,14 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:42:34 by crea              #+#    #+#             */
-/*   Updated: 2024/01/18 20:58:43 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/19 17:01:30 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-void	ft_putstr_fd(char *str, int fd)
+void	ft_putendl_fd(char *str, int fd)
 {
-	write(fd, str, ft_strlen(str));
-	write(fd, "\n", 1);
+	ft_putstr_fd(str, fd);
+	ft_putchar_fd('\n', fd);
 }

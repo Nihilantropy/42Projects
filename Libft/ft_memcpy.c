@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crea <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 16:57:14 by crea              #+#    #+#             */
-/*   Updated: 2024/01/15 21:40:29 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/19 17:31:27 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,9 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t len)
 {
-	size_t	i;
-
 	if (!dest && !src)
 		return (0);
-	i = 0;
-	while (i < len)
-	{
-		*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
-		i++;
-	}
+	while (len--)
+		*(unsigned char *)(dest + len) = *(unsigned char *)(src + len);
 	return (dest);
 }
