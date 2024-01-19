@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 16:30:59 by crea              #+#    #+#             */
-/*   Updated: 2024/01/19 20:47:38 by crea             ###   ########.fr       */
+/*   Created: 2024/01/19 19:45:24 by crea              #+#    #+#             */
+/*   Updated: 2024/01/19 19:47:21 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strnstr(const char *str, const char *to_find, size_t len)
-{
-	size_t	i;
-	size_t	j;
+void	ft_lstclear(t_list **lst, void (*del)(void *)) {
+	if (lst == NULL || del == NULL)
+		return;
 
-	i = 0;
-	if (!to_find[0] || to_find == NULL)
-		return ((char *)str);
-	if (len == 0)
-		return (NULL);
-	while (i < len && str[i])
+	t_list	*current = *lst;
+	t_list	*next;
+
+	while (current != NULL) 
 	{
-		j = 0;
-		while ((i + j) < len && to_find[j] && str[i + j] == to_find[j])
-		{
-			if (to_find[j + 1] == '\0')
-				return ((char *)(str + i));
-			j++;
-		}
-		i++;
+		next = current -> next;
+		del(current -> content);
+		free(current);
+		current = next;
 	}
-	return (NULL);
+
+	*lst = NULL;
 }

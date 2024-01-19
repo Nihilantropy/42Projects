@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 16:30:59 by crea              #+#    #+#             */
-/*   Updated: 2024/01/19 20:47:38 by crea             ###   ########.fr       */
+/*   Created: 2024/01/19 19:49:22 by crea              #+#    #+#             */
+/*   Updated: 2024/01/19 20:17:14 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strnstr(const char *str, const char *to_find, size_t len)
+void	ft_lstiter(t_list *lst, void (*f)(void *)) 
 {
-	size_t	i;
-	size_t	j;
+	if (lst == NULL || f == NULL)
+		return;
 
-	i = 0;
-	if (!to_find[0] || to_find == NULL)
-		return ((char *)str);
-	if (len == 0)
-		return (NULL);
-	while (i < len && str[i])
+	t_list	*current = lst;
+
+	while (current != NULL)
 	{
-		j = 0;
-		while ((i + j) < len && to_find[j] && str[i + j] == to_find[j])
-		{
-			if (to_find[j + 1] == '\0')
-				return ((char *)(str + i));
-			j++;
-		}
-		i++;
+		f(current -> content);
+		current = current -> next;
 	}
-	return (NULL);
 }
