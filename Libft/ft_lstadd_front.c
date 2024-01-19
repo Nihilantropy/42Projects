@@ -1,14 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/18 20:28:35 by crea              #+#    #+#             */
+/*   Updated: 2024/01/18 20:40:28 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdlib.h>
 
-void    lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-    if (!lst || !new)
-        return ;
-    // Update the 'next' pointer of the new node to point to the current head of the list
-    new -> next;
-
-    next = *lst;
-    // Update the head of the list to be the new node
-    *lst = new;
+	if (!lst || !new)
+		return ;
+	new -> next = *lst;
+	*lst = new;
 }

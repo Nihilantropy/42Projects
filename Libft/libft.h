@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crea <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:56:04 by crea              #+#    #+#             */
-/*   Updated: 2024/01/15 23:54:29 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/18 21:04:42 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-#define LIBFT_H
+# define LIBFT_H
 
-#include <unistd.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -41,13 +42,21 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 char	*ft_strdup(const char *str);
 char	*ft_substr(const char *str, unsigned int start, size_t len);
 char	*ft_strjoin(const char *s1, const char *s2);
-char    *ft_itoa(int n);
-char    **ft_split(const char *str, char c);
-
-typedef struct  s_list
+char	*ft_itoa(int n);
+char	**ft_split(const char *str, char c);
+char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_strmapi(char const *str, char (*f)(unsigned int, char));
+void	ft_striteri(char *str, void (*f)(unsigned int, char *));
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *str, int fd);
+void	ft_putendl_fd(char *str, int fd);
+void	ft_putnbr_fd(int n, int fd);
+typedef struct s_list
 {
-    void            *content;
-    struct s_list   *next;
-}               t_list;
+	void			*content;
+	struct s_list	*next;
+}				t_list;
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 
 #endif

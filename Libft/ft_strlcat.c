@@ -6,13 +6,11 @@
 /*   By: crea <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:01:52 by crea              #+#    #+#             */
-/*   Updated: 2024/01/15 22:27:29 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/18 19:57:39 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-size_t ft_strlen(const char *s);
 
 size_t	ft_strlcat(char *dest, const char *src, size_t sz)
 {

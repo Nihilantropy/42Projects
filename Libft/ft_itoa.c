@@ -1,38 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/18 20:02:19 by crea              #+#    #+#             */
+/*   Updated: 2024/01/18 23:26:52 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include <stdlib.h>
 
-static  size_t  getdigits(int n)
+static int	getdigits(long int n)
 {
-	size_t	digits;
+	int	digits;
 
-	digits = 1;
+	digits = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
+	{
+		n = -n;
 		digits++;
-	while (n /= 10)
+	}
+	while (n > 0)
+	{
 		digits++;
+		n /= 10;
+	}
 	return (digits);
 }
 
 char	*ft_itoa(int n)
 {
 	char		*digit_str;
-	size_t		digits;
+	int			digits;
+	int			j;
 	long int	nb;
 
-	nb = n;
+	nb = (long int)n;
 	digits = getdigits(nb);
-	if (nb < 0)
-		nb *= -1;
-	digit_str = (char *)malloc((digits + 1) * sizeof(char));
+	digit_str = (char *)malloc(digits + 1);
+	j = -1;
 	if (!digit_str)
-		return (0);
-	digit_str[digits] = '\0';
-	while (digits-- != 0)
+		return (NULL);
+	digit_str[digits--] = '\0';
+	if (nb < 0)
 	{
-		digit_str[digits] = nb % 10 + 48;
-		nb = nb / 10;
-	}
-	if (n < 0)
+		nb *= -1;
 		digit_str[0] = '-';
+		j = 0;
+	}
+	while (digits > j)
+	{
+		digit_str[digits] = (nb % 10) + '0';
+		nb = nb / 10;
+		digits--;
+	}
 	return (digit_str);
 }
