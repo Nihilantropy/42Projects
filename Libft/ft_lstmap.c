@@ -6,40 +6,36 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 20:14:59 by crea              #+#    #+#             */
-/*   Updated: 2024/01/19 20:25:09 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/20 13:47:43 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list  *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-    if (lst == NULL || f == NULL)
-        return (NULL);
+	t_list		*new;
+	t_list		*head;
+	t_list		*tail;
 
-    t_list  *newList = NULL;
-    t_list  *current = lst;
-
-    while (current != NULL)
-    {
-        void *newContent = f(current->content);
-
-        if (newContent == NULL)
-        {
-            ft_lstclear(&newList, del);
-            return (NULL);
-        }
-
-        t_list *newNode = ft_lstnew(newContent);
-
-        if (newNode == NULL) 
-        {
-            ft_lstclear(&newList, del);
-            return (NULL);
-        }
-        ft_lstadd_back(&newList, newNode);
-        current = current -> next;
-    }
-
-    return newList;
+	if (!lst || !f || !del)
+		return (NULL);
+	head = NULL;
+	new = ft_lstnew(f(lst->content));
+	ft_lstadd_back(&head, new);
+	tail = head;
+	lst = lst->next;
+	while (lst)
+	{
+		new = ft_lstnew(f(lst->content));
+		if (!new)
+		{
+			ft_lstclear(&head, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&tail, new);
+		tail = tail->next;
+		lst = lst->next;
+	}
+	return (head);
 }

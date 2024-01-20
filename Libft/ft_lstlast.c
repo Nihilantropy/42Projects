@@ -6,13 +6,13 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:05:55 by crea              #+#    #+#             */
-/*   Updated: 2024/01/19 20:34:32 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/20 13:26:48 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst) 
+t_list	*ft_lstlast(t_list *lst)
 {
 	while (lst)
 	{

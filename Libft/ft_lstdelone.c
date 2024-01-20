@@ -6,17 +6,16 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:20:00 by crea              #+#    #+#             */
-/*   Updated: 2024/01/19 20:21:53 by crea             ###   ########.fr       */
+/*   Updated: 2024/01/20 13:24:44 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-    if (!lst || !del)
-        return ;
-
-del(lst -> content);
-free(lst);
+	if (!lst || !del)
+		return ;
+	del(lst -> content);
+	free(lst);
 }
