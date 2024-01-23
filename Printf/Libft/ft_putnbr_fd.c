@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 16:53:28 by crea              #+#    #+#             */
-/*   Updated: 2024/01/19 17:43:51 by crea             ###   ########.fr       */
+/*   Created: 2024/01/18 20:12:25 by crea              #+#    #+#             */
+/*   Updated: 2024/01/19 18:19:17 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	tot_size;
-	void	*dest;
+	unsigned int	nb;
 
-	tot_size = count * size;
-	if (count && size && (4294967295U / size <= count))
-		return (NULL);
-	dest = malloc(tot_size);
-	if (!dest)
-		return (NULL);
-	ft_bzero(dest, (tot_size));
-	return (dest);
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nb = (unsigned int)(n * -1);
+	}
+	else
+		nb = (unsigned int)n;
+	if (nb >= 10)
+		ft_putnbr_fd(nb / 10, fd);
+	ft_putchar_fd((char)(nb % 10 + 48), fd);
 }

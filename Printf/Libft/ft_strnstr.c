@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 16:53:28 by crea              #+#    #+#             */
-/*   Updated: 2024/01/19 17:43:51 by crea             ###   ########.fr       */
+/*   Created: 2024/01/15 16:30:59 by crea              #+#    #+#             */
+/*   Updated: 2024/01/19 20:47:38 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t	tot_size;
-	void	*dest;
+	size_t	i;
+	size_t	j;
 
-	tot_size = count * size;
-	if (count && size && (4294967295U / size <= count))
+	i = 0;
+	if (!to_find[0] || to_find == NULL)
+		return ((char *)str);
+	if (len == 0)
 		return (NULL);
-	dest = malloc(tot_size);
-	if (!dest)
-		return (NULL);
-	ft_bzero(dest, (tot_size));
-	return (dest);
+	while (i < len && str[i])
+	{
+		j = 0;
+		while ((i + j) < len && to_find[j] && str[i + j] == to_find[j])
+		{
+			if (to_find[j + 1] == '\0')
+				return ((char *)(str + i));
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
 }

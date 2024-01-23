@@ -23,7 +23,7 @@ $(NAME):	$(OBJS)
 			$(AR) $(NAME) $?
 
 %.o: %.c $(HEADER_FILES)
-	$(CC) -c $< $(CFLAGS) -o $@ 
+			$(CC) -c $< $(CFLAGS) -o $@ 
 
 all:		$(NAME)
 
