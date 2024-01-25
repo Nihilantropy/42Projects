@@ -14,5 +14,4 @@ int    ft_put(char c, va_list args)
     else if (c == 'p')
         count += ft_putptr(va_arg(args, void *));
     return (count);
-
 }

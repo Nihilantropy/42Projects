@@ -12,21 +12,23 @@
 
 #include "libft.h"
 
-int	ft_putnbr(int n)
+int ft_putnbr(int n)
 {
-	int count;
-	unsigned int	nb;
+    int count;
+    unsigned int nb;
 
-	count = 0;
-	if (n < 0)
-	{
-		count += ft_putchar('-');
-		nb = (unsigned int)(n * -1);
-	}
-	else
-		nb = (unsigned int)n;
-	if (nb >= 10)
-		ft_putnbr(nb / 10);
-	count += ft_putchar((char)(nb % 10 + 48));
-	return (count);
+    count = 0;
+    nb = (n < 0) ? (unsigned int)(n * -1) : (unsigned int)n;
+
+    if (n < 0)
+        count += ft_putchar('-');
+    
+    if (nb == 0)
+        return (count + ft_putchar('0'));
+
+    if (nb >= 10)
+        count += ft_putnbr(nb / 10);
+
+    return (count + ft_putchar((char)(nb % 10 + '0')));
 }
+

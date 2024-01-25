@@ -1,7 +1,6 @@
-SRCS		= ft_putchar.c ft_putnbr.c ft_putstr.c ft_put.c ft_check_char.c ft_check_format.c
+SRCS		= ft_putchar.c ft_putnbr.c ft_putstr.c ft_put.c ft_check_char.c ft_putptr.c
 
 OBJS		= $(SRCS:.c=.o)
-
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
@@ -18,7 +17,7 @@ AR			= ar rcs
 $(NAME):	$(OBJS)
 			$(AR) $(NAME) $(OBJS)
 
-%.o: %.c $(HEADER_FILES)
+%.o: %.c $(HEADER)
 			$(CC) -c $< $(CFLAGS) -o $@ 
 
 all:		$(NAME)

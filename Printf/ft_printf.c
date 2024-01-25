@@ -25,12 +25,14 @@ int ft_printf(const char *s, ...)
     return count;
 }
 
-
-int main()
+int main() 
 {
     int x;
-    x = ft_printf("vaffanculo,%d %", '0', 6);
-    ft_printf("\n%d\n", 1);
+int number = 42;
+int *ptr = &number;
+x = ft_printf("vaffanculo,       %p           ",(void *)ptr);
+
+    ft_printf("\n%d\n", x);
     return 0;
 }
 
