@@ -1,4 +1,4 @@
-SRCS		= ft_putchar.c ft_putnbr.c ft_putstr.c ft_put.c ft_check_char.c ft_putptr.c
+SRCS		= ft_putchar.c ft_putnbr.c ft_putstr.c ft_put.c ft_check_char.c ft_putptr.c ft_putuns.c ft_putnbr_hex.c
 
 OBJS		= $(SRCS:.c=.o)
 

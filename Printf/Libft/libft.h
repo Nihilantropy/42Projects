@@ -21,6 +21,8 @@
 int ft_putchar(char c);
 int ft_putstr(const char *str);
 int ft_putnbr(int n);
+int ft_putuns(unsigned int n);
+int ft_putnbr_hex(int n, char c);
 int ft_putptr(void *addr);
 int ft_put(char c, va_list args);
 int ft_check_char(const char *s);

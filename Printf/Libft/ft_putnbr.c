@@ -19,16 +19,12 @@ int ft_putnbr(int n)
 
     count = 0;
     nb = (n < 0) ? (unsigned int)(n * -1) : (unsigned int)n;
-
     if (n < 0)
         count += ft_putchar('-');
-    
     if (nb == 0)
         return (count + ft_putchar('0'));
-
     if (nb >= 10)
         count += ft_putnbr(nb / 10);
-
-    return (count + ft_putchar((char)(nb % 10 + '0')));
+    count += ft_putchar((char)(nb % 10 + '0'));
+	return (count);
 }
-

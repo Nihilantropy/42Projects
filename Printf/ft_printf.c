@@ -28,10 +28,8 @@ int ft_printf(const char *s, ...)
 int main() 
 {
     int x;
-int number = 42;
-int *ptr = &number;
-x = ft_printf("vaffanculo,       %p           ",(void *)ptr);
 
+    x = ft_printf("vaffanculo,%x", 429496);
     ft_printf("\n%d\n", x);
     return 0;
 }

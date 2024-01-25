@@ -7,7 +7,8 @@ int ft_check_char(const char *s)
         if (*s == '%' && *(s + 1) != '\0')
         {
             s++;
-            if (*s != 'c' && *s != 'd' && *s != 's' && *s != 'p')
+            if (*s != 'c' && *s != 's' && *s != 'd' && *s != 'i' 
+                && *s != 'u' && *s != 'X' && *s != 'x' && *s != 'p')
             {
                 ft_putstr("Cazzo fai hai sbagliato!");
                 return (0);

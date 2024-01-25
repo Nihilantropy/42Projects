@@ -23,7 +23,7 @@ $(NAME):	$(OBJS)	libft
 libft:
 			make -C $(LIBFT_DIR) all
 
-%.o: %.c $(HEADER)
+%.o: 		%.c $(HEADER)
 			$(CC) -c $< $(CFLAGS) -o $@ -I$(LIBFT_DIR)
 
 
