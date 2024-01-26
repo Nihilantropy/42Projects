@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 21:56:04 by crea              #+#    #+#             */
-/*   Updated: 2024/01/23 22:55:55 by crea             ###   ########.fr       */
+/*   Created: 2024/01/26 10:59:06 by crea              #+#    #+#             */
+/*   Updated: 2024/01/26 12:56:39 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "../include/ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdint.h>
+int	ft_putstr(const char *str)
+{
+	int	count;
 
-int ft_putchar(char c);
-int ft_putstr(const char *str);
-int ft_putnbr(int n);
-int ft_putuns(unsigned int n);
-int ft_putnbr_hex(int n, char c);
-int ft_putptr(void *addr);
-int ft_put(char c, va_list args);
-int ft_check_char(const char *s);
-
-#endif
+	count = 0;
+	if (str == NULL)
+	{
+		count += ft_putstr("(null)");
+		return (count);
+	}
+	while (*(str))
+		count += ft_putchar(*str++);
+	return (count);
+}

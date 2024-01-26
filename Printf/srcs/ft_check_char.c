@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_check_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 20:12:25 by crea              #+#    #+#             */
-/*   Updated: 2024/01/23 22:55:30 by crea             ###   ########.fr       */
+/*   Created: 2024/01/26 10:56:09 by crea              #+#    #+#             */
+/*   Updated: 2024/01/26 14:29:06 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
 
-int ft_putnbr(int n)
+int	ft_check_char(const char *s)
 {
-    int count;
-    unsigned int nb;
-
-    count = 0;
-    nb = (n < 0) ? (unsigned int)(n * -1) : (unsigned int)n;
-    if (n < 0)
-        count += ft_putchar('-');
-    if (nb == 0)
-        return (count + ft_putchar('0'));
-    if (nb >= 10)
-        count += ft_putnbr(nb / 10);
-    count += ft_putchar((char)(nb % 10 + '0'));
-	return (count);
+	while (*s)
+	{
+		if (*s == '%' && *(s + 1) && *(s + 1) != '%')
+		{
+			s++;
+			if (*s != 'c' && *s != 's' && *s != 'd' && *s != 'i'
+				&& *s != 'u' && *s != 'X' && *s != 'x' && *s != 'p'
+				&& *s != '%')
+			{
+				return (0);
+			}
+		}
+		s++;
+	}
+	return (1);
 }

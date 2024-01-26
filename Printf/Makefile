@@ -1,10 +1,12 @@
 NAME		= libftprintf.a
 
-SRCS		= ft_printf.c
+LIBFT_DIR	= ./srcs
+SRCS		= ft_printf.c ft_check_char.c ft_put.c ft_putchar.c ft_putnbr.c ft_putnbr_hex.c \
+				ft_putptr.c ft_putstr.c ft_putuns.c
 
-OBJS		= $(SRCS:.c=.o)
+OBJS		= $(patsubst %.c, $(LIBFT_DIR)/%.o, $(SRCS))
 
-HEADER		= libftprintf.h
+HEADER		= include/ft_printf.h
 
 AR			= ar rcs
 
@@ -15,31 +17,21 @@ ifeq ($(OS),Windows_NT)
     RM = del /Q
 endif
 
-LIBFT_DIR	= ./Libft
-
 $(NAME):	$(OBJS)	libft
 			$(AR) $(NAME) $(OBJS)
 
-libft:
-			make -C $(LIBFT_DIR) all
-
-%.o: 		%.c $(HEADER)
-			$(CC) -c $< $(CFLAGS) -o $@ -I$(LIBFT_DIR)
+%.o: %.c $(HEADER)
+			$(CC) -c $< $(CFLAGS) -o $@ -I$(HEADER)
 
 
 all:		$(NAME)
 
-bonus:		
-			make -C $(LIBFT_DIR) bonus
-
 clean:
 			$(RM) $(OBJS)
-			make -C $(LIBFT_DIR) clean
 
 fclean:		clean
 			$(RM) $(NAME)
-			make -C $(LIBFT_DIR) fclean
 
 re:			fclean	all
 
-.PHONY:		all bonus clean fclean re libft
+.PHONY:		all clean fclean re libft
