@@ -16,17 +16,18 @@ int	ft_check_char(const char *s)
 {
 	while (*s)
 	{
-		if (*s == '%' && *(s + 1) && *(s + 1) != '%')
+		if (*s == '%' && *(s + 1))
 		{
 			s++;
 			if (*s != 'c' && *s != 's' && *s != 'd' && *s != 'i'
 				&& *s != 'u' && *s != 'X' && *s != 'x' && *s != 'p'
 				&& *s != '%')
-			{
 				return (0);
-			}
 		}
+		else if (*s == '%' && !*(s + 1))
+			return (0);
 		s++;
 	}
 	return (1);
 }
+

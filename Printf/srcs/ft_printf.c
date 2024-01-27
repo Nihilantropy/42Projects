@@ -39,5 +39,10 @@ int	ft_printf(const char *s, ...)
 
 int main()
 {
-	ft_printf("%%\n");
+	int x = 0;
+	x = printf("%x\n", 6573);
+	printf("%d\n", x);
+
+	x = ft_printf("%x\n", 6573);
+	ft_printf("%d\n", x);
 }

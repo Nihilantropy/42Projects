@@ -12,32 +12,46 @@
 
 #include "../include/ft_printf.h"
 
-static int	print_hex(unsigned long long n, char c)
-{
-	int			count;
-	static char	*digits;
+static int	baselen(size_t nb);
 
+int	ft_putnbr_hex(size_t nb, char c)
+{
+	char	*base;
+	char	*str;
+	int		i;
+	int		count;
+
+	count = baselen(nb);
 	if (c == 'x')
-		digits = "0123456789abcdef";
+		base = "0123456789abcdef";
 	else
-		digits = "0123456789ABCDEF";
-	count = 0;
-	if (n >= 16)
-		print_hex(n / 16, c);
-	count += ft_putchar(digits[n % 16]);
+		base = "0123456789ABCDEF";
+	str = ft_calloc(sizeof(char), baselen(nb) + 1);
+	if (!str)
+		return (0);
+	str[0] = '0';
+	i = 0;
+	while (nb > 0)
+	{
+		str[i] = base[nb % 16];
+		nb = nb / 16;
+		i++;
+	}
+	ft_strrev(str);	
 	return (count);
 }
 
-int	ft_putnbr_hex(long long num, char c)
+static int	baselen(size_t nb)
 {
-	int					count;
-	unsigned long long	n;
+	int		i;
 
-	count = 0;
-	if (num < 0)
-		n = (unsigned long long)(-num);
-	else
-		n = (unsigned long long)num;
-	count += print_hex(n, c);
-	return (count);
+	if (nb == 0)
+		return (1);
+	i = 0;
+	while (nb > 0)
+	{
+		nb = nb / 16;
+		i++;
+	}
+	return (i);
 }

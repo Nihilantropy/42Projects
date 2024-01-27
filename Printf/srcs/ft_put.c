@@ -22,9 +22,7 @@ int	ft_put(char c, va_list args)
 		count += ft_putchar(va_arg(args, int));
 	else if (c == 's')
 		count += ft_putstr(va_arg(args, char *));
-	else if (c == 'd')
-		count += ft_putnbr(va_arg(args, int));
-	else if (c == 'i')
+	else if (c == 'd' || c == 'i')
 		count += ft_putnbr(va_arg(args, int));
 	else if (c == 'u')
 		count += ft_putuns(va_arg(args, unsigned int));
@@ -32,7 +30,7 @@ int	ft_put(char c, va_list args)
 		count += ft_putptr(va_arg(args, void *));
 	else if (c == 'x' || c == 'X')
 		count += ft_putnbr_hex(va_arg(args, long long), c);
-	else
-		count += ft_putchar(37);
+	else if (c == '%')
+		count += ft_putchar('%');
 	return (count);
 }
