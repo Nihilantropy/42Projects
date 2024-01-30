@@ -18,20 +18,29 @@ ifeq ($(OS),Windows_NT)
 endif
 
 $(NAME):	$(OBJS)	libft
-			$(AR) $(NAME) $(OBJS)
+			@echo "Creazione della libreria..."
+			@$(AR) $(NAME) $(OBJS)
+			@echo "Libreria $(NAME) creata con successo."
 
 %.o: %.c $(HEADER)
-			$(CC) -c $< $(CFLAGS) -o $@ -I$(HEADER)
-
+			@echo "Compilazione di $<..."
+			@$(CC) -c $< $(CFLAGS) -o $@ -I$(HEADER)
+			@echo "$@ compilato con successo."
 
 all:		$(NAME)
+			@echo "Tutti i target sono stati compilati con successo."
 
 clean:
-			$(RM) $(OBJS)
+			@echo "Pulizia dei file oggetto..."
+			@$(RM) $(OBJS)
+			@echo "File oggetto rimossi con successo."
 
 fclean:		clean
-			$(RM) $(NAME)
+			@echo "Pulizia completa..."
+			@$(RM) $(NAME)
+			@echo "Libreria $(NAME) e file oggetto rimossi con successo."
 
 re:			fclean	all
+			@echo "Ricostruzione completata con successo."
 
 .PHONY:		all clean fclean re libft
