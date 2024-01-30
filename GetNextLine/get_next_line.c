@@ -10,6 +10,27 @@ char    *get_next_line(int fd)
         return (NULL);
     while (1)
     {
-        bytes_read = read(fd, buffe, BUFFER_SIZE);
+        bytes_read = read(fd, buffer, BUFFER_SIZE);
+        if (bytes_read == -1)
+        {
+            free (remaining);
+            remaining = NULL;
+            return (NULL);
+        }
+        if (bytes_read == 0)
+            break ;
+        buffer[bytes_read] = '\0';
+        remaining = ft_strjoin(remaining, buffer);
+        if (!remaining)
+            return (NULL);
+        if (ft_strchr(buffer, '\n'))
+            break ;
     }
+    if ((bytes_read == 0) && (!remaining || *remaining == '\0'))
+    {
+        free (remaining);
+        remaining = NULL;
+        return (NULL);
+    }
+    return (ft_extract_line(&remaining));
 }

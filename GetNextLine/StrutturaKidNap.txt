@@ -1,0 +1,9 @@
+Cose essenziali:
+
+1) Architettura casa:
+	2 piani, primo e seminterrato. Salone con cucina, 2 bagni, stanza genitori, stanza sorella, stanza fratello, stanza bambino, studio da lavoro, scale d'accesso seminterrato, ripostiglio, 3 soppalchi. \
+	Cantina con architettura vecchio stile. sala giochi. sgabuzzino. Molte finestre, anche ribassate per il seminterrato.
+
+2) Intelligenza artificiale nemici:
+	Jeff è in casa ma non sappiamo quasi mai dove (sequesnze scriptate in cui appare?). Aely è fuori, alle finestre. se ci vede significa che l'altro sta arrivando e dobbiamo subito cambiare stanza, quindi assicurarci che non sia \
+	chiusa con il DAS o che ci siano i soppalchi nella stanza. Jeff si muove, aprendo e chiudendo le porte.

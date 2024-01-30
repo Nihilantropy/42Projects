@@ -5,7 +5,9 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
     if (!str)
-        return (0);
+	{
+    	return (0);
+	}
 	i = 0;
 	while (str[i])
 		i++;
@@ -19,11 +21,15 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	size_t	i;
 
     if (!s1 && !s2)
+	{
         return (NULL);
+	}
 	sz_join = ft_strlen(s1) + ft_strlen(s2) + 1;
 	str_join = (char *)malloc(sz_join);
 	if (!str_join)
+	{
 		return (NULL);
+	}
 	i = 0;
 	while (*s1)
 		str_join[i++] = *s1++;
