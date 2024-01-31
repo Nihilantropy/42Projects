@@ -99,6 +99,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t sz)
 
 char	*ft_strdup(const char *str)
 {
+	if (!str)
+		return (NULL);
 	size_t	dup_sz;
 	char	*dup_str;
 
@@ -110,11 +112,17 @@ char	*ft_strdup(const char *str)
 	return (dup_str);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t len)
+void *ft_memcpy(void *dest, const void *src, size_t len)
 {
-	if (!dest && !src)
-		return (0);
-	while (len--)
-		*(unsigned char *)(dest + len) = *(unsigned char *)(src + len);
-	return (dest);
+    if (!dest || !src)
+        return (NULL);
+
+    unsigned char *d;
+	const unsigned char *s;
+	
+	d = (unsigned char *)dest;
+    s = (const unsigned char *)src;
+    while (len--)
+        *d++ = *s++;
+    return (dest);
 }
