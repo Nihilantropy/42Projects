@@ -1,5 +1,53 @@
 #include "get_next_line.h"
 
+char    *ft_extract_line(char **remaining)
+{
+    if (!*remaining || **remaining == '\0')
+        return (NULL);
+    char    *eol;
+    size_t  line_len;
+    char    *line;
+    char    *new_remaining;
+
+    eol = ft_strchr(*remaining, '\n');
+    if (eol != NULL)
+        line_len = eol - *remaining + 1;
+    else
+        line_len = ft_strlen(*remaining);
+    if ((line_len + 1) == 0 || (line_len + 1) < line_len)
+        return (NULL);
+    line = (char *)malloc(line_len + 1);
+    if (!line)
+        return (NULL);
+    ft_strlcpy(line, *remaining, line_len + 1);
+    if (eol != NULL)
+        new_remaining = ft_strdup(eol + 1);
+    else
+        new_remaining = NULL;
+    free(*remaining);
+    *remaining = new_remaining;
+    return (line);
+}
+
+char *ft_strjoin(const char *s1, const char *s2) 
+{
+    if (!s1 && !s2)
+        return (NULL);
+	size_t i;
+    size_t sz_join = ft_strlen(s1) + ft_strlen(s2) + 1;
+    char *str_join = (char *)malloc(sz_join);
+    if (!str_join)
+        return (NULL);
+	
+	i = 0;
+    if (s1)
+        while (*s1) str_join[i++] = *s1++;
+    if (s2)
+        while (*s2) str_join[i++] = *s2++;
+    str_join[i] = '\0';
+    return (str_join);
+}
+
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
@@ -12,31 +60,6 @@ size_t	ft_strlen(const char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strjoin(const char *s1, const char *s2)
-{
-	char	*str_join;
-	size_t	sz_join;
-	size_t	i;
-
-    if (!s1 && !s2)
-	{
-        return (NULL);
-	}
-	sz_join = ft_strlen(s1) + ft_strlen(s2) + 1;
-	str_join = (char *)malloc(sz_join);
-	if (!str_join)
-	{
-		return (NULL);
-	}
-	i = 0;
-	while (*s1)
-		str_join[i++] = *s1++;
-	while (*s2)
-		str_join[i++] = *s2++;
-	str_join[i] = '\0';
-	return (str_join);
 }
 
 char	*ft_strchr(const char *str, int c)
@@ -94,33 +117,4 @@ void	*ft_memcpy(void *dest, const void *src, size_t len)
 	while (len--)
 		*(unsigned char *)(dest + len) = *(unsigned char *)(src + len);
 	return (dest);
-}
-
-char    *ft_extract_line(char **remaining)
-{
-    if (!*remaining || **remaining == '\0')
-        return (NULL);
-    char    *eol;
-    size_t  line_len;
-    char    *line;
-    char    *new_remaining;
-
-    eol = ft_strchr(*remaining, '\n');
-    if (eol != NULL)
-        line_len = eol - *remaining + 1;
-    else
-        line_len = ft_strlen(*remaining);
-    if ((line_len + 1) == 0 || (line_len + 1) < line_len)
-        return (NULL);
-    line = malloc(line_len + 1);
-    if (!line)
-        return (NULL);
-    ft_strlcpy(line, *remaining, line_len + 1);
-    if (eol != NULL)
-        new_remaining = ft_strdup(eol + 1);
-    else
-        new_remaining = NULL;
-    free(*remaining);
-    *remaining = new_remaining;
-    return (line);
 }
