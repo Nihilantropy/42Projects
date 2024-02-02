@@ -10,6 +10,9 @@ read COMMIT_MESSAGE
 # Esegue git add .
 git add .
 
+# Esegue git status per ottenere il resoconto prima del commit
+git status
+
 # Esegue git commit
 git commit -m "$COMMIT_MESSAGE"
 
