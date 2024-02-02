@@ -12,7 +12,7 @@ B_OBJS		= $(B_SRCS:.c=.o)
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-RM			= del /Q
+RM = rm -f
 
 HEADER		= libft.h
 
@@ -22,7 +22,7 @@ AR			= ar rcs
 $(NAME):	$(OBJS)
 			$(AR) $(NAME) $?
 
-%.o: %.c $(HEADER_FILES)
+%.o: %.c $(HEADER)
 	$(CC) -c $< $(CFLAGS) -o $@ 
 
 all:		$(NAME)

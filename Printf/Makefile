@@ -6,23 +6,22 @@ SRCS		= ft_printf.c ft_check_char.c ft_put.c ft_putchar.c ft_putnbr.c ft_putnbr_
 
 OBJS		= $(patsubst %.c, $(LIBFT_DIR)/%.o, $(SRCS))
 
-HEADER		= include/ft_printf.h
+HEADER_DIR	= ./include
+
+HEADER		= ft_printf.h
 
 AR			= ar rcs
 
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra
 RM = rm -f
-ifeq ($(OS),Windows_NT)
-    RM = del /Q
-endif
 
 $(NAME):	$(OBJS)	libft
 			@echo "Creazione della libreria..."
 			@$(AR) $(NAME) $(OBJS)
 			@echo "Libreria $(NAME) creata con successo."
 
-%.o: %.c $(HEADER)
+%.o: %.c $(HEADER_DIR)
 			@echo "Compilazione di $<..."
 			@$(CC) -c $< $(CFLAGS) -o $@ -I$(HEADER)
 			@echo "$@ compilato con successo."
