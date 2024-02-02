@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Esegue git status per ottenere il resoconto prima del commit
+git status
+
 # Chiede all'utente di inserire il messaggio del commit
-echo "Inserisci il messaggio del commit:"
+echo "Insert commit message:"
 read COMMIT_MESSAGE
 
 # Esegue git add .
@@ -13,4 +16,4 @@ git commit -m "$COMMIT_MESSAGE"
 # Esegue git push
 git push
 
-echo "Operazioni completate."
+echo "Mission complete."
