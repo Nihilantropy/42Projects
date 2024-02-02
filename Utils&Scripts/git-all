@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Chiede all'utente di inserire il messaggio del commit
+echo "Inserisci il messaggio del commit:"
+read COMMIT_MESSAGE
+
+# Esegue git add .
+git add .
+
+# Esegue git commit
+git commit -m "$COMMIT_MESSAGE"
+
+# Esegue git push
+git push
+
+echo "Operazioni completate."
