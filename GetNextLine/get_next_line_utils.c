@@ -1,60 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/01 19:15:00 by crea              #+#    #+#             */
+/*   Updated: 2024/02/01 19:17:58 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-char    *ft_extract_line(char **remaining)
+char	*ft_extract_line(char **remaining)
 {
-    if (!*remaining || **remaining == '\0')
-        return (NULL);
-    char    *eol;
-    size_t  line_len;
-    char    *line;
-    char    *new_remaining;
+	char	*eol;
+	size_t	line_len;
+	char	*line;
+	char	*new_remaining;
 
-    eol = ft_strchr(*remaining, '\n');
-    if (eol != NULL)
-        line_len = eol - *remaining + 1;
-    else
-        line_len = ft_strlen(*remaining);
-    if ((line_len + 1) == 0 || (line_len + 1) < line_len)
-        return (NULL);
-    line = (char *)malloc(line_len + 1);
-    if (!line)
-        return (NULL);
-    ft_strlcpy(line, *remaining, line_len + 1);
-    if (eol != NULL)
-        new_remaining = ft_strdup(eol + 1);
-    else
-        new_remaining = NULL;
-    free(*remaining);
-    *remaining = new_remaining;
-    return (line);
+	if (!*remaining || **remaining == '\0')
+		return (NULL);
+	eol = ft_strchr(*remaining, '\n');
+	if (eol != NULL)
+		line_len = eol - *remaining + 1;
+	else
+		line_len = ft_strlen(*remaining);
+	if ((line_len + 1) == 0 || (line_len + 1) < line_len)
+		return (NULL);
+	line = (char *)malloc(line_len + 1);
+	if (!line)
+		return (NULL);
+	ft_strlcpy(line, *remaining, line_len + 1);
+	if (eol != NULL)
+		new_remaining = ft_strdup(eol + 1);
+	else
+		new_remaining = NULL;
+	free(*remaining);
+	*remaining = new_remaining;
+	return (line);
 }
 
-char *ft_strjoin(const char *s1, const char *s2) 
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-    if (!s1 && !s2)
-        return (NULL);
-	size_t i;
-    size_t sz_join = ft_strlen(s1) + ft_strlen(s2) + 1;
-    char *str_join = (char *)malloc(sz_join);
-    if (!str_join)
-        return (NULL);
-	
+	size_t	i;
+	size_t	sz_join;
+	char	*str_join;
+
+	if (!s1 && !s2)
+		return (NULL);
+	if (!str_join)
+		return (NULL);
+	str_join = (char *)malloc(sz_join);
+	sz_join = ft_strlen(s1) + ft_strlen(s2) + 1;
 	i = 0;
-    if (s1)
-        while (*s1) str_join[i++] = *s1++;
-    if (s2)
-        while (*s2) str_join[i++] = *s2++;
-    str_join[i] = '\0';
-    return (str_join);
+	if (s1)
+		while (*s1)
+			str_join[i++] = *s1++;
+	if (s2)
+		while (*s2)
+			str_join[i++] = *s2++;
+	str_join[i] = '\0';
+	return (str_join);
 }
 
 size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
-    if (!str)
+	if (!str)
 	{
-    	return (0);
+		return (0);
 	}
 	i = 0;
 	while (str[i])
@@ -112,17 +128,16 @@ char	*ft_strdup(const char *str)
 	return (dup_str);
 }
 
-void *ft_memcpy(void *dest, const void *src, size_t len)
+void	*ft_memcpy(void *dest, const void *src, size_t len)
 {
-    if (!dest || !src)
-        return (NULL);
+	unsigned char		*d;
+	const unsigned char	*s;
 
-    unsigned char *d;
-	const unsigned char *s;
-	
+	if (!dest || !src)
+		return (NULL);
 	d = (unsigned char *)dest;
-    s = (const unsigned char *)src;
-    while (len--)
-        *d++ = *s++;
-    return (dest);
+	s = (const unsigned char *)src;
+	while (len--)
+		*d++ = *s++;
+	return (dest);
 }

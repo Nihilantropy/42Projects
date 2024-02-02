@@ -6,51 +6,59 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:18:16 by crea              #+#    #+#             */
-/*   Updated: 2024/02/01 19:18:41 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/01 21:15:52 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*str_ret(int n, char *buffer)
+{
+	char	*ptr;
+
+	ptr = malloc(n + 1);
+	if (!ptr)
+		return (NULL);
+	ft_strcpy(ptr, buffer);
+	return (ptr);
+}
+
+char	*ret(int n, char *buffer, int fd)
+{
+	size_t	byte_read;
+	char	*ptr;
+
+	ptr = str_ret(n, buffer);
+	if (!ptr)
+		return (NULL);
+	byte_read = read(fd, buffer, BUFFER_SIZE);
+	if (*ptr == '\0' && byte_read == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	if (byte_read == 0)
+		return (ptr);
+	if (byte_read == 1)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	return (ft_strjoin(ptr, get_next_line(fd)));
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*remaining;
-	char		*buffer;
-	int			bytes_read;
+	static char	buffer[BUFFER_SIZE];
+	int			n;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX -1)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = (char *)malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	while (1)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free (remaining);
-			free (buffer);
-			remaining = NULL;
-			return (NULL);
-		}
-		if (bytes_read == 0)
-			break ;
-		buffer[bytes_read] = '\0';
-		remaining = ft_strjoin(remaining, buffer);
-		if (!remaining)
-		{
-			free (buffer);
-			return (NULL);
-		}
-		if (ft_strchr(buffer, '\n'))
-			break ;
-	}
-	free (buffer);
-	if ((bytes_read == 0) && (!remaining || *remaining == '\0'))
-	{
-		free (remaining);
-		remaining = NULL;
-		return (NULL);
-	}
-	return (ft_extract_line(&remaining));
+	if (buffer[0] == '\n')
+		return (str_ret(1, buffer));
+	n = find_n(buffer);
+	if (n > 0)
+		return (str_ret(n, buffer));
+	else
+		return (ret(n, buffer, fd));
 }

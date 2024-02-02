@@ -6,24 +6,25 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 19:18:45 by crea              #+#    #+#             */
-/*   Updated: 2024/02/01 19:19:30 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/01 21:10:04 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include <stdio.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
 
 size_t	ft_strlen(const char *str);
-char	*ft_strjoin(const char *s1, const char *s2);
-char	*ft_strchr(const char *str, int c);
-size_t	ft_strlcpy(char *dest, const char *src, size_t sz);
-char	*ft_strdup(const char *str);
-void	*ft_memcpy(void *dest, const void *src, size_t len);
-char    *ft_extract_line(char **remaining);
+char	*ft_strjoin(char *s1, char *s2);
+int     find_n(char *buffer);
+void	ft_strcpy(char *dest, char *src);
+char	*str_ret(int n, char *buffer);
+char	*ret(int n, char *buffer, int fd);
 char    *get_next_line(int fd);
 
 #endif
