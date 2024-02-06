@@ -1,0 +1,4 @@
+// Commands used in the Born2beroot project
+
+su -> go to /root
+apt install sudo -> installing sudo packages
