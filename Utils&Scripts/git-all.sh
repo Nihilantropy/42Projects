@@ -17,15 +17,11 @@ if ! git diff-index --quiet HEAD --; then
 
     # Commit the changes
     git commit -m "$COMMIT_MESSAGE"
-else
-    echo "No changes to commit."
 fi
 
 # Check if there is anything to push
 NEEDS_PUSH=$(git cherry -v)
-if [ -z "$NEEDS_PUSH" ]; then
-    echo "Everything is up to date. Nothing to push."
-else
+if [ ! -z "$NEEDS_PUSH" ]; then
     # Push the changes
     git push
     echo "Mission complete."
