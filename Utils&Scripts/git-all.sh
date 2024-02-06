@@ -1,32 +1,32 @@
 #!/bin/bash
 
-# Esegue git status per ottenere il resoconto prima del commit
+# Display git status to get the overview before commit
 git status
 
-# Verifica se ci sono modifiche non staged o non committate
+# Check for unstaged or uncommitted changes
 if ! git diff-index --quiet HEAD --; then
-    # Chiede all'utente di inserire il messaggio del commit se ci sono modifiche
-    echo "Inserisci il messaggio del commit:"
+    # Ask the user to input the commit message if there are changes
+    echo "Insert commit message:"
     read COMMIT_MESSAGE
 
-    # Esegue git add per aggiungere tutte le modifiche
+    # Add all changes with git add
     git add .
 
-    # Mostra lo stato attuale dopo l'aggiunta
+    # Show the current status after adding
     git status
 
-    # Esegue git commit
+    # Commit the changes
     git commit -m "$COMMIT_MESSAGE"
 else
-    echo "Nessuna modifica da committare."
+    echo "No changes to commit."
 fi
 
-# Controlla se c'è qualcosa da pushare
+# Check if there is anything to push
 NEEDS_PUSH=$(git cherry -v)
 if [ -z "$NEEDS_PUSH" ]; then
-    echo "Tutto è già aggiornato. Niente da pushare."
+    echo "Everything is up to date. Nothing to push."
 else
-    # Esegue git push
+    # Push the changes
     git push
     echo "Mission complete."
 fi
