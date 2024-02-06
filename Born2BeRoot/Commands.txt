@@ -2,3 +2,73 @@
 
 su -> go to /root
 apt install sudo -> installing sudo packages
+sudo addgroup <groupname> -> create a group
+sudo adduser <user> <group> -> add a user to a group
+sudo apt update -> search for sudo update packages
+sudo apt install openssh-server -> install ssh server packages
+sudo service ssh status -> check ssh server status
+sudo apt install vim -> install vim packages
+(su) vim /etc/ssh/sshd_config -> modifying port to '4242' and PermitRootLogIn to 'no'
+(su) vim /etc/ssh/ssh_config -> modifying port to '4242'
+sudo service ssh restart -> restart the ssh service
+sudo apt install ufw -> installing firewall packages for easy setup
+sudo ufw enable -> activate ufw
+sudo ufw allow 4242 -> opening 4242 port on the firewall
+sudo ufw status -> check the firewall status
+touch /etc/sudoers.d/sudo_config -> set up sudo policies in sudoers.d
+mkdir /var/log/sudo -> crating a folder in which to store the input and output log from sudoers user
+vim /etc/sudoers.d/sudo_config -> setting up sudo policies ad Defaulst rules
+/*
+Defaults  passwd_tries=3
+Defaults  badpass_message="Mensaje de error personalizado"
+Defaults  logfile="/var/log/sudo/sudo_config"
+Defaults  log_input, log_output
+Defaults  iolog_dir="/var/log/sudo"
+Defaults  requiretty
+Defaults  secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+🟩 GREEN -> Total tries for entering the sudo password.
+
+🟥 RED -> The message that will show when the password failed.
+
+🟨 YELLOW -> Path where will the sudo logs will be stored.
+
+🟦 BLUE -> What will be logged.
+
+🟫 BROWN -> TTY is required lol.
+
+🟪 PURPLE -> Folders that will be excluded of sudo
+*/
+
+vim /etc/login.defs -> modifying the passwd expiration settings
+sudo apt install libpam-pwquality -> packages for password rules
+vim /etc/pam.d/common-password -> update password rules
+
+/*
+minlen=10
+ucredit=-1
+dcredit=-1
+lcredit=-1
+maxrepeat=3
+reject_username
+difok=7
+enforce_for_root
+
+minlen=10 ➤ The minimun characters a password must contain.
+
+ucredit=-1 ➤ The password at least have to contain a capital letter. We must write it with a - sign, as is how it knows that's refering to minumum caracters; if we put a + sign it will refer to maximum characters.
+
+dcredit=-1 ➤ The passworld at least have to containt a digit.
+
+lcredit=-1 ➤ The password at least have to contain a lowercase letter.
+
+maxrepeat=3 ➤ The password can not have the same character repited three contiusly times.
+
+reject_username ➤ The password can not contain the username inside itself.
+
+difok=7 ➤ The password it have to containt at least seven diferent characters from the last password ussed.
+
+enforce_for_root ➤ We will implement this password policy to root.
+*/
+
+once opened the port we can connect with: ssh <user>@localhost -p 4242 -> connect the virtual machine with 4242 port open
