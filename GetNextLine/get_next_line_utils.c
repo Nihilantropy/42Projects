@@ -5,139 +5,113 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 19:15:00 by crea              #+#    #+#             */
-/*   Updated: 2024/02/01 19:17:58 by crea             ###   ########.fr       */
+/*   Created: 2024/02/06 11:05:41 by crea              #+#    #+#             */
+/*   Updated: 2024/02/06 14:58:44 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_extract_line(char **remaining)
+int     found_newline(t_list *list)
 {
-	char	*eol;
-	size_t	line_len;
-	char	*line;
-	char	*new_remaining;
+    int i;
 
-	if (!*remaining || **remaining == '\0')
-		return (NULL);
-	eol = ft_strchr(*remaining, '\n');
-	if (eol != NULL)
-		line_len = eol - *remaining + 1;
-	else
-		line_len = ft_strlen(*remaining);
-	if ((line_len + 1) == 0 || (line_len + 1) < line_len)
-		return (NULL);
-	line = (char *)malloc(line_len + 1);
-	if (!line)
-		return (NULL);
-	ft_strlcpy(line, *remaining, line_len + 1);
-	if (eol != NULL)
-		new_remaining = ft_strdup(eol + 1);
-	else
-		new_remaining = NULL;
-	free(*remaining);
-	*remaining = new_remaining;
-	return (line);
+    if (!list)
+        return (0);
+    while (list)
+    {
+        i = 0;
+        while (list->str_buf[i] && i < BUFFER_SIZE)
+        {
+            if (list->str_buf[i] == '\n')
+                return (1);
+            i++;
+        }
+        list = list->next;
+    }
+    return (0);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+t_list  *find_last_node(t_list *list)
 {
-	size_t	i;
-	size_t	sz_join;
-	char	*str_join;
-
-	if (!s1 && !s2)
-		return (NULL);
-	if (!str_join)
-		return (NULL);
-	str_join = (char *)malloc(sz_join);
-	sz_join = ft_strlen(s1) + ft_strlen(s2) + 1;
-	i = 0;
-	if (s1)
-		while (*s1)
-			str_join[i++] = *s1++;
-	if (s2)
-		while (*s2)
-			str_join[i++] = *s2++;
-	str_join[i] = '\0';
-	return (str_join);
+    if (!list)
+        return (NULL);
+    while (list->next)
+        list = list->next;
+    return (list);
 }
 
-size_t	ft_strlen(const char *str)
+void    copy_str(t_list *list, char *str)
 {
-	size_t	i;
+    int i;
+    int j;
 
-	if (!str)
-	{
-		return (0);
-	}
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+    if (!list)
+        return ;
+    j = 0;
+    while (list)
+    {
+        i = 0;
+        while (list->str_buf[i])
+        {
+            if (list->str_buf[i] == '\n')
+            {
+                str[j++] = '\n';
+                str[j] = '\0';
+                return ;
+            }
+            str[j++] = list->str_buf[i++];
+        }
+        list = list->next;
+    }
+    str[j] = '\0';
 }
 
-char	*ft_strchr(const char *str, int c)
+int len_to_newline(t_list *list)
 {
-	int	i;
+    int i;
+    int len;
 
-	i = 0;
-	if (c == 0)
-		return ((char *)str + ft_strlen(str));
-	while (str[i])
-	{
-		if (str[i] == (const char)c)
-			return ((char *)str + i);
-		i++;
-	}
-	return (NULL);
+    if (!list)
+        return (0);
+    len = 0;
+    while (list)
+    {
+        i = 0;
+        while (list->str_buf[i])
+        {
+            if (list->str_buf[i] == '\n')
+            {
+                len++;
+                return (len);
+            }
+            i++;
+            len++;
+        }
+        list = list->next;
+    }
+    return (len);
 }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t sz)
+void    dealloc(t_list **list, t_list *new_node, char *buffer)
 {
-	size_t	src_sz;
-	size_t	i;
+    t_list  *temp;
 
-	src_sz = ft_strlen(src);
-	i = 0;
-	if (sz != 0)
-	{
-		while (src[i] && i < (sz -1))
-		{
-			dest[i] = src[i];
-			i++;
-		}
-		dest[i] = '\0';
-	}
-	return (src_sz);
-}
-
-char	*ft_strdup(const char *str)
-{
-	if (!str)
-		return (NULL);
-	size_t	dup_sz;
-	char	*dup_str;
-
-	dup_sz = ft_strlen(str) +1;
-	dup_str = (char *)malloc(dup_sz);
-	if (!dup_str)
-		return (0);
-	ft_memcpy(dup_str, str, dup_sz);
-	return (dup_str);
-}
-
-void	*ft_memcpy(void *dest, const void *src, size_t len)
-{
-	unsigned char		*d;
-	const unsigned char	*s;
-
-	if (!dest || !src)
-		return (NULL);
-	d = (unsigned char *)dest;
-	s = (const unsigned char *)src;
-	while (len--)
-		*d++ = *s++;
-	return (dest);
+    if (!*list)
+        return ;
+    while (*list)
+    {
+        temp = (*list)->next;
+        free((*list)->str_buf);
+        free(*list);
+        *list = temp;
+    }
+    *list = NULL;
+    if (new_node->str_buf[0])
+        *list = new_node;
+    else
+    {
+        free(buffer);
+        free(new_node);
+    }
 }
