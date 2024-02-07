@@ -94,6 +94,16 @@ who -b | awk '$1 == "system" {print $3 " " $4}' -> to only show the date and tim
 lsblk -> show us all info about all block device (hard drive, SSDs, memories, etc...)
 if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi -> command print yes id LVMGroup is present on system block device, no otherwise
 ss -> To check the number of established TCP connections
+ss -ta | grep ESTAB | wc -l -> ('-ta') chek only TCP connections, ('grep' only ESTAB), and ('wc -l') print line
+users -> show all users
+users | wc -w -> count the number of words
+hostname -I -> show the host address
+ip link -> obtain all info of the network interface
+ip link | grep "link/ether" | awk '{print $2}' -> show only the MAC
+journalctl -> obtain the command executed with sudo. We filter the search using '_COMM=sudo' to see only sudo log.
+journalctl _COMM=sudo | grep COMMAND | wc -l
+
+
  
 sudo crontab -u root -e -> making the script run every 'x' time per day/hour/minute/sec
 
