@@ -72,3 +72,28 @@ enforce_for_root ➤ We will implement this password policy to root.
 */
 
 once opened the port we can connect with: ssh <user>@localhost -p 4242 -> connect the virtual machine with 4242 port open
+
+writing a script to see all it's going on in the machine
+/*
+uname -a -> all machine info, exept the cpu if it is unknown 
+grep "physical id" /proc/cpuinfo | wc -l -> 'grep' looks insede the /proc folder, the 'cpuinfo' file and search for the 'physical id' to show the number of physical cores. the wc -l flag return the lines of the grep output
+grep processor /proc/cpuinfo | wc -l -> as before, 'grep' the 'virtual' core of the processor
+awk -> acts like a filter to select which thing we want to see
+free -> show the 'RAM' memory. with 'awk' we can see the used memory
+free --mega | awk '$1 == "Mem:" {print $3}' -> compare if the first word of a row is equal to "Mem:" we will print the third word of that row, which will be the used memory
+free --mega | awk '$1 == "Mem:" {print $2}' -> obtai the total memory
+free --mega | awk '$1 == "Mem:" {printf("(%.2f%%)\n", $3/$2*100)}' -> calculate the '%' used memory ('%.2f' gives only 2 decimal, '%%' is to show a '%' ofc, the last is the % fromula)
+df -> show the occupied and aviable memory of the disk ('df' is 'disk filesystem')
+df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_use += $3} END {print memory_use}' -> ('-m' is to see the size in megabyte, 'grep' to search in /dev/, 'grep -v' to exclude linse that contain /boot, 'awk' to see the used space and '+' to sum. we sum the third words of each line)
+df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_result += $2} END {printf("%.0fGb\n"), memory_result/1024}' -> obtain the total space ('$2') in Gb ('/1024') with no float ('%.0f).
+df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("(%d%%)\n"), use/total*100}' -> show % of the used memory
+vmstat -> show system statistics
+vmstat 1 4 | tail -1 | awk '{print $15}' -> in an interval from '1' to '4' sec, show only the last line (tail -1) and only the 15th word ('awk {print $15}')
+who -> to see the date and time o four last restart. ('-b') To see the time of the last system boot on screen
+who -b | awk '$1 == "system" {print $3 " " $4}' -> to only show the date and time of last system reboot
+lsblk -> show us all info about all block device (hard drive, SSDs, memories, etc...)
+if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi -> command print yes id LVMGroup is present on system block device, no otherwise
+ss -> To check the number of established TCP connections
+ 
+sudo crontab -u root -e -> making the script run every 'x' time per day/hour/minute/sec
+
