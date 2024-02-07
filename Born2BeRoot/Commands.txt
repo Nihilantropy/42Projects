@@ -141,6 +141,38 @@ Reaload privilege tables now? Choose Y. This will reload the MySQL permission ta
 
 mariadb -> acces to mariadb database
 CREATE DATABASE wp_database; -> create a wordpress database
+SHOW DATABASES; -> show database
+CREATE USER 'crea'@'localhost' IDENTIFIED BY '12345';
+USE mysql;
+SELECT user, host, Select_priv, Insert_priv, Update_priv, Delete_priv FROM user; -> Show user inside the databes and relative privileges
+GRANT ALL PRIVILEGES ON wp_database.* TO 'crea'@'localhost'; -> grant all privileges to the user
+FLUSH PRIVILEGES; -> make changes effective
+
+sudo apt install php-cgi php-mysql -> installing php packages and connecting to mysql database
+cd /var/www/html -> go to the html folder
+cp wp-config-sample.php wp-config.php -> changing name to file
+vim wp-config.php -> modify the wp-config file
+/*
+wp_database
+crea (user)
+12345 (pass_id)
+*/
+
+sudo lighty-enable-mod fastcgi -> improve speed of web applications on the server
+sudo lighty-enable-mod fastcgi-php -> same thing for php_based applications
+sudo service lighttpd force-reload -> reload server status to see changes
+
+// additional services
+sudo apt install litespeed
+wget -O - https://repo.litespeed.sh | sudo bash -> adding the Openlitespeed repo to debian
+sudo apt update
+sudo apt install openlitespeed
+sudo /usr/local/lsws/admin/misc/admpass.sh -> to change the starndare '123456' password
+sudo ufw allow 8088/tcp -> open 8088/tcp port
+sudo ufw allow 7080/tcp -> open 7080/tcp port
+sudo ufw reload -> to see the changes
+
+
 
 
 
