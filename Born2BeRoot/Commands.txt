@@ -1,5 +1,7 @@
 // Commands used in the Born2beroot project
 
+// Mandatory part
+
 su -> go to /root
 apt install sudo -> installing sudo packages
 sudo addgroup <groupname> -> create a group
@@ -101,9 +103,44 @@ hostname -I -> show the host address
 ip link -> obtain all info of the network interface
 ip link | grep "link/ether" | awk '{print $2}' -> show only the MAC
 journalctl -> obtain the command executed with sudo. We filter the search using '_COMM=sudo' to see only sudo log.
-journalctl _COMM=sudo | grep COMMAND | wc -l
+journalctl _COMM=sudo | grep COMMAND | wc -l -> obtain only the number of sudo commands
+*/
 
-
- 
 sudo crontab -u root -e -> making the script run every 'x' time per day/hour/minute/sec
+
+// Bonus part
+sudo apt install lighttpd -> installing a fast and secure webserver
+sudo apt install wget zip -> install zip packages using wget to download from URL, http, https, ftp protocol
+sudo wget https://it.wordpress.org/latest-it_IT.zip -> download the latest version of wordpress
+sudo unzip latest-it_IT.zip -> unzip the files
+sudo mv html/ html_old -> renaming html folder
+sudo mv wordpress/ html -> renaming wordpress to html
+sudo chmod -R 755 html -> setting the permission for html and all inner folder/files (-R, recursive). '7' is for owner's 'read' 'write' and 'execute' permissions, '5' is for user's 'read' and 'execute' permissions.
+sudo apt install mariadb-server -> installing mariadb server database
+sudo mysql_secure_installation -> change access to be more secure
+/*
+Switch to unix_socket autentication? → N
+Change the root password? → N
+Remove anonymous users? → Y
+Disallow root login remotely? → Y
+Remove test database and acces to it? → Y
+Reaload privilege tables now? → Y
+
+Switch to unix_socket authentication? We choose N because we don't want it to switch to Unix socket authentication because we already have a protected root account.
+
+Change the root password? We choose N. We do not want to change the root password. By default we have no password but in mariadb he is not really root as we must give him administrator permissions.
+
+Remove anonymous users? We choose Y. By default when you install mariadb it has an anonymous user, which allows anyone to log into mariadb without having to create their own user account. This is designed for testing purposes and to make the installation smoother. When we leave the development environment and want to move to a production environment we must remove the anonymous users.
+
+Disallow root login remotely? Choose Y. Disabling root login remotely will prevent anyone from guessing the root password. We will only be able to connect to root from localhost.
+
+Remove test database and access to it? Choose Y. This will remove the test database and any users who have access to it.
+
+Reaload privilege tables now? Choose Y. This will reload the MySQL permission tables so that the changes to the security settings will take effect immediately.
+*/
+
+mariadb -> acces to mariadb database
+CREATE DATABASE wp_database; -> create a wordpress database
+
+
 

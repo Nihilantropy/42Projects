@@ -259,3 +259,113 @@ scopi di diagnosi o configurazione di software che richiede informazioni specifi
 
 
 
+
+//cos' è TCP?
+Una connessione TCP (Transmission Control Protocol) è un canale di comunicazione affidabile e orientato 
+alla connessione tra due nodi su una rete IP. TCP è uno dei principali protocolli utilizzati per la 
+trasmissione di dati su Internet e su reti locali.
+
+Ecco alcune caratteristiche fondamentali di una connessione TCP:
+
+Affidabilità: TCP garantisce l'affidabilità dei dati inviati attraverso la rete. Utilizza un meccanismo 
+di controllo degli errori per rilevare e correggere eventuali perdite o corruzioni di dati durante la trasmissione. 
+Se un pacchetto di dati viene perso o danneggiato, TCP richiederà al mittente di ritrasmettere i dati mancanti.
+
+Orientamento alla connessione: Prima di trasferire dati, TCP stabilisce una connessione logica tra il mittente e 
+il destinatario. Questo processo coinvolge una fase di handshake a tre vie (TCP three-way handshake) durante la 
+quale i due nodi scambiano informazioni di controllo per stabilire e sincronizzare i parametri della connessione.
+
+Controllo del flusso: TCP regola il flusso di dati tra i nodi per evitare che il mittente trasmetta dati più velocemente 
+di quanto il destinatario possa elaborarli. Utilizza un meccanismo di finestra scorrevole per regolare il flusso dei dati 
+in entrambe le direzioni della connessione.
+
+Controllo della congestione: TCP monitora costantemente la congestione di rete e adatta la velocità di trasmissione di 
+dati in base alle condizioni di congestione rilevate. Questo aiuta a prevenire il collasso della rete e ottimizza le prestazioni complessive del sistema.
+
+Segmentazione dei dati: TCP suddivide i dati in segmenti più piccoli prima della trasmissione e li riunisce al 
+destinatario. Questo consente una maggiore efficienza nella trasmissione dei dati su reti con dimensioni massime di pacchetto limitate.
+
+Orientamento ai byte: TCP tratta i dati come flusso di byte, senza considerare i limiti dei messaggi o dei record. 
+Questo permette una trasmissione efficiente e flessibile di dati di dimensioni variabili.
+
+Le connessioni TCP sono ampiamente utilizzate per applicazioni che richiedono un'affidabilità elevata e un controllo 
+preciso sul trasferimento di dati, come il web browsing, l'email, il trasferimento di file e molte altre applicazioni di rete.
+
+
+
+
+
+
+// cos'è lighttpd?
+Lighttpd (pronunciato "lighty") è un server web open-source leggero e veloce, progettato per essere efficiente, 
+sicuro e flessibile. È spesso utilizzato per servire siti web ad alto traffico, nonché per applicazioni web e servizi API.
+
+Ecco alcune caratteristiche principali di Lighttpd:
+
+Leggerezza: Lighttpd è progettato per essere leggero e consumare poche risorse di sistema. È ottimizzato 
+per prestazioni elevate e basso utilizzo di memoria, il che lo rende ideale per server con risorse limitate 
+o ad alta densità di server.
+
+Velocità: Grazie alla sua architettura efficiente e alla gestione del protocollo HTTP/1.1, Lighttpd è in 
+grado di gestire carichi di lavoro elevati con tempi di risposta veloci. È in grado di servire file statici 
+in modo efficiente e supporta anche la cache di contenuti dinamici per migliorare le prestazioni.
+
+Sicurezza: Lighttpd mette un'enfasi sulla sicurezza, implementando diverse funzionalità di sicurezza avanzate 
+per proteggere il server e le applicazioni web ospitate. Include supporto per SSL/TLS per la crittografia dei 
+dati trasferiti tramite HTTPS e supporta la configurazione di regole di accesso e restrizioni per proteggere le 
+risorse del server.
+
+Flessibilità: Lighttpd è altamente flessibile e può essere configurato per soddisfare una vasta gamma di esigenze. 
+Supporta l'interazione con linguaggi di scripting come PHP, Perl e Python tramite moduli aggiuntivi e offre una vasta 
+gamma di opzioni di configurazione per adattarsi alle esigenze specifiche dell'applicazione.
+
+Modularità: Lighttpd utilizza un'architettura modulare che consente di estendere le sue funzionalità aggiungendo o 
+rimuovendo moduli in base alle esigenze. Questo permette agli amministratori di server di personalizzare e ottimizzare 
+il server web in base alle specifiche esigenze dell'applicazione.
+
+In sintesi, Lighttpd è una scelta popolare per coloro che cercano un server web leggero, veloce e sicuro per servire 
+siti web e applicazioni web ad alto traffico. La sua natura leggera e la sua architettura modulare lo rendono adatto 
+a una vasta gamma di scenari di utilizzo, dai siti web personali ai grandi servizi web aziendali.
+
+
+
+
+
+// cos'è MariaDB?
+MariaDB Server è un sistema di gestione dei database relazionali (RDBMS) open-source che è nato come un fork 
+di MySQL dopo l'acquisizione di MySQL AB da parte di Oracle Corporation. È completamente compatibile con MySQL 
+e mira a essere una soluzione alternativa per i database relazionali.
+
+Ecco alcune caratteristiche principali di MariaDB Server:
+
+Open-source: MariaDB è un progetto open-source distribuito sotto i termini della GNU General Public License (GPL). 
+Ciò significa che il codice sorgente è disponibile gratuitamente e può essere modificato, distribuito e utilizzato 
+senza alcuna restrizione.
+
+Compatibilità con MySQL: MariaDB è progettato per essere completamente compatibile con MySQL. Ciò significa che le 
+applicazioni e i sistemi già sviluppati per MySQL possono essere facilmente migrati a MariaDB senza la necessità di 
+apportare modifiche significative al codice.
+
+Prestazioni elevate: MariaDB è ottimizzato per offrire prestazioni elevate e scalabilità. Include miglioramenti delle 
+prestazioni rispetto a MySQL, come ottimizzazioni delle query, miglioramenti dell'architettura del motore di archiviazione 
+e ottimizzazioni delle funzionalità di caching.
+
+Caratteristiche avanzate: MariaDB offre una vasta gamma di caratteristiche avanzate per la gestione dei database, tra cui 
+supporto per stored procedure, trigger, viste, transazioni ACID, e altro ancora. Include anche caratteristiche aggiuntive 
+rispetto a MySQL, come il supporto per JSON, l'encryption per le tabelle, e il clustering.
+
+Comunità attiva: MariaDB ha una comunità di sviluppatori e utenti attiva che contribuisce allo sviluppo e al miglioramento 
+continuo del software. Ciò assicura che MariaDB sia sempre all'avanguardia in termini di funzionalità, sicurezza e stabilità.
+
+In sintesi, MariaDB Server è una potente e completa soluzione di database relazionali open-source che offre elevata compatibilità 
+con MySQL, prestazioni elevate, e una vasta gamma di funzionalità avanzate. È una scelta popolare per applicazioni web, servizi cloud, 
+e altre applicazioni che richiedono un database affidabile e performante.
+
+
+
+
+
+
+
+
+
