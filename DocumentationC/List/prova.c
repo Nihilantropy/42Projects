@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 typedef struct node {
     char *data;
@@ -12,8 +13,7 @@ typedef struct node {
 #define BUFFER_SIZE 10
 #endif
 
-
-int count_tonewline(t_list *list)
+int count_to_newline(t_list *list)
 {
     int i;
     int len;
@@ -34,6 +34,59 @@ int count_tonewline(t_list *list)
     return (len); //non ha trovato '\n' (impossibile, il programma si sarebbe dovuto interrompere prima)
 }
 
+void    cpy_nodes(char *str, t_list *list)
+{
+    int i; //scorro il list data
+    int j; //scorro la stringa str
+
+    j = 0;
+    while (list) //finchè esiste la stringa
+    {
+        i = 0;
+        while (list->data[i]) //finchè esiste data
+        {
+            if (list->data[i] == '\n') //appena trovi '\n'
+            {
+                str[j++] = list->data[i]; //copia il '\n'
+                str[j] = '\0'; //incrementa e 
+                return ;
+            }
+            str[j++] = list->data[i++]; //copia i dati nella stringa
+        }
+        list = list->next; //scorro la lista
+    }
+    return ;
+}
+
+char    *ft_strcpy(char *s1, char *s2)
+{
+    int i;
+
+    i = 0;
+    if (!s1 || !s2)
+        return NULL;
+    while (s2[i])
+    {
+        s1[i] = s2[i];
+        i++;
+    }
+    s1[i] = '\0';
+    return (s1);
+}
+
+char *extract_line(t_list *list)
+{
+    char *line;
+    int len;
+
+    len = count_to_newline(list); //conta i caratteri fino al '\n'
+    line = malloc(len + 1); //alloca una stringa con lo spazio necessario
+    if (!line)
+        return (NULL);
+    cpy_nodes(line, list); //copia i nodi della stringa letti, escluso l'eccesso del buffer, nella stringa
+    return(line); //ritorna la stringa
+}
+
 int found_newline(t_list *list)
 {
     int i;
@@ -52,6 +105,18 @@ int found_newline(t_list *list)
     return (0); //non ha trovato '\n'
 }
 
+t_list    *find_last_node(t_list **list)
+{
+    t_list *current;
+
+    if (!*list)
+        return (NULL);
+    current = *list; //salvo il pointer alla testa attuale
+    while (current->next) //finchè ci sono nodi
+        current = current->next; //scorro la lista
+    return (current); //ritorno l'ultimo nodo
+}
+
 void    create_new_node(t_list **list, char *buffer)
 {
     t_list  *new_node; //crea un nuovo nodo
@@ -64,14 +129,11 @@ void    create_new_node(t_list **list, char *buffer)
     new_node->next = NULL; // lo faccio puntare a NULL (ultimo nodo)
     if (!*list)
         (*list) = new_node; // se la lista è vuota il nuovo nodo diventa la testa della lista
-    else
+    else //altrimenti
     {
-        current = *list;  //altrimenti utilizzo il nodo temporaneo per
-        while (current->next) //scorrere la lista 
-            current = current->next; // fino all'ultimo nodo
+        current = find_last_node(list); //ritorna un puntatore all'ultimo nodo della lista
         current->next = new_node; //e mettere il nuovo nodo come ultimo nodo
     }
-    printf("%s\n", new_node->data);
 }
 
 void    create_buffer(t_list **list, int fd)
@@ -83,7 +145,7 @@ void    create_buffer(t_list **list, int fd)
     {
         buffer = malloc(BUFFER_SIZE + 1); //alloco il giusto spazio al buffer
         if (!buffer)
-        return ;
+            return ;
         bytes_read = read(fd, buffer, BUFFER_SIZE); //leggo BUFFER_SIZE byte dal file descriptor
         if (!bytes_read) //se non c'è niente da leggere
         {
@@ -95,27 +157,89 @@ void    create_buffer(t_list **list, int fd)
     }
 }
 
+int ft_strlen(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
+}
+
+void    clean_list(t_list **list, t_list *new_head, char *buffer)
+{
+    t_list  *temp; //puntatore dove salvare l'indirizzo del nodo 'next', ovvero il successivo
+
+    if (!*list)
+        return ;
+    while (*list)
+    {
+        temp = (*list)->next; //salvo l'indirizzo del prossimo nodo
+        free((*list)->data); //libero il 'data' del nodo corrente
+        free(*list); //libero l'indirizzo del nodo corrente
+        *list = temp; //vado al nodo successivo
+    }
+    *list = NULL; //reimposto la lista a NULL
+    if (new_head->data[0]) //se il residuo esiste
+        *list = new_head; //diventa il nodo alla testa della lista
+    else //altrimenti
+    {
+        free(buffer); //libero il buffer allocato
+        free(new_head); //libero il puntatore al nodo
+    }
+}
+
+void    polish_list(t_list **list)
+{
+    int i;
+    int j;
+    char *buffer; //array dove contenere il buffer letto restande dopo il '\n'
+    t_list *last_node; //ultimo nodo della lista dove si trova il residuo
+    t_list *new_head; //nodo che conterrà il residuo e diventerà la nuova testa della lista
+
+    i = 0;
+    j = 0;
+    last_node = find_last_node(list);
+    while (last_node->data[i] && last_node->data[i] != '\n') //arrivo fino al '\n' o al '\0'
+        i++;
+    j = ft_strlen(last_node->data + i); //trovo l'esatta lunghezza del residuo
+    buffer = malloc(j + 1); //alloco lo spazio necessario per il residuo
+    new_head = malloc(sizeof(t_list)); //creo la nuova testa della lista
+    if (!buffer || !new_head)
+        return ;
+    buffer = ft_strcpy(buffer, last_node->data + i + 1); //copio solo il residio nel buffer + lo spazio per il '\0'
+    new_head->data = buffer; //metto il residuo dentro il 'data' della nuova testa
+    new_head->next = NULL; //lo imposto come unico nodo della lista
+    clean_list(list, new_head, buffer); //pulisco la lista e imposto la nuova testa
+}
+
 char    *get_next_line(int fd)
 {
-    t_list *list; //dichiaro l'esistenza di una lista
+    static t_list *list; //dichiaro l'esistenza di una lista statica
     char    *line; //dichiaro la linea che sarà restituita
 
     if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0) 
         return (NULL);
-
-    list = NULL; //inizializzo la lista a NULL
     create_buffer(&list, fd); //creo il buffer da inserire nella struttura dati
     if (!list)
         return (NULL);
-    extract_line(&list);
-        
+    line = extract_line(list);
+    polish_list(&list);
+    return (line);
 }
 
 int main()
 {
+    char *line;
+
     int fd = open("ListDataStruct.txt", O_RDONLY);
     if (fd <= 0)
         return 0;
-    get_next_line(fd);
+    while ((line = get_next_line(fd)) != NULL) {
+        printf("%s", line);
+        free(line);
+    }
+    close(fd);
     return 0;
 }

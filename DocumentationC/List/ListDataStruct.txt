@@ -1,4 +1,5 @@
-In C, le liste, conosciute anche come liste collegate (o linked lists), sono strutture dati fondamentali
+In C, le liste, sono
+conosciute anche come liste collegate (o linked lists), sono strutture dati fondamentali
 che consentono di memorizzare e gestire sequenze di elementi in modo dinamico. A differenza degli array, 
 le liste collegate possono facilmente adattarsi a dimensioni variabili, aggiungendo o rimuovendo elementi 
 senza la necessità di riallocare l'intera struttura dati.
