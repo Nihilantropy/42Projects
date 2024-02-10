@@ -9,10 +9,6 @@ typedef struct node {
     struct node *next;
 }   t_list;
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 10
-#endif
-
 int count_to_newline(t_list *list)
 {
     int i;
@@ -43,7 +39,7 @@ void    cpy_nodes(char *str, t_list *list)
     while (list) //finchè esiste la stringa
     {
         i = 0;
-        while (list->data[i]) //finchè esiste data
+        while (list->data[i] && i < BUFFER_SIZE) //finchè esiste data o i non supera il BUFFER_SIZE
         {
             if (list->data[i] == '\n') //appena trovi '\n'
             {
@@ -58,20 +54,20 @@ void    cpy_nodes(char *str, t_list *list)
     return ;
 }
 
-char    *ft_strcpy(char *s1, char *s2)
+void    ft_strcpy(char *s1, char *s2)
 {
     int i;
 
     i = 0;
     if (!s1 || !s2)
-        return NULL;
+        return ;
     while (s2[i])
     {
         s1[i] = s2[i];
         i++;
     }
     s1[i] = '\0';
-    return (s1);
+    return ;
 }
 
 char *extract_line(t_list *list)
@@ -199,7 +195,6 @@ void    polish_list(t_list **list)
     t_list *new_head; //nodo che conterrà il residuo e diventerà la nuova testa della lista
 
     i = 0;
-    j = 0;
     last_node = find_last_node(list);
     while (last_node->data[i] && last_node->data[i] != '\n') //arrivo fino al '\n' o al '\0'
         i++;
@@ -208,7 +203,7 @@ void    polish_list(t_list **list)
     new_head = malloc(sizeof(t_list)); //creo la nuova testa della lista
     if (!buffer || !new_head)
         return ;
-    buffer = ft_strcpy(buffer, last_node->data + i + 1); //copio solo il residio nel buffer + lo spazio per il '\0'
+    ft_strcpy(buffer, last_node->data + i + 1); //copio solo il residio nel buffer + lo spazio per il '\0'
     new_head->data = buffer; //metto il residuo dentro il 'data' della nuova testa
     new_head->next = NULL; //lo imposto come unico nodo della lista
     clean_list(list, new_head, buffer); //pulisco la lista e imposto la nuova testa

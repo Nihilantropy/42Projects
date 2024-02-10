@@ -1,0 +1,13 @@
+int main() {
+    // Creazione di una lista vuota
+    struct Node* head = NULL;
+
+    // Inserimento di valori nella lista
+    push(&head, 1);
+    push(&head, 2);
+    push(&head, 3);
+
+    // La lista ora è: 3 -> 2 -> 1
+
+    return 0;
+}
