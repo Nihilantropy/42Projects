@@ -4,6 +4,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#ifdef BUFFER_SIZE
+#define BUFFER_SIZE 10
+#endif
+
 typedef struct node {
     char *data;
     struct node *next;
