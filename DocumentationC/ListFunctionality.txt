@@ -1,0 +1,27 @@
+Quando una funzione accetta un parametro come t_list **list, si sta passando un puntatore 
+a un puntatore di tipo t_list. Questo significa che la funzione accetta l'indirizzo di un puntatore 
+a t_list, che può essere utilizzato per modificare il valore del puntatore stesso. Questo scenario 
+è comunemente utilizzato quando si desidera modificare il puntatore stesso all'interno della funzione e non solo i dati a cui punta.
+
+Nel contesto di una lista, se passi un parametro come t_list **list a una funzione create_list, 
+generalmente significa che stai passando il puntatore alla testa della lista, ma con la possibilità 
+di modificarlo all'interno della funzione. In altre parole, stai passando l'indirizzo della variabile che contiene il puntatore alla testa della lista.
+
+Ecco una spiegazione più dettagliata:
+
+Puntatore alla testa della lista: Quando passi t_list **list a una funzione come create_list, stai 
+passando un puntatore alla testa della lista. Questo puntatore contiene l'indirizzo del primo nodo 
+della lista. Quindi, qualsiasi modifica fatta alla testa della lista all'interno della funzione sarà 
+riflessa anche all'esterno della funzione, poiché stai manipolando direttamente il puntatore alla testa della lista.
+
+Indirizzo di tutta la lista: Anche se stai passando un puntatore alla testa della lista, in un certo 
+senso, stai passando l'indirizzo di tutta la lista, poiché il puntatore alla testa della lista contiene 
+l'indirizzo del primo nodo, che a sua volta contiene l'indirizzo del secondo nodo, e così via, fino alla fine della lista.
+
+Puntatore a un nodo della lista: Non stai passando direttamente un puntatore a un nodo della lista. 
+Tuttavia, dato che il puntatore alla testa della lista può essere utilizzato per accedere a qualsiasi 
+nodo della lista, in un certo senso, si potrebbe dire che hai la possibilità di accedere a qualsiasi nodo della lista tramite il puntatore alla testa.
+
+In sintesi, t_list **list consente di passare un puntatore alla testa della lista con la possibilità di
+modificarlo all'interno della funzione. Questo è utile quando si desidera creare una nuova lista o 
+modificare la testa di una lista esistente all'interno di una funzione e fare in modo che tali modifiche siano riflesse all'esterno della funzione.

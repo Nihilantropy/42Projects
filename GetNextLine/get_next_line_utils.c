@@ -10,3 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
+
+t_list  *find_last_node(t_list **list)
+{
+    t_list  *last_node;
+
+    if (!*list)
+        return (NULL);
+    last_node = *list;
+    while (last_node->next)
+        last_node = last_node->next;
+    return(last_node);
+
+}
