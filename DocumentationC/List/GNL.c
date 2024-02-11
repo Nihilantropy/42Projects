@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#ifdef BUFFER_SIZE
+#ifndef BUFFER_SIZE
 #define BUFFER_SIZE 10
 #endif
 
@@ -24,14 +24,17 @@ int count_to_newline(t_list *list)
         i = 0;
         while (list->data[i]) //finchè il buffer non arrivo a '\0'
         {
-            if (list->data[i] == '\n') //se trovi la new line 
+            if (list->data[i] == '\n') //se trovi la new line
+            {
+                len++; //includi il '\n'
                 return (len); //tornami la lunghezza fino al '\n'
+            }
             i++; //vai avanti
             len++; //incrementa la lunghezza
         }
         list = list->next; //scorri i nodi della lista finchè esiste, o finchè non trovi il '\n'
     }
-    return (len); //non ha trovato '\n' (impossibile, il programma si sarebbe dovuto interrompere prima)
+    return (len); //non ha trovato '\n'
 }
 
 void    cpy_nodes(char *str, t_list *list)
@@ -55,22 +58,7 @@ void    cpy_nodes(char *str, t_list *list)
         }
         list = list->next; //scorro la lista
     }
-    return ;
-}
-
-void    ft_strcpy(char *s1, char *s2)
-{
-    int i;
-
-    i = 0;
-    if (!s1 || !s2)
-        return ;
-    while (s2[i])
-    {
-        s1[i] = s2[i];
-        i++;
-    }
-    s1[i] = '\0';
+    str[j] = '\0'; //chiudo la string anche se non ho trovato il '\n' (quindi siamo alla fine della lettura)
     return ;
 }
 
@@ -105,16 +93,13 @@ int found_newline(t_list *list)
     return (0); //non ha trovato '\n'
 }
 
-t_list    *find_last_node(t_list **list)
+t_list    *find_last_node(t_list *list)
 {
-    t_list *current;
-
-    if (!*list)
+    if (!list)
         return (NULL);
-    current = *list; //salvo il pointer alla testa attuale
-    while (current->next) //finchè ci sono nodi
-        current = current->next; //scorro la lista
-    return (current); //ritorno l'ultimo nodo
+    while (list->next) //finchè ci sono nodi
+        list = list->next; //scorro la lista
+    return (list); //ritorno l'ultimo nodo
 }
 
 void    create_new_node(t_list **list, char *buffer)
@@ -131,7 +116,7 @@ void    create_new_node(t_list **list, char *buffer)
         (*list) = new_node; // se la lista è vuota il nuovo nodo diventa la testa della lista
     else //altrimenti
     {
-        current = find_last_node(list); //ritorna un puntatore all'ultimo nodo della lista
+        current = find_last_node(*list); //ritorna un puntatore all'ultimo nodo della lista
         current->next = new_node; //e mettere il nuovo nodo come ultimo nodo
     }
 }
@@ -155,16 +140,6 @@ void    create_buffer(t_list **list, int fd)
         buffer[bytes_read] = '\0'; //chiudo il buffer per garantire il corretto trattamento in quanto stringa
         create_new_node(list, buffer); //vado a creare il primo nodo e poi tutti i nodi successivi ad ogni iterazione del ciclo
     }
-}
-
-int ft_strlen(char *str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
 }
 
 void    clean_list(t_list **list, t_list *new_head, char *buffer)
@@ -198,16 +173,18 @@ void    polish_list(t_list **list)
     t_list *last_node; //ultimo nodo della lista dove si trova il residuo
     t_list *new_head; //nodo che conterrà il residuo e diventerà la nuova testa della lista
 
-    i = 0;
-    last_node = find_last_node(list);
-    while (last_node->data[i] && last_node->data[i] != '\n') //arrivo fino al '\n' o al '\0'
-        i++;
-    j = ft_strlen(last_node->data + i); //trovo l'esatta lunghezza del residuo
-    buffer = malloc(j + 1); //alloco lo spazio necessario per il residuo
-    new_head = malloc(sizeof(t_list)); //creo la nuova testa della lista
-    if (!buffer || !new_head)
+    new_head = malloc(sizeof(t_list)); //inizializzazione nuova testa della lista
+    buffer = malloc(BUFFER_SIZE + 1); //inizializzazione contenuto del nodo
+    if (!new_head || !buffer)
         return ;
-    ft_strcpy(buffer, last_node->data + i + 1); //copio solo il residio nel buffer + lo spazio per il '\0'
+    i = 0; //indice per il residuo
+    j = 0; //indice per il buffer
+    last_node = find_last_node(*list); //vado all'ultimo nodo della lista
+    while (last_node->data[i] && last_node->data[i] != '\n') //scorro l'indice i finchè non trovo '\n' o '\0'
+        i++;
+    while (last_node->data[i] && last_node->data[i++]) //scorro il 'data' finchè non arriva a '\0' e incremento preventivamente i, per non includere il '\n' (e per non superare le 25 righe)
+        buffer[j++] = last_node->data[i]; //copio il residuo dentro il buffer. i si incrementa nella condizione
+    buffer[j] = '\0'; //chiudo il buffer
     new_head->data = buffer; //metto il residuo dentro il 'data' della nuova testa
     new_head->next = NULL; //lo imposto come unico nodo della lista
     clean_list(list, new_head, buffer); //pulisco la lista e imposto la nuova testa
