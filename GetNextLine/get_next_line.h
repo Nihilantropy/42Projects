@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 19:59:36 by crea              #+#    #+#             */
-/*   Updated: 2024/02/11 03:50:55 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/11 17:16:16 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 #define BUFFER_SIZE 1024
 #endif
 
-typedef struct s_list {
+typedef struct	s_list {
 	char    *data;
 	struct  s_list  *next;
-}           t_list;
+}			t_list;
 char	*get_next_line(int fd);
 void	polish_list(t_list **list);
 void	clean_list(t_list **list, t_list *new_head, char *buffer);
