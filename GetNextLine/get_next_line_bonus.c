@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 17:12:07 by crea              #+#    #+#             */
-/*   Updated: 2024/02/11 17:12:07 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/11 17:19:56 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ void	create_new_node(t_list **list, char *buffer, int fd)
 	t_list	*new_node;
 	t_list	*last_node;
 
-	new_node = malloc(sizeof(t_list));
-	if (!new_node)
-		return ;
-	last_node = find_last_node(list[fd]);
-	if (!last_node)
-		list[fd] = new_node;
-	else
-		last_node->next = new_node;
-	new_node->data = buffer;
-	new_node->next = NULL;
+    new_node = malloc(sizeof(t_list));
+    if (!new_node)
+        return ;
+    new_node->data = buffer;
+    new_node->next = NULL;
+    last_node = find_last_node(list[fd]);
+    if (!last_node)
+        list[fd] = new_node;
+    else
+        last_node->next = new_node;
 }
 
 void	create_buffer(t_list **list, int fd)
