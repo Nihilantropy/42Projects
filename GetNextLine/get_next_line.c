@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:35:30 by crea              #+#    #+#             */
-/*   Updated: 2024/02/10 20:43:49 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/11 03:52:01 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void polish_list(t_list **list)
     while (last_node->data[i] && last_node->data[i] != '\n')
         i++;
     while (last_node->data[i] && last_node->data[i++])
-        buffer[j++] = last_node->data[i++];
-    buffer[i] = '\0';
+        buffer[j++] = last_node->data[i];
+    buffer[j] = '\0';
     new_head->data = buffer;
     new_head->next = NULL;
     clean_list(list, new_head, buffer);
