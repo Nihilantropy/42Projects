@@ -58,6 +58,7 @@ void    cpy_nodes(char *line, t_list *list)
         list = list->next;
     }
     line[j] = '\0';
+    return ;
 }
 
 int len_to_newline(t_list *list)
@@ -93,7 +94,7 @@ int find_newline(t_list *list)
     while (list)
     {
         i = 0;
-        while (list->data[i])
+        while (list->data[i] && i < BUFFER_SIZE)
         {
             if (list->data[i] == '\n')
                 return (1);

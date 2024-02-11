@@ -1,3 +1,65 @@
+In C, le liste, sono
+conosciute anche come liste collegate (o linked lists), sono strutture dati fondamentali
+che consentono di memorizzare e gestire sequenze di elementi in modo dinamico. A differenza degli array, 
+le liste collegate possono facilmente adattarsi a dimensioni variabili, aggiungendo o rimuovendo elementi 
+senza la necessità di riallocare l'intera struttura dati.
+
+Costruzione di una Lista in C
+Una lista collegata è composta da una serie di nodi, dove ogni nodo contiene due parti principali:
+
+Dati (Data): La parte che contiene il valore effettivo dell'elemento memorizzato nella lista.
+Puntatore (Pointer): Una parte che contiene l'indirizzo del nodo successivo nella lista. Questo collega ogni nodo al suo successivo, creando una catena.
+In C, un nodo di una lista viene tipicamente definito utilizzando una struct. Ecco un esempio di come potrebbe essere definito un nodo di una lista semplicemente collegata, che memorizza valori interi:
+
+
+struct Node {
+    int data;         // Dati: in questo caso, un intero
+    struct Node* next; // Puntatore al prossimo nodo
+};
+
+Questa struttura è chiamata "self referential structure" perchè contiene un Pointer ad una struttura dello stesso tipo.
+
+Operazioni Base su Liste in C
+Le operazioni fondamentali che si possono eseguire su una lista collegata includono:
+
+Inserimento: Aggiungere un nuovo nodo alla lista, che può avvenire in diverse posizioni: all'inizio, alla fine, o in mezzo alla lista.
+Cancellazione: Rimuovere un nodo dalla lista, che richiede l'aggiustamento dei puntatori per mantenere la continuità della lista.
+Ricerca: Trovare un nodo nella lista che soddisfi certi criteri (ad es., che contenga un certo valore).
+Traversamento: Passare attraverso tutti i nodi della lista per eseguire operazioni come stampare i valori o calcolare la somma.
+
+Differenze con Altre Strutture Dati
+Le liste collegate si distinguono dalle altre strutture dati principalmente per la loro flessibilità e modalità di gestione della memoria:
+
+Array: Gli array hanno una dimensione fissa e richiedono una quantità di memoria contigua. Le liste collegate, invece, allocano memoria per ogni nuovo elemento dinamicamente e non richiedono che gli elementi siano contigui nello spazio di memoria.
+Pile (Stacks) e Code (Queues): Sia le pile sia le code possono essere implementate usando liste collegate. La differenza principale sta nel modo in cui gli elementi vengono inseriti e rimossi (LIFO per le pile e FIFO per le code).
+Alberi (Trees): Gli alberi sono strutture dati gerarchiche, mentre le liste collegate sono lineari. Un albero può essere visto come una serie di liste collegate che si diramano in più nodi figli.
+Esempio di Inserimento in una Lista Collegata
+Ecco un esempio di come si potrebbe implementare l'inserimento in testa a una lista collegata in C:
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Funzione per inserire un nuovo nodo all'inizio della lista
+void push(struct Node** head_ref, int new_data) {
+    // Allocazione di un nuovo nodo
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+
+    // Inserimento dei dati nel nuovo nodo
+    new_node->data = new_data;
+
+    // Collegamento del nuovo nodo alla lista esistente
+    new_node->next = (*head_ref);
+
+    // Spostamento del head per puntare al nuovo nodo
+    (*head_ref) = new_node;
+}
+
 int main() {
     // Creazione di una lista vuota
     struct Node* head = NULL;
@@ -10,4 +72,4 @@ int main() {
     // La lista ora è: 3 -> 2 -> 1
 
     return 0;
-}
+} 
