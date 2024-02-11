@@ -32,6 +32,8 @@ char *extract_line(t_list *list)
 
     len = len_to_newline(list);
     line = malloc(len + 1);
+    if (!line)
+        return (NULL);
     cpy_nodes(line, list);
     return (line);
 }
@@ -44,13 +46,13 @@ void    create_new_node(t_list **list, char *buffer, int fd)
     new_node = malloc(sizeof(t_list));
     if (!new_node)
         return ;
-    new_node->data = buffer;
-    new_node->next = NULL;
     last_node = find_last_node(list[fd]);
     if (!last_node)
         list[fd] = new_node;
     else
         last_node->next = new_node;
+    new_node->data = buffer;
+    new_node->next = NULL;
 }
 
 void    create_buffer(t_list **list, int fd)
