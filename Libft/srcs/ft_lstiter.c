@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:49:22 by crea              #+#    #+#             */
-/*   Updated: 2024/02/05 15:31:03 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/12 00:45:11 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	t_list	*current;
 
-	if (lst == NULL || f == NULL)
+	if (!lst || !f)
 		return ;
 	current = lst;
-	while (current != NULL)
+	while (current)
 	{
 		f(current -> content);
 		current = current -> next;

@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:28:35 by crea              #+#    #+#             */
-/*   Updated: 2024/02/05 15:30:45 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/12 00:31:51 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!lst || !new)
 		return ;
-	new -> next = *lst;
+	new->next = *lst;
 	*lst = new;
 }
