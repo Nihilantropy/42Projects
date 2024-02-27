@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/02/26 20:09:48 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/27 20:01:39 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include </Users/crea/Desktop/42projects/So_long/mlx/mlx.h>
-# include "error_msg.h"
+# include <../mlx/mlx.h>
+# include "../libft/include/libft.h"
+# include "../ft_printf/include/ft_printf.h"
 # include "keys.h"
 
 # define FLOOR '0'
@@ -42,7 +43,7 @@ typedef struct s_axis
     int y;
 }       t_axis;
 
-typdef struct s_map
+typedef struct s_map
 {
     char    **map;
     int     row;

@@ -1,6 +1,6 @@
 #include "../include/so_long.h"
-
-int	main(void)
+/*
+void	open_display(void)
 {
 	t_vars	vars;
 	t_data	img;
@@ -10,4 +10,4 @@ int	main(void)
 	img.img = mlx_new_image(vars.mlx, 1920, 1080);
 	mlx_put_image_to_window(vars.mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
-}
+}*/

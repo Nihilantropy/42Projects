@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:56:04 by crea              #+#    #+#             */
-/*   Updated: 2024/02/25 18:23:00 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/27 19:30:28 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdint.h>
 # include <stddef.h>
 
-// libft
+/* LIBFT */
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -55,7 +55,7 @@ void	ft_putstr_fd(char *str, int fd);
 void	ft_putendl_fd(char *str, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
-// libft bonus
+/* LIBFT BONUS */
 typedef struct s_list
 {
 	void			*content;
@@ -71,11 +71,10 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
+/* PLUS */
 int 	ft_putchar(char c);
 
+/* FT_PRINTF */
 int		ft_printf(const char *s, ...);
-int     ft_put(char c, va_list args);
-int     ft_check_char(const char *s);
-
 
 #endif

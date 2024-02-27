@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:59:23 by crea              #+#    #+#             */
-/*   Updated: 2024/01/26 15:49:36 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/27 20:23:51 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,4 @@ int	ft_printf(const char *s, ...)
 	}
 	va_end(args);
 	return (count);
-}
-
-int main()
-{
-	int x = 0;
-	x = printf("%x\n", 6573);
-	printf("%d\n", x);
-
-	x = ft_printf("%x\n", 6573);
-	ft_printf("%d\n", x);
 }

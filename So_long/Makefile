@@ -2,33 +2,61 @@ NAME		= so_long
 
 SOLONG_DIR	= ./srcs
 
-SRCS		= open_display.c get_next_line.c my_mlx_pixel_put.c
+SRCS		= main.c get_next_line.c
 
 OBJS		= $(patsubst %.c, $(SOLONG_DIR)/%.o, $(SRCS))
+
+LIBFT_DIR	= ./libft
+LIBFT		= libft.a
+
+PRINTF_DIR	= ./ft_printf
+FT_PRINTF	= libft_printf.a
+
+MLX_DIR		= ./mlx
+MLX			= libmlx.dylib
+
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM = rm -f
 
 # Include directory for header files
-INC = -I $(INCDIR)
+INC 		= -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MLX_DIR)
 
 # Compilation rule for the program
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS)  -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+$(NAME): $(LIBFT) $(FT_PRINTF) $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lft_printf -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 # Rule to compile object files
-%.o: %.c
-	$(CC) $(CFLAGS) $(INC) -Imlx -c $< -o $@
+$(SOLONG_DIR)/%.o: $(SOLONG_DIR)/%.c
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# Rule to make libft
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(FT_PRINTF):
+	$(MAKE) -C $(PRINTF_DIR)
+
+$(MLX):
+	$(MAKE) -C $(MLX_DIR)
 
 all:		$(NAME)
 
 clean:
-			$(RM) $(OBJS) $(B_OBJS)
+			$(RM) $(OBJS)
+			$(MAKE) -C $(LIBFT_DIR) clean
+			$(MAKE) -C $(PRINTF_DIR) clean
+			$(MAKE) -C $(MLX_DIR) clean
 
 fclean:		clean
 			$(RM) $(NAME)
+			$(MAKE) -C $(LIBFT_DIR) fclean
+			$(MAKE) -C $(PRINTF_DIR) fclean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+cleanmlx:	
+			$(MAKE) -C $(MLX_DIR) fclean
+
+.PHONY:		all clean fclean re cleanmlx
