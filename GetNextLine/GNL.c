@@ -13,7 +13,7 @@ typedef struct node {
     struct node *next;
 }   t_list;
 
-int count_to_newline(t_list *list)
+static int count_to_newline(t_list *list)
 {
     int i;
     int len;
@@ -37,7 +37,7 @@ int count_to_newline(t_list *list)
     return (len); //non ha trovato '\n'
 }
 
-void    cpy_nodes(char *str, t_list *list)
+static void    cpy_nodes(char *str, t_list *list)
 {
     int i; //scorro il list data
     int j; //scorro la stringa str
@@ -62,7 +62,7 @@ void    cpy_nodes(char *str, t_list *list)
     return ;
 }
 
-char *extract_line(t_list *list)
+static char *extract_line(t_list *list)
 {
     char *line;
     int len;
@@ -75,7 +75,7 @@ char *extract_line(t_list *list)
     return(line); //ritorna la stringa
 }
 
-int found_newline(t_list *list)
+static int found_newline(t_list *list)
 {
     int i;
 
@@ -102,7 +102,7 @@ t_list    *find_last_node(t_list *list)
     return (list); //ritorno l'ultimo nodo
 }
 
-void    create_new_node(t_list **list, char *buffer)
+static void    create_new_node(t_list **list, char *buffer)
 {
     t_list  *new_node; //crea un nuovo nodo
     t_list  *current;  //crea un nodo temporaneo per non perdere il puntatore alla testa della lista
@@ -121,7 +121,7 @@ void    create_new_node(t_list **list, char *buffer)
     }
 }
 
-void    create_buffer(t_list **list, int fd)
+static void    create_buffer(t_list **list, int fd)
 {
     ssize_t bytes_read;
     char    *buffer;
@@ -142,7 +142,7 @@ void    create_buffer(t_list **list, int fd)
     }
 }
 
-void    clean_list(t_list **list, t_list *new_head, char *buffer)
+static void    clean_list(t_list **list, t_list *new_head, char *buffer)
 {
     t_list  *temp; //puntatore dove salvare l'indirizzo del nodo 'next', ovvero il successivo
 
@@ -165,7 +165,7 @@ void    clean_list(t_list **list, t_list *new_head, char *buffer)
     }
 }
 
-void    polish_list(t_list **list)
+static void    polish_list(t_list **list)
 {
     int i;
     int j;
