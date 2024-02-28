@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/02/27 20:01:39 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/28 13:42:29 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
-//# include <../mlx/mlx.h>
+# include "./get_next_line.h"
+# include <../mlx/mlx.h>
 # include "../libft/include/libft.h"
 # include "../ft_printf/include/ft_printf.h"
 # include "keys.h"
@@ -46,7 +47,7 @@ typedef struct s_axis
 
 typedef struct s_map
 {
-    char    **map;
+    char    **matrix;
     int     row;
     int     col;
     int     collect;
@@ -76,7 +77,7 @@ typedef struct s_game
 static t_game    init_game(void)
 {
     return ((t_game) {
-        .map.map = NULL,
+        .map.matrix = NULL,
         .map.row = 0,
         .map.col = 0,
         .map.collect = 0,

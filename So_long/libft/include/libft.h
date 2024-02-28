@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:56:04 by crea              #+#    #+#             */
-/*   Updated: 2024/02/27 19:48:01 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/28 10:42:49 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_putstr_fd(char *str, int fd);
 void	ft_putendl_fd(char *str, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
-/* LIBFT BONUS */
+/* LIBFT BONUS 
 typedef struct s_list
 {
 	void			*content;
@@ -70,7 +70,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
+*/
 /* PLUS */
 int 	ft_putchar(char c);
 

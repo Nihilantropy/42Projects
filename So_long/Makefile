@@ -2,7 +2,7 @@ NAME		= so_long
 
 SOLONG_DIR	= ./srcs
 
-SRCS		= main.c get_next_line.c get_map.c
+SRCS		= get_next_line.c get_next_line_utils.c get_map.c
 
 OBJS		= $(patsubst %.c, $(SOLONG_DIR)/%.o, $(SRCS))
 
@@ -10,10 +10,10 @@ LIBFT_DIR	= ./libft
 LIBFT		= libft.a
 
 PRINTF_DIR	= ./ft_printf
-FT_PRINTF	= libft_printf.a
+PRINTF_LIB	= libft_printf.a
 
 MLX_DIR		= ./mlx
-MLX			= libmlx.dylib
+MLX_LIB		= libmlx.dylib
 
 
 CC			= gcc
@@ -24,8 +24,9 @@ RM = rm -f
 INC 		= -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MLX_DIR)
 
 # Compilation rule for the program
-$(NAME): $(LIBFT) $(FT_PRINTF) $(MLX) $(OBJS)
+$(NAME): $(LIBFT) $(PRINTF_LIB) $(MLX_LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lft_printf -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
 
 # Rule to compile object files
 $(SOLONG_DIR)/%.o: $(SOLONG_DIR)/%.c
@@ -35,11 +36,14 @@ $(SOLONG_DIR)/%.o: $(SOLONG_DIR)/%.c
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(FT_PRINTF):
+# Rule to make libft_printf
+$(PRINTF_LIB):
 	$(MAKE) -C $(PRINTF_DIR)
 
-$(MLX):
+# Rule to make libmlx and copy to root
+$(MLX_LIB):
 	$(MAKE) -C $(MLX_DIR)
+	cp $(MLX_DIR)/$(MLX_LIB) ./
 
 all:		$(NAME)
 
@@ -50,13 +54,11 @@ clean:
 			$(MAKE) -C $(MLX_DIR) clean
 
 fclean:		clean
-			$(RM) $(NAME)
+			$(RM) $(NAME) $(MLX_LIB)
 			$(MAKE) -C $(LIBFT_DIR) fclean
 			$(MAKE) -C $(PRINTF_DIR) fclean
+			$(MAKE) -C $(MLX_DIR) fclean
 
 re:			fclean all
 
-cleanmlx:	
-			$(MAKE) -C $(MLX_DIR) fclean
-
-.PHONY:		all clean fclean re cleanmlx
+.PHONY:		all clean fclean re
