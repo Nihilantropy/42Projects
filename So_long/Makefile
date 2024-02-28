@@ -2,7 +2,7 @@ NAME		= so_long
 
 SOLONG_DIR	= ./srcs
 
-SRCS		= main.c get_next_line.c
+SRCS		= main.c get_next_line.c get_map.c
 
 OBJS		= $(patsubst %.c, $(SOLONG_DIR)/%.o, $(SRCS))
 

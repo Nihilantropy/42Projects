@@ -16,7 +16,8 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <../mlx/mlx.h>
+# include <fcntl.h>
+//# include <../mlx/mlx.h>
 # include "../libft/include/libft.h"
 # include "../ft_printf/include/ft_printf.h"
 # include "keys.h"
@@ -74,7 +75,7 @@ typedef struct s_game
 
 static t_game    init_game(void)
 {
-    return ((t_game){
+    return ((t_game) {
         .map.map = NULL,
         .map.row = 0,
         .map.col = 0,
@@ -90,7 +91,11 @@ static t_game    init_game(void)
     });
 }
 
-void    get_map(char *map, t_game *game);
+void    get_map(char *map_file, t_game *game);
+char    *get_next_line(int fd);
+void     get_map_size(char *map_file, t_game *game);
+void    build_matrix(t_game *game, char *map_file);
+void    count_map_col(t_game *game);
 
 
 #endif

@@ -4,6 +4,8 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
         return (ft_printf("Error: Choose a map!\n"));
-    init_game();
-    ft_printf("%s\n", argv[1]);
+    t_game game;
+
+    game = init_game();
+    get_map(argv[1], &game);
 }
