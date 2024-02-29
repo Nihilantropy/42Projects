@@ -9,7 +9,7 @@ int check_top_map(t_game *game)
     {
         if (game->map.matrix[0][x] != WALL)
         {
-            ft_printf("ERROR! Map top isn't closed.\n");
+            ft_printf("Error\nMap top isn't closed.\n");
             return (0);
         }
         x++;
@@ -28,7 +28,7 @@ int check_bottom_map(t_game *game)
     {
         if (game->map.matrix[game->map.row - 1][x] != WALL)
         {
-            ft_printf("ERROR! Map bottom isn't closed.\n");
+            ft_printf("Error\nMap bottom isn't closed.\n");
             return (0);
         }
         x++;
@@ -46,7 +46,7 @@ int check_map_sides(t_game *game)
     {
         if (game->map.matrix[y][0] != WALL || game->map.matrix[y][game->map.col - 1] != WALL)
         {
-            ft_printf("ERROR! Sides are open!\n");
+            ft_printf("Error\nSides are open!\n");
             return (0);
         }
         y++;
@@ -68,7 +68,7 @@ int check_if_rect(t_game *game)
             x++;
         if (game->map.col != x)
         {
-            ft_printf("ERROR! Map isn't rectangular!\n");
+            ft_printf("Error\nMap isn't rectangular!\n");
             return (0);
         }
         else

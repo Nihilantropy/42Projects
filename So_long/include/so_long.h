@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/02/29 18:22:12 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/29 21:07:26 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,20 @@
 
 # define WIN_MSG "YOU lucky dog! Congrats! ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧"
 
+# define DISPLAY_NAME "So_longo!"
+
+# define WALL_SPRITE "Tiles/wall.xpm"
+# define FLOOR_SPRITE "Tiles/floor.xpm"
+# define PLAYER_SPRITE "Tiles/player.xpm"
+# define COLLECT_SPRITE "Tiles/collect.xpm"
+# define EXIT_SPRITE "Tiles/exit.xpm"
+
+# define TILE_SIZE 32
+
 typedef enum window
 {
-    WIDTH = 700,
-    HEIGHT = 500,
-    WIN_NAME = "So_longo!"
+    WIDTH,
+    HEIGHT,
 }       window;
 
 typedef enum map_tiles
@@ -47,7 +56,7 @@ typedef struct s_axis
 {
     int x;
     int y;
-}       t_axis;
+}           t_axis;
 
 typedef struct s_map
 {
@@ -67,7 +76,15 @@ typedef struct s_tiles
     void    *player;
     void    *collect;
     void    *exit;
-}               t_tiles;
+    int     width;
+    int     height;
+}           t_tiles;
+
+typedef struct s_display
+{
+    int width;
+    int height;
+}              t_display;
 
 typedef struct s_game
 {
@@ -75,6 +92,7 @@ typedef struct s_game
     void    *mlx_ptr;
     void    *mlx_win;
     t_tiles tiles;
+    t_display win;
     int     moves;
 }           t_game;
 
@@ -92,6 +110,8 @@ static inline t_game    init_game(void)
         .tiles.player = NULL,
         .tiles.collect = NULL,
         .tiles.exit = NULL,
+        .tiles.width = TILE_SIZE,
+        .tiles.height = TILE_SIZE,
         .moves = -1,
     });
 }
@@ -120,7 +140,13 @@ int check_map_player(t_game *game);
 int check_map_exit(t_game *game);
 int check_map_collect(t_game *game);
 
+/* sprites render */
+void    init_sprites(t_game *game);
+void    render_wall_map(t_game *game);
+
 /* Display */
+void    manage_display(t_game *game);
+void    get_win_size(t_game *game);
 void	open_display(t_game *game);
 
 

@@ -9,7 +9,7 @@ int check_map_player(t_game *game)
     while (y < game->map.row - 1)
     {
         x = 1;
-        while (game->map.matrix[y][x] != '\n' && game->map.matrix[y][x])
+        while (game->map.matrix[y][x])
         {
             if (game->map.matrix[y][x] == P_START)
                 game->map.p_start++;
@@ -24,7 +24,7 @@ int check_map_player(t_game *game)
     }
     else
     {
-        ft_printf("ERROR! Wrong number of player start: %d\n", game->map.p_start);
+        ft_printf("Error\nWrong number of player start: %d\n", game->map.p_start);
         return (0);
     }
 }
@@ -38,7 +38,7 @@ int check_map_exit(t_game *game)
     while (y < game->map.row - 1)
     {
         x = 1;
-        while (game->map.matrix[y][x] != '\n' && game->map.matrix[y][x])
+        while (game->map.matrix[y][x])
         {
             if (game->map.matrix[y][x] == EXIT)
                 game->map.exit++;
@@ -53,7 +53,7 @@ int check_map_exit(t_game *game)
     }
     else
     {
-        ft_printf("ERROR! Wrong number of exit: %d\n", game->map.exit);
+        ft_printf("Error\nWrong number of exit: %d\n", game->map.exit);
         return (0);
     }
 }
@@ -67,7 +67,7 @@ int check_map_collect(t_game *game)
     while (y < game->map.row - 1)
     {
         x = 1;
-        while (game->map.matrix[y][x] != '\n' && game->map.matrix[y][x])
+        while (game->map.matrix[y][x])
         {
             if (game->map.matrix[y][x] == COLLECT)
                 game->map.collect++;
@@ -82,7 +82,7 @@ int check_map_collect(t_game *game)
     }
     else
     {
-        ft_printf("ERROR! Not enoght collectable: %d\n", game->map.collect);
+        ft_printf("Error\nNot enoght collectable: %d\n", game->map.collect);
         return (0);
     }
 }

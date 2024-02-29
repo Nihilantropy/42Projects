@@ -12,7 +12,7 @@ void    get_map(t_game *game, char *map_file)
     if (!build_matrix(game, map_file))
         return ;
     else
-        open_display(game);
+        manage_display(game);
 }
 
 int    build_matrix(t_game *game, char *map_file)
@@ -31,7 +31,7 @@ int    build_matrix(t_game *game, char *map_file)
     print_matrix(game);
     get_map_col(game);
     if (!check_matrix(game))
-        return (0);
+        exit(0);
     else
         return (1);
 }
