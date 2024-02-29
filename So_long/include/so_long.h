@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/02/29 15:23:00 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/29 18:22:12 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,21 @@
 
 # define WIN_MSG "YOU lucky dog! Congrats! ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧"
 
-typedef enum map_tiles {
+typedef enum window
+{
+    WIDTH = 700,
+    HEIGHT = 500,
+    WIN_NAME = "So_longo!"
+}       window;
+
+typedef enum map_tiles
+{
     FLOOR = '0',
     WALL = '1',
     P_START = 'P',
     COLLECT = 'C',
     EXIT = 'E'
 }           map_tiles;
-
-typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
 
 typedef struct s_axis
 {
@@ -118,7 +121,7 @@ int check_map_exit(t_game *game);
 int check_map_collect(t_game *game);
 
 /* Display */
-void	open_display(void);
+void	open_display(t_game *game);
 
 
 #endif

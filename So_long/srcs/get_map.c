@@ -12,7 +12,7 @@ void    get_map(t_game *game, char *map_file)
     if (!build_matrix(game, map_file))
         return ;
     else
-        open_display();
+        open_display(game);
 }
 
 int    build_matrix(t_game *game, char *map_file)

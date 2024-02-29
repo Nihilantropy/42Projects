@@ -1,10 +1,10 @@
 #include "../include/so_long.h"
 
-void	open_display(void)
+void	open_display(t_game *game)
 {
-	t_vars	vars;
-
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 700, 500, "So_longo");
-	mlx_loop(vars.mlx);
+	game->mlx_ptr = mlx_init();
+	if (!game->mlx_ptr)
+		return ;
+	game->mlx_win = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, WIN_NAME);
+	mlx_loop(game->mlx_ptr);
 }
