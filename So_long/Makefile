@@ -1,8 +1,9 @@
 NAME		= so_long
 
 SOLONG_DIR	= ./srcs
+SOLONG_HEAD	= ./include
 
-SRCS		= get_next_line.c get_next_line_utils.c get_map.c
+SRCS		= main.c get_map.c get_map_utils.c check_map_edges.c open_display.c
 
 OBJS		= $(patsubst %.c, $(SOLONG_DIR)/%.o, $(SRCS))
 
@@ -21,7 +22,7 @@ CFLAGS		= -Wall -Wextra -Werror
 RM = rm -f
 
 # Include directory for header files
-INC 		= -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MLX_DIR)
+INC 		= -I$(SOLONG_HEAD) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MLX_DIR)
 
 # Compilation rule for the program
 $(NAME): $(LIBFT) $(PRINTF_LIB) $(MLX_LIB) $(OBJS)

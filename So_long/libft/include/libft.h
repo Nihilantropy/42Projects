@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:56:04 by crea              #+#    #+#             */
-/*   Updated: 2024/02/28 10:42:49 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/29 12:06:01 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,18 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 */
 /* PLUS */
 int 	ft_putchar(char c);
+
+/* get_next_line */
+
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 1024
+#endif
+
+typedef struct	s_list {
+	char    *data;
+	struct  s_list  *next;
+}			t_list;
+char	*get_next_line(int fd);
 
 
 #endif

@@ -7,5 +7,5 @@ int main(int argc, char **argv)
     t_game game;
 
     game = init_game();
-    get_map(argv[1], &game);
+    get_map(&game, argv[1]);
 }

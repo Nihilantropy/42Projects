@@ -6,11 +6,11 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:35:27 by crea              #+#    #+#             */
-/*   Updated: 2024/02/28 10:43:39 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/29 12:03:22 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
+#include "../include/libft.h"
 
 void	clean_list(t_list **list, t_list *new_head, char *buffer)
 {

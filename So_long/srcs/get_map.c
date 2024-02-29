@@ -1,37 +1,21 @@
 #include "../include/so_long.h"
 
-void    get_map(char *map_file, t_game *game)
+void    get_map(t_game *game, char *map_file)
 {
-    get_map_size(map_file, game);
+    get_map_size(game, map_file);
     game->map.matrix = malloc(game->map.row * sizeof(char *));
     if (!game->map.matrix)
     {
         printf("Can't allocate memory for the map :(");
         return ;
     }
-    build_matrix(game, map_file);
-    count_map_col(game);
-}
-
-void    get_map_size(char *map_file, t_game *game)
-{
-    char    *line;
-    int     fd;
-
-    fd = open(map_file, O_RDONLY);
-    line = get_next_line(fd);
-    if (!line)
+    if (!build_matrix(game, map_file))
         return ;
-    while (line)
-    {
-        line = get_next_line(fd);
-        game->map.row++;
-    }
-    close(fd);
-    return ;
+    else
+        open_display();
 }
 
-void    build_matrix(t_game *game, char *map_file)
+int    build_matrix(t_game *game, char *map_file)
 {
     int y;
     int fd;
@@ -41,32 +25,25 @@ void    build_matrix(t_game *game, char *map_file)
     while (y < game->map.row)
     {
         game->map.matrix[y] = get_next_line(fd);
-        ft_printf ("%s", game->map.matrix[y]);
         y++;
     }
     close(fd);
+    print_matrix(game);
+    get_map_col(game);
+    if (!check_matrix(game))
+        return (0);
+    else
+        return (1);
 }
 
-void count_map_col(t_game *game)
+int check_matrix(t_game *game)
 {
-    int x;
-    
-    x = 0;
-    while (game->map.matrix[0][x] != '\n')
+    if (!check_top_map(game) || !check_bottom_map(game) 
+        || !check_if_rect(game) || !check_map_sides(game))
+        return (0);
+    else
     {
-        game->map.col++;
-        x++;
+        ft_printf("ALL GOOD! Go haed :)");
+        return (1);
     }
-    printf("\n%d\n", game->map.col);
-    return ;
-}
-
-int main(int argc, char **argv)
-{
-    if (argc != 2)
-        return (ft_printf("Error: Choose a map!\n"));
-    t_game game;
-
-    game = init_game();
-    get_map(argv[1], &game);
 }

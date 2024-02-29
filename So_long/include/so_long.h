@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/02/28 13:42:29 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/29 14:36:14 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "./get_next_line.h"
 # include <../mlx/mlx.h>
 # include "../libft/include/libft.h"
 # include "../ft_printf/include/ft_printf.h"
 # include "keys.h"
 
-# define FLOOR '0'
-# define WALL '1'
-# define P_START 'P'
-# define COLLECT 'C'
-# define EXIT 'E'
-
 # define KEYPRESS_EVENT 2
 # define DESTROY_NOTIFY_EVENT 17
 
 # define WIN_MSG "YOU lucky dog! Congrats! ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧"
+
+typedef enum map_tiles {
+    FLOOR = '0',
+    WALL = '1',
+    P_START = 'P',
+    COLLECT = 'C',
+    EXIT = 'E'
+}           map_tiles;
 
 typedef struct	s_vars {
 	void	*mlx;
@@ -74,7 +75,7 @@ typedef struct s_game
     int     moves;
 }           t_game;
 
-static t_game    init_game(void)
+static inline t_game    init_game(void)
 {
     return ((t_game) {
         .map.matrix = NULL,
@@ -92,11 +93,24 @@ static t_game    init_game(void)
     });
 }
 
-void    get_map(char *map_file, t_game *game);
-char    *get_next_line(int fd);
-void     get_map_size(char *map_file, t_game *game);
-void    build_matrix(t_game *game, char *map_file);
-void    count_map_col(t_game *game);
+/* get map */
+void    get_map(t_game *game, char *map_file);
+int     build_matrix(t_game *game, char *map_file);
+int     check_matrix(t_game *game);
+
+/* get_map_utils */
+void    get_map_size(t_game *game, char *map_file);
+void    get_map_col(t_game *game);
+void    print_matrix(t_game *game);
+
+/* map controls */
+int check_top_map(t_game *game);
+int check_bottom_map(t_game *game);
+int check_if_rect(t_game *game);
+int check_map_sides(t_game *game);
+
+/* Display */
+void	open_display(void);
 
 
 #endif

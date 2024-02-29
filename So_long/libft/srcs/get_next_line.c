@@ -6,13 +6,19 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 02:35:30 by crea              #+#    #+#             */
-/*   Updated: 2024/02/28 10:43:31 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/29 12:06:17 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
+#include "../include/libft.h"
 
-void	polish_list(t_list **list)
+void	clean_list(t_list **list, t_list *new_head, char *buffer);
+void	cpy_nodes(char *line, t_list *list);
+int		len_to_newline(t_list *list);
+int		find_newline(t_list *list);
+t_list  *find_last_node(t_list *list);
+
+static void	polish_list(t_list **list)
 {
 	t_list	*new_head;
 	t_list	*last_node;
@@ -37,7 +43,7 @@ void	polish_list(t_list **list)
 	clean_list(list, new_head, buffer);
 }
 
-char	*extract_line(t_list *list)
+static char	*extract_line(t_list *list)
 {
 	char	*line;
 	int		len;
@@ -50,7 +56,7 @@ char	*extract_line(t_list *list)
 	return (line);
 }
 
-void	create_new_node(t_list **list, char *buffer)
+static void	create_new_node(t_list **list, char *buffer)
 {
 	t_list	*new_node;
 	t_list	*last_node;
@@ -67,7 +73,7 @@ void	create_new_node(t_list **list, char *buffer)
 	new_node->next = NULL;
 }
 
-void	create_buffer(t_list **list, int fd)
+static void	create_buffer(t_list **list, int fd)
 {
 	ssize_t	bytes_read;
 	char	*buffer;
