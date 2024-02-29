@@ -38,8 +38,9 @@ int    build_matrix(t_game *game, char *map_file)
 
 int check_matrix(t_game *game)
 {
-    if (!check_top_map(game) || !check_bottom_map(game) 
-        || !check_if_rect(game) || !check_map_sides(game))
+    if (!check_top_map(game) || !check_bottom_map(game) || !check_if_rect(game) 
+        || !check_map_sides(game) || !check_map_player(game) || !check_map_exit(game)
+            || !check_map_collect(game))
         return (0);
     else
     {

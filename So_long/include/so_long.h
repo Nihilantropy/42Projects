@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/02/29 14:36:14 by crea             ###   ########.fr       */
+/*   Updated: 2024/02/29 15:23:00 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_map
     int     row;
     int     col;
     int     collect;
-    int     player_start;
+    int     p_start;
     int     exit;
     t_axis  player_pos;
 }           t_map;
@@ -82,7 +82,7 @@ static inline t_game    init_game(void)
         .map.row = 0,
         .map.col = 0,
         .map.collect = 0,
-        .map.player_start = 0,
+        .map.p_start = 0,
         .map.exit = 0,
         .tiles.wall = NULL,
         .tiles.floor = NULL,
@@ -92,6 +92,9 @@ static inline t_game    init_game(void)
         .moves = -1,
     });
 }
+
+/* map extention control */
+int check_map_ext(char *map_file);
 
 /* get map */
 void    get_map(t_game *game, char *map_file);
@@ -103,11 +106,16 @@ void    get_map_size(t_game *game, char *map_file);
 void    get_map_col(t_game *game);
 void    print_matrix(t_game *game);
 
-/* map controls */
+/* map edges controls */
 int check_top_map(t_game *game);
 int check_bottom_map(t_game *game);
 int check_if_rect(t_game *game);
 int check_map_sides(t_game *game);
+
+/* map internal control */
+int check_map_player(t_game *game);
+int check_map_exit(t_game *game);
+int check_map_collect(t_game *game);
 
 /* Display */
 void	open_display(void);

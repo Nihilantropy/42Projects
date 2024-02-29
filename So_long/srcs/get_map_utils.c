@@ -36,6 +36,7 @@ void    print_matrix(t_game *game)
     int y;
 
     y = 0;
+    ft_printf("\n");
     while (y < game->map.row)
         ft_printf("%s", game->map.matrix[y++]);
     ft_printf("\n");
