@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/02/29 21:07:26 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/01 12:02:46 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@
 
 # define DISPLAY_NAME "So_longo!"
 
-# define WALL_SPRITE "Tiles/wall.xpm"
-# define FLOOR_SPRITE "Tiles/floor.xpm"
-# define PLAYER_SPRITE "Tiles/player.xpm"
-# define COLLECT_SPRITE "Tiles/collect.xpm"
-# define EXIT_SPRITE "Tiles/exit.xpm"
+# define WALL_SPRITE "Tiles/wall_64_.xpm"
+# define FLOOR_SPRITE "Tiles/floor_64_.xpm"
+# define PLAYER_SPRITE "Tiles/player_64_.xpm"
+# define PLAYER_SPRITE_INV "Tiles/player_invert_64_.xpm"
+# define COLLECT_SPRITE "Tiles/collectable_64_.xpm"
+# define EXIT_SPRITE "Tiles/exit_64_.xpm"
 
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 
 typedef enum window
 {
@@ -43,13 +44,20 @@ typedef enum window
     HEIGHT,
 }       window;
 
+typedef enum e_bool
+{
+    false = 0,
+    true = 1
+}   t_bool;
+
 typedef enum map_tiles
 {
     FLOOR = '0',
     WALL = '1',
-    P_START = 'P',
+    PLAYER = 'P',
     COLLECT = 'C',
-    EXIT = 'E'
+    EXIT = 'E',
+    FILL = '#'
 }           map_tiles;
 
 typedef struct s_axis
@@ -64,7 +72,7 @@ typedef struct s_map
     int     row;
     int     col;
     int     collect;
-    int     p_start;
+    int     player;
     int     exit;
     t_axis  player_pos;
 }           t_map;
@@ -78,6 +86,8 @@ typedef struct s_tiles
     void    *exit;
     int     width;
     int     height;
+    int     x;
+    int     y;
 }           t_tiles;
 
 typedef struct s_display
@@ -103,7 +113,7 @@ static inline t_game    init_game(void)
         .map.row = 0,
         .map.col = 0,
         .map.collect = 0,
-        .map.p_start = 0,
+        .map.player = 0,
         .map.exit = 0,
         .tiles.wall = NULL,
         .tiles.floor = NULL,
@@ -112,6 +122,8 @@ static inline t_game    init_game(void)
         .tiles.exit = NULL,
         .tiles.width = TILE_SIZE,
         .tiles.height = TILE_SIZE,
+        .tiles.x = 0,
+        .tiles.y = 0,
         .moves = -1,
     });
 }
@@ -127,6 +139,7 @@ int     check_matrix(t_game *game);
 /* get_map_utils */
 void    get_map_size(t_game *game, char *map_file);
 void    get_map_col(t_game *game);
+void    save_player_pos(t_game *game);
 void    print_matrix(t_game *game);
 
 /* map edges controls */
@@ -134,15 +147,18 @@ int check_top_map(t_game *game);
 int check_bottom_map(t_game *game);
 int check_if_rect(t_game *game);
 int check_map_sides(t_game *game);
+int check_wrong_symb(t_game *game);
 
 /* map internal control */
 int check_map_player(t_game *game);
 int check_map_exit(t_game *game);
 int check_map_collect(t_game *game);
+int is_map_complete(t_game *game);
 
 /* sprites render */
 void    init_sprites(t_game *game);
-void    render_wall_map(t_game *game);
+void    render_tiles(t_game *game, char tile);
+void    draw_map(t_game *game);
 
 /* Display */
 void    manage_display(t_game *game);

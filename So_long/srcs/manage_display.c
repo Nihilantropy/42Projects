@@ -18,6 +18,6 @@ void	manage_display(t_game *game)
 	get_win_size(game);
 	open_display(game);
 	init_sprites(game);
-	render_wall_map(game);
+	draw_map(game);
 	mlx_loop(game->mlx_ptr);
 }

@@ -41,3 +41,28 @@ void    print_matrix(t_game *game)
         ft_printf("%s", game->map.matrix[y++]);
     ft_printf("\n");
 }
+
+void    save_player_pos(t_game *game)
+{
+    int y;
+    int x;
+
+    y = 1;
+    while (y < game->map.row - 1)
+    {
+        x = 1;
+        while (game->map.matrix[y][x])
+        {
+            if (game->map.matrix[y][x] == PLAYER)
+            {
+                game->map.player_pos.x = x;
+                game->map.player_pos.y = y;
+                ft_printf("player pos x is {%d}, y is {%d}\n", x, y);
+                return ;
+            }
+            x++;
+        }
+        y++;
+    }
+    return ;
+}
