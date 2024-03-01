@@ -40,6 +40,7 @@ void    draw_map(t_game *game)
     int y;
     int x;
 
+    mlx_clear_window(game->mlx_ptr, game->mlx_win);
     y = 0;
     while (y < game->map.row)
     {

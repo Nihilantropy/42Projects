@@ -12,4 +12,6 @@ int main(int argc, char **argv)
 	if (!game.mlx_ptr)
 		exit(0);
     get_map(&game, argv[1]);
+    handle_key_event(&game);
+    mlx_loop(game.mlx_ptr);
 }

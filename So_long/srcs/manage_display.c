@@ -19,5 +19,15 @@ void	manage_display(t_game *game)
 	open_display(game);
 	init_sprites(game);
 	draw_map(game);
-	mlx_loop(game->mlx_ptr);
+	return ;
+}
+
+int	close_game(void *param)
+{
+	t_game *game;
+
+	game = param; 
+	mlx_destroy_window(game->mlx_ptr, game->mlx_win);
+	exit (0);
+	return (0);
 }

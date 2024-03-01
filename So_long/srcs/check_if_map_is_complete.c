@@ -1,17 +1,16 @@
 #include "../include/so_long.h"
 
-// Utilizza questa funzione per eseguire il flood fill dalla posizione del giocatore
-// e marcare le celle visitate.
+static void flood_fill(t_game *game, int x, int y, t_bool visited[][game->map.col]);
+static int verify_collectibles_and_exit(t_game *game, t_bool visited[][game->map.col]);
+static int verify_result(t_game *game);
+
 static void flood_fill(t_game *game, int x, int y, t_bool visited[][game->map.col])
 {
-    // Controlla i limiti e se la cella è già stata visitata o è una parete.
     if (x < 0 || y < 0 || x >= game->map.col || y >= game->map.row || visited[y][x] || game->map.matrix[y][x] == WALL)
-        return;
+        return ;
 
-    // Marca la cella corrente come visitata.
     visited[y][x] = true;
 
-    // Esegui il flood fill nelle 4 direzioni.
     flood_fill(game, x + 1, y, visited);
     flood_fill(game, x - 1, y, visited);
     flood_fill(game, x, y + 1, visited);
@@ -20,50 +19,59 @@ static void flood_fill(t_game *game, int x, int y, t_bool visited[][game->map.co
 
 static int verify_collectibles_and_exit(t_game *game, t_bool visited[][game->map.col])
 {
-    int collectibles_reachable = 0;
-    int exit_reachable = 0;
+    int y;
+    int x;
 
-    for (int y = 0; y < game->map.row; y++)
+    y = 0;
+    while (y < game->map.row)
     {
-        for (int x = 0; x < game->map.col; x++)
+        x = 0;
+        while (x < game->map.col)
         {
             if (visited[y][x] && game->map.matrix[y][x] == COLLECT)
-                collectibles_reachable++;
+                game->map.reachable.collect_reachable++;
             if (visited[y][x] && game->map.matrix[y][x] == EXIT)
-                exit_reachable = 1;
+                game->map.reachable.exit_reachable = 1;
+            x++;
         }
+        y++;
     }
-    if (collectibles_reachable == game->map.collect && exit_reachable)
+    if (verify_result(game))
+        return (1);
+    return (0);
+}
+
+static int verify_result(t_game *game)
+{
+    if (game->map.reachable.collect_reachable == game->map.collect
+        && game->map.reachable.exit_reachable == 1)
     {
-        ft_printf("You can get all things and escape!\n");
+        ft_printf("You can get all your bones and escape!\n");
         return (1);
     }
     else
     {
-        if (collectibles_reachable != game->map.collect)
+        if (game->map.reachable.collect_reachable != game->map.collect)
             ft_printf("Error\nSome collectables aren't reachable.\n");
-        if (!exit_reachable)
+        if (!game->map.reachable.exit_reachable)
             ft_printf("Error\nExit isn't reachable.\n");
         return (0);
     }
 }
-
 
 int is_map_complete(t_game *game)
 {
     t_bool visited[game->map.row][game->map.col];
     ft_memset(visited, false, sizeof(visited));
     flood_fill(game, game->map.player_pos.x, game->map.player_pos.y, visited);
-    for (int y = 0; y < game->map.row; y++) {
-    for (int x = 0; x < game->map.col; x++) {
-        ft_printf("%d", visited[y][x] ? 1 : 0);
-    }
-    ft_printf("\n");
-}
+    printf_flood_matrix(game, visited);
     ft_printf("%d %d\n", game->map.player_pos.x, game->map.player_pos.y);
 
     if (verify_collectibles_and_exit(game, visited))
-        return (ft_printf("Map can be completed!\n"));
+    {
+        ft_printf("Map can be completed!\n");
+        return (1);
+    }
     else
     {
         ft_printf("Error\nMap cannot be completed.\n");

@@ -42,6 +42,30 @@ void    print_matrix(t_game *game)
     ft_printf("\n");
 }
 
+void printf_flood_matrix(t_game *game, t_bool visited[][game->map.col])
+{
+    int y;
+    int x;
+
+    y = 0;
+    ft_printf("\n");
+    while (y < game->map.row)
+    {
+        x = 0;
+        while (x < game->map.col)
+        {
+            if (visited[y][x])
+                ft_printf("%d", 1);
+            else
+                ft_printf("%d", 0);
+            x++;
+        }
+        ft_printf("\n");
+        y++;
+    }
+    ft_printf("\n");
+}
+
 void    save_player_pos(t_game *game)
 {
     int y;

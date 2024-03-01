@@ -75,16 +75,12 @@ int check_map_collect(t_game *game)
         }
         y++;
     }
-    if (game->map.collect > 0)
-    {
-        ft_printf("%d COLLECTABLES! You can devour the world!\n", game->map.collect);
-        return (1);
-    }
+    if (game->map.collect >= 0)
+        return (ft_printf("%d COLLECTABLES! You can devour the world!\n", game->map.collect));
     else
-    {
         ft_printf("Error\nNot enoght collectable: %d\n", game->map.collect);
-        return (0);
-    }
+    return (0);
+    
 }
 
 int check_wrong_symb(t_game *game)
