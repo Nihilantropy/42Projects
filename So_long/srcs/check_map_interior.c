@@ -19,12 +19,13 @@ int check_map_player(t_game *game)
     }
     if (game->map.player == 1)
     {
-        ft_printf("%d PLAYER START!\n", game->map.player);
+        ft_printf(CORRECT_PLAYER_NBR);
+        ft_printf(PLAYER_POS);
         return (1);
     }
     else
     {
-        ft_printf("Error\nWrong number of player start: %d\n", game->map.player);
+        ft_printf(ERROR_PLAYER_NBR);
         return (0);
     }
 }
@@ -48,12 +49,12 @@ int check_map_exit(t_game *game)
     }
     if (game->map.exit == 1)
     {
-        ft_printf("%d EXIT! You can escape hell!\n", game->map.exit);
+        ft_printf(CORRECT_EXIT_NBR);
         return (1);
     }
     else
     {
-        ft_printf("Error\nWrong number of exit: %d\n", game->map.exit);
+        ft_printf(ERROR_EXIT_NBR);
         return (0);
     }
 }
@@ -76,9 +77,9 @@ int check_map_collect(t_game *game)
         y++;
     }
     if (game->map.collect >= 0)
-        return (ft_printf("%d COLLECTABLES! You can devour the world!\n", game->map.collect));
+        return (ft_printf(CORRECT_COLLECT_NBR));
     else
-        ft_printf("Error\nNot enoght collectable: %d\n", game->map.collect);
+        ft_printf(ERROR_COLLECT_NBR);
     return (0);
     
 }
@@ -98,12 +99,13 @@ int check_wrong_symb(t_game *game)
                 && game->map.matrix[y][x] != PLAYER && game->map.matrix[y][x] != COLLECT
                     && game->map.matrix[y][x] != EXIT)
             {
-                ft_printf("Error\nWrong symbol in map!\n");
+                ft_printf(ERROR_SYMBOL_IN_MAP);
                 return (0);
             }
             x++;
         }
         y++;
     }
+    ft_printf(CORRECT_SYMBOLS_IN_MAP);
     return (1);
 }

@@ -3,9 +3,9 @@
 int main(int argc, char **argv)
 {
     if (argc != 2)
-        return (ft_printf("ERROR! Choose a map!\n"));
+        return (ft_printf(ERROR_ARG_NBR));
     else if (!check_map_ext(argv[1]))
-        return (ft_printf("ERROR! Wrong map extention!\n"));
+        return (0);
     t_game game;
     game = init_game();
     game.mlx_ptr = mlx_init();

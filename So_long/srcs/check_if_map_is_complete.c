@@ -46,15 +46,15 @@ static int verify_result(t_game *game)
     if (game->map.reachable.collect_reachable == game->map.collect
         && game->map.reachable.exit_reachable == 1)
     {
-        ft_printf("You can get all your bones and escape!\n");
+        ft_printf(MAP_CAN_BE_COMPLETED);
         return (1);
     }
     else
     {
         if (game->map.reachable.collect_reachable != game->map.collect)
-            ft_printf("Error\nSome collectables aren't reachable.\n");
+            ft_printf(ERROR_CANT_REACH_COLLECT);
         if (!game->map.reachable.exit_reachable)
-            ft_printf("Error\nExit isn't reachable.\n");
+            ft_printf(ERROR_CANT_REACH_EXIT);
         return (0);
     }
 }
@@ -68,13 +68,10 @@ int is_map_complete(t_game *game)
     ft_printf("%d %d\n", game->map.player_pos.x, game->map.player_pos.y);
 
     if (verify_collectibles_and_exit(game, visited))
-    {
-        ft_printf("Map can be completed!\n");
         return (1);
-    }
     else
     {
-        ft_printf("Error\nMap cannot be completed.\n");
+        ft_printf(ERROR_MAP_CANT_BE_COMPLETED);
         return (0);
     }
 }

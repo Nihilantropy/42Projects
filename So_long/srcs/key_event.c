@@ -8,7 +8,6 @@ void handle_key_event(t_game *game)
 
 int     key_press(int keycode, t_game *game)
 {
-    ft_printf("%d\n", keycode); //remove
     if (keycode == ESC)
         close_game(game);
     else
@@ -35,20 +34,21 @@ void    handle_player_movement(t_game *game, int keycode)
         delta_x = 1;
     new_x = game->map.player_pos.x + delta_x;
     new_y = game->map.player_pos.y + delta_y;
-    if (is_valide_move(game, new_x, new_y))
-    {
+    if (is_valide_move(game, new_x, new_y, keycode))
         handle_movement_changes(game, new_x, new_y);
-    }
+    else
+        return ;
 }
 
 void    handle_movement_changes(t_game *game, int new_x, int new_y)
 {
-    if (game->map.matrix[game->map.player_pos.y][game->map.player_pos.x] == COLLECT)
-    {
-        game->map.collect--;
-        ft_printf("remaining collectables: %d\n", game->map.collect);
-    }
+    update_collect_count(game, new_x, new_y);
     update_player_pos(game, new_x, new_y);
     draw_map(game);
-    print_matrix(game); //remove
+    if (!check_if_win(game))
+    {
+        ft_printf(WIN_MSG);
+        close_game(game);
+    }
+    print_matrix(game);
 }

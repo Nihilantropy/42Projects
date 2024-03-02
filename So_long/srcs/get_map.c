@@ -6,7 +6,7 @@ void    get_map(t_game *game, char *map_file)
     game->map.matrix = malloc(game->map.row * sizeof(char *));
     if (!game->map.matrix)
     {
-        printf("Can't allocate memory for the map :(");
+        printf(ERROR_MATRIX_ALLOC);
         return ;
     }
     if (!build_matrix(game, map_file))
@@ -45,7 +45,7 @@ int check_matrix(t_game *game)
         return (0);
     else
     {
-        ft_printf("ALL GOOD! Go haed :)");
+        ft_printf(MAP_CHECK_OK);
         return (1);
     }
 }

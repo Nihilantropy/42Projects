@@ -81,7 +81,6 @@ void    save_player_pos(t_game *game)
             {
                 game->map.player_pos.x = x;
                 game->map.player_pos.y = y;
-                ft_printf("player pos x is {%d}, y is {%d}\n", x, y);
                 return ;
             }
             x++;

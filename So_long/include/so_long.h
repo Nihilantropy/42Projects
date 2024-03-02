@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/03/01 21:12:10 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/01 23:53:28 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,10 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <../mlx/mlx.h>
+# include "messages.h"
+# include "keys.h"
 # include "../libft/include/libft.h"
 # include "../ft_printf/include/ft_printf.h"
-
-# define DESTROY_WIN_CLIENT_MSG 17
-# define W 13
-# define A 0
-# define S 1
-# define D 2
-# define UP 126
-# define LEFT 123
-# define DOWN 125
-# define RIGHT 124
-# define ESC 53
 
 # define WALL_SPRITE "Tiles/wall_64_.xpm"
 # define FLOOR_SPRITE "Tiles/floor_64_.xpm"
@@ -40,10 +31,7 @@
 # define EXIT_SPRITE "Tiles/exit_64_.xpm"
 
 # define DISPLAY_NAME "So_longo!"
-
 # define TILE_SIZE 64
-
-# define WIN_MSG "YOU lucky dog! Congrats! ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧"
 
 /* enum for display size */
 typedef enum window
@@ -186,20 +174,22 @@ void    init_sprites(t_game *game);
 void    render_tiles(t_game *game, char tile);
 void    draw_map(t_game *game);
 
-/* Display */
+/* manage display */
 void    manage_display(t_game *game);
 void    get_win_size(t_game *game);
 void	open_display(t_game *game);
 int 	close_game(void *param);
 
-/* Handle key event */
+/* handle key event */
 void    handle_key_event(t_game *game);
 int     key_press(int keycode, t_game *game);
 void    handle_player_movement(t_game *game, int keycode);
+void    handle_movement_changes(t_game *game, int new_x, int new_y);
 
 /* Key event utils */
-int is_valide_move(t_game *game, int x, int y);
-void update_player_pos(t_game *game, int new_x, int new_y);
-
+int     is_valide_move(t_game *game, int x, int y, int keycode);
+void    update_player_pos(t_game *game, int new_x, int new_y);
+void    update_collect_count(t_game *game, int new_x, int new_y);
+int     check_if_win(t_game *game);
 
 #endif
