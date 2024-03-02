@@ -18,7 +18,6 @@ PRINTF_LIB	= libft_printf.a
 MLX_DIR		= ./mlx
 MLX_LIB		= libmlx.dylib
 
-
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 RM = rm -f
@@ -66,4 +65,8 @@ re:			fclean all
 
 rec:		clean all
 
-.PHONY:		all clean fclean re rec
+# Run this from another terminal while game is running
+test: 		
+			leaks $(shell pgrep so_long)
+
+.PHONY:		all clean fclean re rec test

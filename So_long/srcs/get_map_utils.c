@@ -6,16 +6,24 @@ void    get_map_size(t_game *game, char *map_file)
     int     fd;
 
     fd = open(map_file, O_RDONLY);
+    if (fd == -1)
+    {
+        perror(ERROR_CANT_OPEN_MAP_FILE);
+        exit(0);
+    }
     line = get_next_line(fd);
     if (!line)
+    {
+        close(fd);
         return ;
+    }
     while (line)
     {
-        line = get_next_line(fd);
         game->map.row++;
+        free(line);
+        line = get_next_line(fd);
     }
     close(fd);
-    return ;
 }
 
 void get_map_col(t_game *game)

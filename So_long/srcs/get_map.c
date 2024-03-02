@@ -10,7 +10,7 @@ void    get_map(t_game *game, char *map_file)
         return ;
     }
     if (!build_matrix(game, map_file))
-        exit (0);
+        exit(0);
     else
         manage_display(game);
 }

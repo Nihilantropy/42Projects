@@ -14,11 +14,8 @@ void    clean_matrix(t_game *game)
 {
     int y;
 
-    y = 0;
-    while (y < game->map.row)
-    {
-        free (game->map.matrix[y]);
-        y++;
-    }
+    y = game->map.row;
+    while (y-- > 0)
+        free(game->map.matrix[y]);
     free(game->map.matrix);
 }

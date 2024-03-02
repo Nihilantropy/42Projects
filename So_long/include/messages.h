@@ -14,13 +14,14 @@
 
 /* get_map_utils */
 # define PLAYER_POS "Skeletronk position is {%d} {%d}\n", x, y
+# define ERROR_CANT_OPEN_MAP_FILE "Error\nMap file can't be open. Have you checked the name of the map file?\n"
 
 /* check_map_interior */
 # define CORRECT_PLAYER_NBR "%d PLAYER START! The one and only... Skeletronk!!!\n", game->map.player
 # define ERROR_PLAYER_NBR "Error\nWrong number of player start: %d\n", game->map.player
 # define CORRECT_EXIT_NBR "%d EXIT! You can escape hell!\n", game->map.exit
 # define ERROR_EXIT_NBR "Error\nWrong number of exit: %d. What are you? A pussycat?\n", game->map.exit
-# define CORRECT_COLLECT_NBR "%d COLLECTABLES! You can devour the world!\n", game->map.collect
+# define CORRECT_COLLECT_NBR "%d COLLECTABLES to pick up! Your D is knocking on heaven's door!\n", game->map.collect
 # define ERROR_COLLECT_NBR "Error\nNot enoght bones: %d. What about your boner? It's sad, isn't it?\n", game->map.collect
 # define CORRECT_SYMBOLS_IN_MAP "All symbols in map are good! Great job my hellwalker!\n"
 # define ERROR_SYMBOL_IN_MAP "Error\nWrong symbol in map! Cheating isn't allowd here! Try in 42...\n"
