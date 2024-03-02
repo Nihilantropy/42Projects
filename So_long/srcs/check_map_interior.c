@@ -18,11 +18,7 @@ int check_map_player(t_game *game)
         y++;
     }
     if (game->map.player == 1)
-    {
-        ft_printf(CORRECT_PLAYER_NBR);
-        ft_printf(PLAYER_POS);
-        return (1);
-    }
+        return (ft_printf(CORRECT_PLAYER_NBR));
     else
     {
         ft_printf(ERROR_PLAYER_NBR);
@@ -48,10 +44,7 @@ int check_map_exit(t_game *game)
         y++;
     }
     if (game->map.exit == 1)
-    {
-        ft_printf(CORRECT_EXIT_NBR);
-        return (1);
-    }
+        return (ft_printf(CORRECT_EXIT_NBR));
     else
     {
         ft_printf(ERROR_EXIT_NBR);
@@ -76,7 +69,7 @@ int check_map_collect(t_game *game)
         }
         y++;
     }
-    if (game->map.collect >= 0)
+    if (game->map.collect > 0)
         return (ft_printf(CORRECT_COLLECT_NBR));
     else
         ft_printf(ERROR_COLLECT_NBR);
@@ -106,6 +99,5 @@ int check_wrong_symb(t_game *game)
         }
         y++;
     }
-    ft_printf(CORRECT_SYMBOLS_IN_MAP);
-    return (1);
+    return (ft_printf(CORRECT_SYMBOLS_IN_MAP));
 }

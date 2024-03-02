@@ -65,8 +65,6 @@ int is_map_complete(t_game *game)
     ft_memset(visited, false, sizeof(visited));
     flood_fill(game, game->map.player_pos.x, game->map.player_pos.y, visited);
     printf_flood_matrix(game, visited);
-    ft_printf("%d %d\n", game->map.player_pos.x, game->map.player_pos.y);
-
     if (verify_collectibles_and_exit(game, visited))
         return (1);
     else

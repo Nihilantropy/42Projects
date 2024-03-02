@@ -1,15 +1,15 @@
 #include "../include/so_long.h"
 
-int is_valide_move(t_game *game, int x, int y, int keycode)
+int is_valide_move(t_game *game, int new_x, int new_y, int keycode)
 {
-    if (x <= 0 || y <= 0 || x >= game->map.col || y >= game->map.row)
-        return (0);
-    if (game->map.matrix[y][x] == WALL)
+    if (game->map.matrix[new_y][new_x] == WALL)
     {
         ft_printf(ERROR_INVALID_ROUT);
         return (0);
     }
-    if (game->map.collect != 0 && game->map.matrix[y][x] == EXIT)
+    if (new_x <= 0 || new_y <= 0 || new_x >= game->map.col || new_y >= game->map.row)
+        return (0);
+    if (game->map.collect != 0 && game->map.matrix[new_y][new_x] == EXIT)
     {
         ft_printf(ERROR_EXIT_NOT_OPEN);
         return (0);
@@ -18,13 +18,11 @@ int is_valide_move(t_game *game, int x, int y, int keycode)
         || keycode == UP || keycode == LEFT || keycode == DOWN || keycode == RIGHT)
     {
         game->moves++;
-        ft_printf(MOVES_NBR);
         return (1);
     }
     else
         ft_printf(ERROR_INVALID_KEY);
     return (0);
-    
 }
 
 void update_player_pos(t_game *game, int new_x, int new_y)
@@ -33,6 +31,7 @@ void update_player_pos(t_game *game, int new_x, int new_y)
     game->map.matrix[new_y][new_x] = PLAYER;
     game->map.player_pos.x = new_x;
     game->map.player_pos.y = new_y;
+    ft_printf(NEW_PLAYER_POS);
     return ;
 }
 
@@ -40,8 +39,11 @@ void    update_collect_count(t_game *game, int new_x, int new_y)
 {
     if (game->map.matrix[new_y][new_x] == COLLECT)
     {
+        if (game->map.collect > 1)
+            ft_printf(COLLECTABLES_NBR);
+        else if (game->map.collect == 1)
+            ft_printf(ALL_COLLECT_PICKEDUP);
         game->map.collect--;
-        ft_printf(COLLECTABLES_NBR);
     }
 }
 

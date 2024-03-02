@@ -3,8 +3,9 @@ NAME		= so_long
 SOLONG_DIR	= ./srcs
 SOLONG_HEAD	= ./include
 
-SRCS		= main.c check_map_extention.c get_map.c get_map_utils.c check_map_edges.c check_map_interior.c \
-				check_if_map_is_complete.c manage_display.c render_map.c key_event.c key_event_utils.c
+SRCS		= 	main.c check_map_extention.c get_map.c get_map_utils.c check_map_edges.c check_map_interior.c \
+				check_if_map_is_complete.c manage_display.c render_map.c player_movement.c player_movement_utils.c \
+				handle_closure.c
 
 OBJS		= $(patsubst %.c, $(SOLONG_DIR)/%.o, $(SRCS))
 

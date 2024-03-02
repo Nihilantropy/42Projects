@@ -21,13 +21,3 @@ void	manage_display(t_game *game)
 	draw_map(game);
 	return ;
 }
-
-int	close_game(void *param)
-{
-	t_game *game;
-
-	game = param; 
-	mlx_destroy_window(game->mlx_ptr, game->mlx_win);
-	exit (0);
-	return (0);
-}

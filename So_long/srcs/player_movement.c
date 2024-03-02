@@ -9,7 +9,10 @@ void handle_key_event(t_game *game)
 int     key_press(int keycode, t_game *game)
 {
     if (keycode == ESC)
+    {
+        ft_printf(EARLY_GAME_CLOSE);
         close_game(game);
+    }
     else
         handle_player_movement(game, keycode);
     return (0);
@@ -44,6 +47,7 @@ void    handle_movement_changes(t_game *game, int new_x, int new_y)
 {
     update_collect_count(game, new_x, new_y);
     update_player_pos(game, new_x, new_y);
+    ft_printf(MOVES_NBR);
     draw_map(game);
     if (!check_if_win(game))
     {

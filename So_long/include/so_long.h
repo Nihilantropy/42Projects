@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/03/01 23:53:28 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/02 12:26:51 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void    get_map(t_game *game, char *map_file);
 int     build_matrix(t_game *game, char *map_file);
 int     check_matrix(t_game *game);
 
-/* get_map_utils */
+/* get map utils */
 void    get_map_size(t_game *game, char *map_file);
 void    get_map_col(t_game *game);
 void    save_player_pos(t_game *game);
@@ -178,18 +178,21 @@ void    draw_map(t_game *game);
 void    manage_display(t_game *game);
 void    get_win_size(t_game *game);
 void	open_display(t_game *game);
-int 	close_game(void *param);
 
-/* handle key event */
+/* player movement */
 void    handle_key_event(t_game *game);
 int     key_press(int keycode, t_game *game);
 void    handle_player_movement(t_game *game, int keycode);
 void    handle_movement_changes(t_game *game, int new_x, int new_y);
 
-/* Key event utils */
-int     is_valide_move(t_game *game, int x, int y, int keycode);
+/* player movement utils */
+int     is_valide_move(t_game *game, int new_x, int new_y, int keycode);
 void    update_player_pos(t_game *game, int new_x, int new_y);
 void    update_collect_count(t_game *game, int new_x, int new_y);
 int     check_if_win(t_game *game);
+
+/* handle closure */
+void    clean_matrix(t_game *game);
+int 	close_game(void *param);
 
 #endif
