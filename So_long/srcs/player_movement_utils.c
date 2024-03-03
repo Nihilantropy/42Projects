@@ -27,11 +27,18 @@ int is_valide_move(t_game *game, int new_x, int new_y, int keycode)
 
 void update_player_pos(t_game *game, int new_x, int new_y)
 {
+    check_if_player_facing_left(game, new_x);
     game->map.matrix[game->map.player_pos.y][game->map.player_pos.x] = FLOOR;
     game->map.matrix[new_y][new_x] = PLAYER;
     game->map.player_pos.x = new_x;
     game->map.player_pos.y = new_y;
-    ft_printf(NEW_PLAYER_POS);
+    if (!check_if_win(game))
+    {
+        ft_printf(NEW_PLAYER_POS);
+        ft_printf(MOVES_NBR);
+        return ;
+    }
+    ft_printf(FINAL_PLAYER_POS);
     return ;
 }
 
@@ -47,6 +54,21 @@ void    update_collect_count(t_game *game, int new_x, int new_y)
     }
 }
 
+void    check_if_player_facing_left(t_game *game, int new_x)
+{
+    if (new_x < game->map.player_pos.x)
+    {
+        game->map.player_pos.facing_left = true;
+        return ;
+    }
+    else if (new_x > game->map.player_pos.x)
+    {
+        game->map.player_pos.facing_left = false;
+        return ;
+    }
+    return ;
+}
+
 int check_if_win(t_game *game)
 {
     int y;
@@ -59,10 +81,10 @@ int check_if_win(t_game *game)
         while (x < game->map.col)
         {
             if (game->map.matrix[y][x] == EXIT)
-                return (1);
+                return (0);
             x++;
         }
         y++;
     }
-    return (0);
+    return (1);
 }

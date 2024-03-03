@@ -1,49 +1,60 @@
-# Compiler and compiling flags
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+NAME		= push_swap
 
-# Name of your program
-NAME = push_swap
+PUSHSWAP_DIR	= ./srcs
+PUSHSWAP_HEAD	= ./include
 
-# Directories
-SRCDIR = srcs
-INCDIR = include
-LIBDIR = libft
+SRCS		= main.c
 
-# Source files and object files
-SRC = $(wildcard $(SRCDIR)/*.c)
-OBJ = $(SRC:.c=.o)
+OBJS		= $(patsubst %.c, $(PUSHSWAP_DIR)/%.o, $(SRCS))
+
+LIBFT_DIR	= ./libft
+LIBFT		= libft.a
+
+PRINTF_DIR	= ./ft_printf
+PRINTF_LIB	= libft_printf.a
+
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror
+RM = rm -f
 
 # Include directory for header files
-INC = -I $(INCDIR) -I $(LIBDIR)
-
-# Libft library
-LIBFT = $(LIBDIR)/libft.a
+INC 		= -I$(PUSHSWAP_HEAD) -I$(LIBFT_DIR) -I$(PRINTF_DIR)
 
 # Compilation rule for the program
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -L$(LIBDIR) -lft -o $(NAME)
+$(NAME): $(LIBFT) $(PRINTF_LIB) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lft_printf -o $(NAME)
+
+
+# Rule to compile object files
+$(PUSHSWAP_DIR)/%.o: $(PUSHSWAP_DIR)/%.c
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 # Rule to make libft
 $(LIBFT):
-	make -C $(LIBDIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
-# Rule to compile object files
-%.o: %.c
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+# Rule to make libft_printf
+$(PRINTF_LIB):
+	$(MAKE) -C $(PRINTF_DIR)
 
-# Standard rules
-all: $(NAME)
+
+all:		$(NAME)
 
 clean:
-	make -C $(LIBDIR) clean
-	rm -f $(OBJ)
+			$(RM) $(OBJS)
+			$(MAKE) -C $(LIBFT_DIR) clean
+			$(MAKE) -C $(PRINTF_DIR) clean
 
-fclean: clean
-	make -C $(LIBDIR) fclean
-	rm -f $(NAME)
+fclean:		clean
+			$(MAKE) -C $(LIBFT_DIR) fclean
+			$(MAKE) -C $(PRINTF_DIR) fclean
 
-re: fclean all
+re:			fclean all
 
-# Phony targets
-.PHONY: all clean fclean re
+rec:		clean all
+
+# Run this from another terminal while game is running
+test: 		
+			leaks $(NAME)
+
+.PHONY:		all clean fclean re rec test

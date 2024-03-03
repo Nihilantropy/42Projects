@@ -31,7 +31,7 @@ static int verify_collectibles_and_exit(t_game *game, t_bool visited[][game->map
             if (visited[y][x] && game->map.matrix[y][x] == COLLECT)
                 game->map.reachable.collect_reachable++;
             if (visited[y][x] && game->map.matrix[y][x] == EXIT)
-                game->map.reachable.exit_reachable = 1;
+                game->map.reachable.exit_reachable = true;
             x++;
         }
         y++;

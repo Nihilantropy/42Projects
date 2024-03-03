@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/03/02 12:26:51 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/03 01:38:39 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WALL_SPRITE "Tiles/wall_64_.xpm"
 # define FLOOR_SPRITE "Tiles/floor_64_.xpm"
 # define PLAYER_SPRITE "Tiles/player_64_.xpm"
-# define PLAYER_SPRITE_INV "Tiles/player_invert_64_.xpm"
+# define PLAYER_INV_SPRITE "Tiles/player_invert_64_.xpm"
 # define COLLECT_SPRITE "Tiles/collectable_64_.xpm"
 # define EXIT_SPRITE "Tiles/exit_64_.xpm"
 
@@ -69,6 +69,7 @@ typedef struct s_axis
 {
     int x;
     int y;
+    t_bool  facing_left;
 }           t_axis;
 
 /* struct for checking reachable collectables and exit */
@@ -97,6 +98,7 @@ typedef struct s_tiles
     void    *wall;
     void    *floor;
     void    *player;
+    void    *player_inv;
     void    *collect;
     void    *exit;
     int     width;
@@ -127,10 +129,12 @@ static inline t_game    init_game(void)
         .map.player = 0,
         .map.exit = 0,
         .map.reachable.collect_reachable = 0,
-        .map.reachable.exit_reachable = 0,
+        .map.reachable.exit_reachable = false,
+        .map.player_pos.facing_left = false,
         .tiles.wall = NULL,
         .tiles.floor = NULL,
         .tiles.player = NULL,
+        .tiles.player_inv = NULL,
         .tiles.collect = NULL,
         .tiles.exit = NULL,
         .tiles.width = TILE_SIZE,
@@ -173,6 +177,7 @@ int is_map_complete(t_game *game);
 void    init_sprites(t_game *game);
 void    render_tiles(t_game *game, char tile);
 void    draw_map(t_game *game);
+void    free_images(t_game *game);
 
 /* manage display */
 void    manage_display(t_game *game);
@@ -187,6 +192,7 @@ void    handle_movement_changes(t_game *game, int new_x, int new_y);
 
 /* player movement utils */
 int     is_valide_move(t_game *game, int new_x, int new_y, int keycode);
+void    check_if_player_facing_left(t_game *game, int new_x);
 void    update_player_pos(t_game *game, int new_x, int new_y);
 void    update_collect_count(t_game *game, int new_x, int new_y);
 int     check_if_win(t_game *game);

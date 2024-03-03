@@ -4,24 +4,18 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../libft/include/libft.h"
+# include "../ft_printf/include/ft_printf.h"
 
-
-/* structure def for list a */
-typedef struct sa_list
+/* defining double circular struct list */
+typedef struct dcs_list
 {
 	int				data;
-	struct sa_list	*next;
-}			a_list;
-
-/* structure def for list b */
-typedef struct sb_list
-{
-	int				data;
-	struct sb_list	*next;
-}			b_list;
+	struct dcs_list	*next;
+	struct dcs_list	*prev;
+}			dct_list;
 
 /* rules */
 
-//void	sa(a_list *list);
+//void	sa(dct_list *list);
 
 #endif

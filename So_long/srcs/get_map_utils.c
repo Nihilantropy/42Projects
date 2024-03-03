@@ -47,7 +47,7 @@ void    print_matrix(t_game *game)
     ft_printf("\n");
     while (y < game->map.row)
         ft_printf("%s", game->map.matrix[y++]);
-    ft_printf("\n");
+    ft_printf("\n\n");
 }
 
 void printf_flood_matrix(t_game *game, t_bool visited[][game->map.col])

@@ -47,11 +47,19 @@ void    handle_movement_changes(t_game *game, int new_x, int new_y)
 {
     update_collect_count(game, new_x, new_y);
     update_player_pos(game, new_x, new_y);
-    ft_printf(MOVES_NBR);
     draw_map(game);
-    if (!check_if_win(game))
-    {
-        ft_printf(WIN_MSG);
+    if (check_if_win(game))
+    {  
+        if(game->moves <= 30)
+        {
+            ft_printf(WIN_MSG);
+            ft_printf(FINAL_MOVE);
+        }
+        else
+        {
+            ft_printf(FINAL_MOVE_JOKE);
+            ft_printf(WIN_MSG_JOKE);
+        }
         close_game(game);
     }
     print_matrix(game);

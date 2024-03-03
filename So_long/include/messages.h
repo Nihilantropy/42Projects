@@ -47,12 +47,16 @@
 # define ERROR_INVALID_KEY "Error\nTry to smash another button... Or I'll smash your sis.\n"
 # define COLLECTABLES_NBR "Remaining bones: %d. You're boner is getting harder!\n\n", game->map.collect
 # define ALL_COLLECT_PICKEDUP "You've earned FULL POWER! Don't waste time! Your boner might disappear!\n\n"
-# define MOVES_NBR "You made %d moves! Keep goin Skeletronk!\n", game->moves
+# define MOVES_NBR "You've made %d moves! Keep goin Skeletronk!\n", game->moves
 # define ERROR_EXIT_NOT_OPEN "Error\nDo you have all the bones? Are you sure? That doesn't seems a big boner to me...\n"
 # define NEW_PLAYER_POS "Your new position is {%d} {%d}! Keep navigate hell!\n", game->map.player_pos.x, game->map.player_pos.y
+# define FINAL_PLAYER_POS "You've reached the portal, on position {%d} {%d}!\n", game->map.player_pos.x, game->map.player_pos.y
 
 /* player_movement */
 # define EARLY_GAME_CLOSE "Leaving hell? already? what about your boner???\n"
-# define WIN_MSG "##########################\n#                        #\n# WHAT AN AMAZING BONER! #\n#                        #\n#        CONGRATS!       #\n#                        #\n##########################\n"
+# define FINAL_MOVE "\nYou got that boner with only %d moves! You're a real champ!\n", game->moves
+# define FINAL_MOVE_JOKE "\n%d moves to get a boner??? Should i call you Rocco or just turtle? Anyway...\n", game->moves
+# define WIN_MSG "\n##########################\n#                        #\n# WHAT AN AMAZING BONER! #\n#                        #\n#        CONGRATS!       #\n#                        #\n##########################\n"
+# define WIN_MSG_JOKE "\n##################################\n#                                #\n# A PERFECTLY RESPECTABLE BONER! #\n#                                #\n#        CONGRATS TURTLE!        #\n#                                #\n##################################\n"
 
 #endif
