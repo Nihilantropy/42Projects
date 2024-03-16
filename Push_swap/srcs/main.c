@@ -1,5 +1,3 @@
-#include <stdio.h>  // Per la funzione printf
-#include <stdlib.h> // Per la funzione malloc
 #include "../include/push_swap.h"
 
 // Inizializza la lista circolare doppia con un nodo vuoto
@@ -59,22 +57,20 @@ void print_list(dct_list *list)
 }
 
 // Libera la memoria allocata dalla lista circolare doppia e imposta il puntatore della lista a NULL
-void free_list(dct_list **list)
+void free_list(dct_list *list)
 {
-    if (!list || !*list)
-        return;
+    if (!list)
+        return ;
 
-    dct_list *current = (*list)->next; // Inizia dal primo nodo effettivo
+    dct_list *current = list->next; // Inizia dal primo nodo effettivo
     dct_list *next_node;
 
-    while (current != *list) { // Continua finché non si torna al nodo iniziale
+    while (current != list) { // Continua finché non si torna al nodo iniziale
         next_node = current->next; // Salva il riferimento al prossimo nodo
         free(current);             // Libera il nodo corrente
         current = next_node;       // Passa al prossimo nodo
     }
-
-    free(*list); // Libera il nodo iniziale
-    *list = NULL; // Imposta il puntatore della lista a NULL
+    free(list); // Libera il nodo iniziale
 }
 
 int main()
@@ -97,10 +93,7 @@ int main()
     print_list(list);
 
     // Libera la memoria allocata dalla lista
-    free_list(&list); // Passa il primo nodo effettivo poiché list è il nodo vuoto iniziale
-
-    // Libera il nodo iniziale vuoto
-    free(list);
+    free_list(list->next); // Passa il primo nodo effettivo poiché list è il nodo vuoto iniziale
 
     return 0;
 }
