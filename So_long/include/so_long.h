@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/03/16 16:37:45 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/17 10:25:00 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,28 @@
 
 # define PLAYER_INV_SPRITE "Tiles/player_invert_64_.xpm"
 
-/* collectable animations sprites */
+/* player animation sprites */
+# define PLAYER_SPRITE_FRAME_1 "Tiles/player/player(frame1).xpm"
+# define PLAYER_SPRITE_FRAME_2 "Tiles/player/player(frame2).xpm"
+# define PLAYER_SPRITE_FRAME_3 "Tiles/player/player(frame3).xpm"
+# define PLAYER_SPRITE_FRAME_4 "Tiles/player/player(frame4).xpm"
+# define PLAYER_SPRITE_FRAME_5 "Tiles/player/player(frame5).xpm"
+# define PLAYER_SPRITE_FRAME_6 "Tiles/player/player(frame6).xpm"
+# define PLAYER_SPRITE_FRAME_7 "Tiles/player/player(frame7).xpm"
+# define PLAYER_SPRITE_FRAME_8 "Tiles/player/player(frame8).xpm"
+
+/* player inverted animation sprites */
+# define PLAYER_INV_SPRITE_FRAME_1 "Tiles/player_inv/player_inv(frame1).xpm"
+# define PLAYER_INV_SPRITE_FRAME_2 "Tiles/player_inv/player_inv(frame2).xpm"
+# define PLAYER_INV_SPRITE_FRAME_3 "Tiles/player_inv/player_inv(frame3).xpm"
+# define PLAYER_INV_SPRITE_FRAME_4 "Tiles/player_inv/player_inv(frame4).xpm"
+# define PLAYER_INV_SPRITE_FRAME_5 "Tiles/player_inv/player_inv(frame5).xpm"
+# define PLAYER_INV_SPRITE_FRAME_6 "Tiles/player_inv/player_inv(frame6).xpm"
+# define PLAYER_INV_SPRITE_FRAME_7 "Tiles/player_inv/player_inv(frame7).xpm"
+# define PLAYER_INV_SPRITE_FRAME_8 "Tiles/player_inv/player_inv(frame8).xpm"
+
+
+/* collectable animation sprites */
 # define COLLECT_SPRITE_FRAME_1 "Tiles/collectable/collectable(frame1).xpm"
 # define COLLECT_SPRITE_FRAME_2 "Tiles/collectable/collectable(frame2).xpm"
 # define COLLECT_SPRITE_FRAME_3 "Tiles/collectable/collectable(frame3).xpm"
@@ -43,10 +64,14 @@
 
 # define TILE_SIZE 64
 
+/* collectable frame rate */
 # define FRAME_RATE 6
-#define FRAME_TIME_US (166666 / FRAME_RATE)
+# define FRAME_TIME_US (100000 / FRAME_RATE)
 
-/* collectable animation frame */
+/* player animation frames */
+# define PLAYER_ANIM_FRAMES 8
+
+/* collectable animation frames */
 # define COLLECT_ANIM_FRAMES 6
 
 # define DISPLAY_NAME "So_longo!"
@@ -118,13 +143,29 @@ typedef struct s_collect_anim_sprite
     int anim_counter;
 } t_collect_anim_sprite;
 
+/* struct for animated tiles */
+typedef struct s_player_anim_sprite
+{
+    void *frames[PLAYER_ANIM_FRAMES];
+    int current_frame;
+    int anim_counter;
+} t_player_anim_sprite;
+
+/* struct for animated tiles */
+typedef struct s_player_inv_anim_sprite
+{
+    void *frames[PLAYER_ANIM_FRAMES];
+    int current_frame;
+    int anim_counter;
+} t_player_inv_anim_sprite;
+
 /* struct for all tiles & sprites specifics */
 typedef struct s_tiles
 {
     void    *wall;
     void    *floor;
-    void    *player;
-    void    *player_inv;
+    t_player_anim_sprite    player;
+    t_player_inv_anim_sprite    player_inv;
     t_collect_anim_sprite    collect;
     void    *exit;
     int     width;
@@ -160,8 +201,10 @@ static inline t_game    init_game(void)
         .map.player_pos.facing_left = false,
         .tiles.wall = NULL,
         .tiles.floor = NULL,
-        .tiles.player = NULL,
-        .tiles.player_inv = NULL,
+        .tiles.player.current_frame = 0,
+        .tiles.player.anim_counter = 0,
+        .tiles.player_inv.current_frame = 0,
+        .tiles.player_inv.anim_counter = 0,
         .tiles.collect.current_frame = 0,
         .tiles.collect.anim_counter = 0,
         .tiles.exit = NULL,
@@ -204,6 +247,14 @@ int is_map_complete(t_game *game);
 /* animation handler */
 int     update_animations(t_game *game);
 void    handle_animations(t_game *game);
+
+/* player sprites animation */
+void    load_player_images(t_game *game);
+void    handle_player_anim(t_game *game);
+void    free_player_images(t_game *game);
+void    load_player_inv_images(t_game *game);
+void    handle_player_inv_anim(t_game *game);
+void    free_player_inv_images(t_game *game);
 
 /* collectable sprites animation */
 void    load_collect_images(t_game *game);
