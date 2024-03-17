@@ -42,9 +42,12 @@
 # define ERROR_CANT_REACH_EXIT "Error\nSomeone doesn't want you to escape... What a coward.\n"
 # define ERROR_MAP_CANT_BE_COMPLETED "You won't be able to escape hell... Ask your daddy for help.\n"
 
-# define ERROR_COLLECT_IMG_UPLOAD "Error\non the collectable frame upload.\n"
+/* error for images uploading and free */
+# define ERROR_WALL_IMG_UPLOAD "Error\non the wall frame upload.\n"
 # define ERROR_PLAYER_IMG_UPLOAD "Error\non the player frame upload.\n"
 # define ERROR_PLAYER_INV_IMG_UPLOAD "Error\non the player inverted frame upload.\n"
+# define ERROR_COLLECT_IMG_UPLOAD "Error\non the collectable frame upload.\n"
+# define ERROR_EXIT_IMG_UPLOAD "Error\non the exit frame upload.\n"
 # define ERROR_FREE_IMAGE "Error\nImages memory liberation fail. Some images does not exist.\n"
 
 /* player_movement_utils */

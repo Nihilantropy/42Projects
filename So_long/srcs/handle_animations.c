@@ -2,8 +2,11 @@
 
 void    handle_animations(t_game *game)
 {
-    handle_collect_anim(game);
+    handle_wall_anim(game);
     handle_player_anim(game);
+    handle_player_inv_anim(game);
+    handle_collect_anim(game);
+    handle_exit_anim(game);
 }
 
 int update_animations(t_game *game)

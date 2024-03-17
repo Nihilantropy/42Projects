@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/03/17 10:25:00 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/17 16:15:42 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@
 # include "../libft/include/libft.h"
 # include "../ft_printf/include/ft_printf.h"
 
-# define WALL_SPRITE "Tiles/wall_64_.xpm"
-
 # define FLOOR_SPRITE "Tiles/floor_64_.xpm"
 
-# define PLAYER_SPRITE "Tiles/player_64_.xpm"
-
-# define PLAYER_INV_SPRITE "Tiles/player_invert_64_.xpm"
+/* wall antimation sprites */
+# define WALL_SPRITE_FRAME_1 "Tiles/wall/wall(frame1).xpm"
+# define WALL_SPRITE_FRAME_2 "Tiles/wall/wall(frame2).xpm"
+# define WALL_SPRITE_FRAME_3 "Tiles/wall/wall(frame3).xpm"
+# define WALL_SPRITE_FRAME_4 "Tiles/wall/wall(frame4).xpm"
+# define WALL_SPRITE_FRAME_5 "Tiles/wall/wall(frame5).xpm"
+# define WALL_SPRITE_FRAME_6 "Tiles/wall/wall(frame6).xpm"
+# define WALL_SPRITE_FRAME_7 "Tiles/wall/wall(frame7).xpm"
+# define WALL_SPRITE_FRAME_8 "Tiles/wall/wall(frame8).xpm"
 
 /* player animation sprites */
 # define PLAYER_SPRITE_FRAME_1 "Tiles/player/player(frame1).xpm"
@@ -51,28 +55,44 @@
 # define PLAYER_INV_SPRITE_FRAME_7 "Tiles/player_inv/player_inv(frame7).xpm"
 # define PLAYER_INV_SPRITE_FRAME_8 "Tiles/player_inv/player_inv(frame8).xpm"
 
-
 /* collectable animation sprites */
 # define COLLECT_SPRITE_FRAME_1 "Tiles/collectable/collectable(frame1).xpm"
 # define COLLECT_SPRITE_FRAME_2 "Tiles/collectable/collectable(frame2).xpm"
 # define COLLECT_SPRITE_FRAME_3 "Tiles/collectable/collectable(frame3).xpm"
 # define COLLECT_SPRITE_FRAME_4 "Tiles/collectable/collectable(frame4).xpm"
-# define COLLECT_SPRITE_FRAME_5 "Tiles/collectable/collectable(frame5).xpm"
-# define COLLECT_SPRITE_FRAME_6 "Tiles/collectable/collectable(frame6).xpm"
+# define COLLECT_SPRITE_FRAME_5 "Tiles/collectable/collectable(frame4).xpm"
+# define COLLECT_SPRITE_FRAME_6 "Tiles/collectable/collectable(frame5).xpm"
+# define COLLECT_SPRITE_FRAME_7 "Tiles/collectable/collectable(frame6).xpm"
 
-# define EXIT_SPRITE "Tiles/exit_64_.xpm"
+/* exit animation sprites */
+# define EXIT_SPRITE_FRAME_1 "Tiles/exit/exit(frame1).xpm"
+# define EXIT_SPRITE_FRAME_2 "Tiles/exit/exit(frame2).xpm"
+# define EXIT_SPRITE_FRAME_3 "Tiles/exit/exit(frame3).xpm"
+# define EXIT_SPRITE_FRAME_4 "Tiles/exit/exit(frame4).xpm"
+# define EXIT_SPRITE_FRAME_5 "Tiles/exit/exit(frame5).xpm"
+# define EXIT_SPRITE_FRAME_6 "Tiles/exit/exit(frame6).xpm"
+# define EXIT_SPRITE_FRAME_7 "Tiles/exit/exit(frame7).xpm"
+# define EXIT_SPRITE_FRAME_8 "Tiles/exit/exit(frame8).xpm"
+# define EXIT_SPRITE_FRAME_9 "Tiles/exit/exit(frame9).xpm"
+# define EXIT_SPRITE_FRAME_10 "Tiles/exit/exit(frame10).xpm"
 
 # define TILE_SIZE 64
 
-/* collectable frame rate */
+/* game frame rate */
 # define FRAME_RATE 6
 # define FRAME_TIME_US (100000 / FRAME_RATE)
+
+/* wall animation frames */
+# define WALL_ANIM_FRAMES 8
 
 /* player animation frames */
 # define PLAYER_ANIM_FRAMES 8
 
 /* collectable animation frames */
-# define COLLECT_ANIM_FRAMES 6
+# define COLLECT_ANIM_FRAMES 7
+
+/* exit animation frames */
+# define EXIT_ANIM_FRAMES 10
 
 # define DISPLAY_NAME "So_longo!"
 
@@ -135,15 +155,15 @@ typedef struct s_map
     t_axis      player_pos;
 }           t_map;
 
-/* struct for animated tiles */
-typedef struct s_collect_anim_sprite
+/* struct for wall animated tiles */
+typedef struct s_wall_anim_sprite
 {
-    void *frames[COLLECT_ANIM_FRAMES];
+    void *frames[WALL_ANIM_FRAMES];
     int current_frame;
     int anim_counter;
-} t_collect_anim_sprite;
+} t_wall_anim_sprite;
 
-/* struct for animated tiles */
+/* struct for player animated tiles */
 typedef struct s_player_anim_sprite
 {
     void *frames[PLAYER_ANIM_FRAMES];
@@ -151,7 +171,7 @@ typedef struct s_player_anim_sprite
     int anim_counter;
 } t_player_anim_sprite;
 
-/* struct for animated tiles */
+/* struct for inverted player animated tiles */
 typedef struct s_player_inv_anim_sprite
 {
     void *frames[PLAYER_ANIM_FRAMES];
@@ -159,15 +179,31 @@ typedef struct s_player_inv_anim_sprite
     int anim_counter;
 } t_player_inv_anim_sprite;
 
+/* struct for exit animated tiles */
+typedef struct s_exit_anim_sprite
+{
+    void *frames[EXIT_ANIM_FRAMES];
+    int current_frame;
+    int anim_counter;
+} t_exit_anim_sprite;
+
+/* struct for collect animated tiles */
+typedef struct s_collect_anim_sprite
+{
+    void *frames[COLLECT_ANIM_FRAMES];
+    int current_frame;
+    int anim_counter;
+} t_collect_anim_sprite;
+
 /* struct for all tiles & sprites specifics */
 typedef struct s_tiles
 {
-    void    *wall;
     void    *floor;
+    t_wall_anim_sprite  wall;
     t_player_anim_sprite    player;
     t_player_inv_anim_sprite    player_inv;
     t_collect_anim_sprite    collect;
-    void    *exit;
+    t_exit_anim_sprite    exit;
     int     width;
     int     height;
     int     x;
@@ -199,15 +235,17 @@ static inline t_game    init_game(void)
         .map.reachable.collect_reachable = 0,
         .map.reachable.exit_reachable = false,
         .map.player_pos.facing_left = false,
-        .tiles.wall = NULL,
         .tiles.floor = NULL,
+        .tiles.wall.current_frame = 0,
+        .tiles.wall.anim_counter = 0,
         .tiles.player.current_frame = 0,
         .tiles.player.anim_counter = 0,
         .tiles.player_inv.current_frame = 0,
         .tiles.player_inv.anim_counter = 0,
         .tiles.collect.current_frame = 0,
         .tiles.collect.anim_counter = 0,
-        .tiles.exit = NULL,
+        .tiles.exit.current_frame = 0,
+        .tiles.exit.anim_counter = 0,
         .tiles.width = TILE_SIZE,
         .tiles.height = TILE_SIZE,
         .tiles.x = 0,
@@ -248,6 +286,11 @@ int is_map_complete(t_game *game);
 int     update_animations(t_game *game);
 void    handle_animations(t_game *game);
 
+/* walls sprites animation */
+void    load_wall_images(t_game *game);
+void    handle_wall_anim(t_game *game);
+void    free_wall_images(t_game *game);
+
 /* player sprites animation */
 void    load_player_images(t_game *game);
 void    handle_player_anim(t_game *game);
@@ -260,6 +303,11 @@ void    free_player_inv_images(t_game *game);
 void    load_collect_images(t_game *game);
 void    handle_collect_anim(t_game *game);
 void    free_collect_images(t_game *game);
+
+/* exit sprites animation */
+void    load_exit_images(t_game *game);
+void    handle_exit_anim(t_game *game);
+void    free_exit_images(t_game *game);
 
 /* sprites render */
 void    init_sprites(t_game *game);

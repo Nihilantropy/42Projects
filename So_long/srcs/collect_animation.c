@@ -7,7 +7,7 @@ void load_collect_images(t_game *game)
     int height;
     char *collect_frames_paths[COLLECT_ANIM_FRAMES] = { COLLECT_SPRITE_FRAME_1, COLLECT_SPRITE_FRAME_2, 
                             COLLECT_SPRITE_FRAME_3, COLLECT_SPRITE_FRAME_4,
-                            COLLECT_SPRITE_FRAME_5, COLLECT_SPRITE_FRAME_6 };
+                            COLLECT_SPRITE_FRAME_5, COLLECT_SPRITE_FRAME_6, COLLECT_SPRITE_FRAME_7 };
 
     i = 0;
     width = TILE_SIZE;
