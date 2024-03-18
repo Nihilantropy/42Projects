@@ -46,6 +46,7 @@ clean:
 			$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean:		clean
+			$(RM) $(NAME)
 			$(MAKE) -C $(LIBFT_DIR) fclean
 			$(MAKE) -C $(PRINTF_DIR) fclean
 

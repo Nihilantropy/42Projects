@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:01:44 by crea              #+#    #+#             */
-/*   Updated: 2024/02/05 14:43:16 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/18 15:36:13 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ static void	make_words(char **words, const char *str, char c, size_t words_nb)
 			str = ptr_c;
 		}
 		else
-			*words = ft_substr(str, 0, (ft_strlen(str) + 1));
-		words++;
+		{
+			*words++ = ft_substr(str, 0, (ft_strlen(str) + 1));
+			break ;
+		}
 	}
 	*words = NULL;
 }
@@ -64,7 +66,7 @@ char	**ft_split(const char *str, char c)
 	if (!str)
 		return (0);
 	words_nb = count_words(str, c);
-	words = malloc(sizeof(char **) * (words_nb + 1));
+	words = malloc(sizeof(char **) * (words_nb + 2));
 	if (!words)
 		return (0);
 	make_words(words, str, c, words_nb);
