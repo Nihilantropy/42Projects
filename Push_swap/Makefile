@@ -3,7 +3,7 @@ NAME		= push_swap
 PUSHSWAP_DIR	= ./srcs
 PUSHSWAP_HEAD	= ./include
 
-SRCS		= main.c
+SRCS		= main.c main_utils.c
 
 OBJS		= $(patsubst %.c, $(PUSHSWAP_DIR)/%.o, $(SRCS))
 
