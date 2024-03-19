@@ -1,7 +1,7 @@
 #ifndef IMAGES_H
 # define IMAGES_H
 
-# define FLOOR_SPRITE "Tiles/floor_64_.xpm"
+# define FLOOR_SPRITE "Tiles/floor/floor_64_.xpm"
 
 /* wall antimation sprites */
 # define WALL_SPRITE_FRAME_1 "Tiles/wall/wall(frame1).xpm"

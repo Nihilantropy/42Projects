@@ -3,7 +3,7 @@ NAME		= push_swap
 PUSHSWAP_DIR	= ./srcs
 PUSHSWAP_HEAD	= ./include
 
-SRCS		= main.c main_utils.c
+SRCS		= main.c main_utils.c init_stack.c rules_a.c rules_b.c rules_ab.c
 
 OBJS		= $(patsubst %.c, $(PUSHSWAP_DIR)/%.o, $(SRCS))
 
@@ -54,8 +54,7 @@ re:			fclean all
 
 rec:		clean all
 
-# Run this from another terminal while game is running
-test: 		
+test:
 			leaks $(NAME)
 
 .PHONY:		all clean fclean re rec test
