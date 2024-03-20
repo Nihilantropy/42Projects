@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:56:04 by crea              #+#    #+#             */
-/*   Updated: 2024/02/27 19:30:28 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/20 12:35:14 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /* PLUS */
 int 	ft_putchar(char c);
+void	ft_putnl(void);
 
 /* FT_PRINTF */
 int		ft_printf(const char *s, ...);

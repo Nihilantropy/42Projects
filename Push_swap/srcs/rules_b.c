@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:37:24 by crea              #+#    #+#             */
-/*   Updated: 2024/03/19 19:44:21 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/20 13:27:40 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,42 @@ void	pb(t_linked_list **a, t_linked_list **b)
 {
     t_linked_list *top_a;
 
-    if (!(*a)) // Se A è vuoto o ha un solo elemento.
+    if (!(*a))
         return ;
-
-     // Isoliamo il top di A.
     top_a = *a;
-
-    if (*a == (*a)->next) { // Se A ha un solo elemento, dopo la rimozione diventerà vuoto.
+    if (*a == (*a)->next)
         *a = NULL;
-    } else {
-        // Collega il secondo nodo di A a diventare il primo.
+    else
+	{
         *a = (*a)->next;
         (*a)->prev = top_a->prev;
         top_a->prev->next = *a;
     }
-
     if (*b)
 	{
-        // Inseriamo top_b in B.
         top_a->next = *b;
         top_a->prev = (*b)->prev;
         (*b)->prev->next = top_a;
         (*b)->prev = top_a;
-    } else {
-        // Se B è vuoto, top_a diventa l'unico elemento.
+	}
+    else
+	{
         top_a->next = top_a;
         top_a->prev = top_a;
     }
-    
-    *b = top_a; // Aggiorniamo la testa di B con il nuovo elemento.
+    *b = top_a;
+}
+
+void	rb(t_linked_list **b)
+{
+	if (!(*b) || (*b)->next == *b)
+		return ;
+	*b = (*b)->next;
+}
+
+void	rrb(t_linked_list **b)
+{
+	if (!(*b) || (*b)->next == *b)
+		return ;
+	*b = (*b)->prev;
 }

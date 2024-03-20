@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:50:03 by crea              #+#    #+#             */
-/*   Updated: 2024/03/19 19:54:44 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/20 13:28:51 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,78 +46,13 @@ int main(int argc, char **argv)
 void test(t_linked_list **a, t_linked_list **b)
 {
 	print_list(a);
-	ft_printf("\n");
+	ft_putnl();
 	print_list(b);
+	ft_putnl();
 	pb(a, b);
-	ft_printf("\npush 1:\n");
 	print_list(a);
-	ft_printf("\n");
+	ft_putnl();
 	print_list(b);
-	pb(a, b);
-	ft_printf("\npush 2:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pb(a, b);
-	ft_printf("\npush 3:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pb(a, b);
-	ft_printf("\npush 4:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pb(a, b);
-	ft_printf("\npush 5:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pb(a, b);
-	ft_printf("\npush 6:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pb(a, b);
-	ft_printf("\npush 7:\n");
-	print_list(a);
-
-	ft_printf("\n");
-	print_list(b);
-	pa(a, b);
-	ft_printf("\npush 1:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pa(a, b);
-	ft_printf("\npush 2:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pa(a, b);
-	ft_printf("\npush 3:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pa(a, b);
-	ft_printf("\npush 4:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pa(a, b);
-	ft_printf("\npush 5:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pa(a, b);
-	ft_printf("\npush 6:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
-	pa(a, b);
-	ft_printf("\npush 7:\n");
-	print_list(a);
-	ft_printf("\n");
-	print_list(b);
+	ft_putnl();
 	
 }

@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:50:07 by crea              #+#    #+#             */
-/*   Updated: 2024/03/19 19:20:39 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/20 12:46:20 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	check_format(char **matrix)
 
 void print_list(t_linked_list **head)
 {
+	if (!(*head))
+		return ;
 	t_linked_list *current;
 	
 	current = *head;

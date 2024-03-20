@@ -30,14 +30,19 @@ void print_list(t_linked_list **a);
 /* rules for stack a */
 void	sa(t_linked_list **a);
 void	pa(t_linked_list **a, t_linked_list **b);
-
+void	ra(t_linked_list **a);
+void	rra(t_linked_list **a);
 
 /* rules for stack b */
 void	sb(t_linked_list **b);
 void	pb(t_linked_list **a, t_linked_list **b);
+void	rb(t_linked_list **b);
+void	rrb(t_linked_list **a);
 
 /* rules for both stacks a and b */
 void	ss(t_linked_list **a, t_linked_list **b);
+void	rr(t_linked_list **a, t_linked_list **b);
+void	rrr(t_linked_list **a, t_linked_list **b);
 
 void	pa(t_linked_list **a, t_linked_list **b);
 
