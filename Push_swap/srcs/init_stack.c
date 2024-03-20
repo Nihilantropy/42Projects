@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:50:10 by crea              #+#    #+#             */
-/*   Updated: 2024/03/19 19:37:55 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/20 15:47:33 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	init_stack(t_linked_list **a, char **matrix)
 	}
 }
 
-void	free_stacks(t_linked_list *a)
+void	free_stack(t_linked_list *a)
 {
 	if (!a)
 		return;

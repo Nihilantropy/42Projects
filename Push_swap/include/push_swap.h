@@ -12,7 +12,9 @@
 /* defining double circular struct list */
 typedef struct s_linked_list
 {
-	int				data;
+	int						data;
+	int						biggest;
+	int						cheapest;
 	struct s_linked_list	*prev;
 	struct s_linked_list	*next;
 }	t_linked_list;
@@ -23,9 +25,12 @@ int		check_format(char **matrix);
 void	init_stack(t_linked_list **a, char **matrix);
 int		check_double(t_linked_list *a, int nbr);
 void	push(t_linked_list **a, int nbr);
-void	free_stacks(t_linked_list *a);
+void	free_stack(t_linked_list *a);
 
-void print_list(t_linked_list **a);
+/* sort stack utils */
+int		stack_size(t_linked_list **a);
+
+void	print_list(t_linked_list **a);
 
 /* rules for stack a */
 void	sa(t_linked_list **a);

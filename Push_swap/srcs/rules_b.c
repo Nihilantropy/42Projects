@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:37:24 by crea              #+#    #+#             */
-/*   Updated: 2024/03/20 13:27:40 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/20 15:49:39 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,34 +31,34 @@ void	sb(t_linked_list **b)
 	*b = second;
 }
 
-void	pb(t_linked_list **a, t_linked_list **b)
+void pb(t_linked_list **a, t_linked_list **b)
 {
     t_linked_list *top_a;
 
-    if (!(*a))
-        return ;
-    top_a = *a;
-    if (*a == (*a)->next)
-        *a = NULL;
-    else
+	if(!(*a))
+		return ;
+	top_a = *a;
+	if (*a == (*a)->next)
+		*a = NULL;
+	else
 	{
-        *a = (*a)->next;
-        (*a)->prev = top_a->prev;
-        top_a->prev->next = *a;
-    }
-    if (*b)
-	{
-        top_a->next = *b;
-        top_a->prev = (*b)->prev;
-        (*b)->prev->next = top_a;
-        (*b)->prev = top_a;
+		*a = (*a)->next;
+		(*a)->prev = top_a->prev;
+		top_a->prev->next = *a;
 	}
-    else
+	if (*b)
 	{
-        top_a->next = top_a;
-        top_a->prev = top_a;
-    }
-    *b = top_a;
+		top_a->next = *b;
+		top_a->prev = (*b)->prev;
+		(*b)->prev->next = top_a;
+		(*b)->prev = top_a;
+	}
+	else
+	{
+		top_a->next = top_a;
+		top_a->prev = top_a;
+	}
+	(*b) = top_a;
 }
 
 void	rb(t_linked_list **b)
