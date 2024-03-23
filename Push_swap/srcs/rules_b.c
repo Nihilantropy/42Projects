@@ -6,11 +6,11 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 18:37:24 by crea              #+#    #+#             */
-/*   Updated: 2024/03/20 15:49:39 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/21 14:34:41 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/push_swap.h"
+#include "../include/push_swap.h"
 
 void	sb(t_linked_list **b)
 {
@@ -21,13 +21,11 @@ void	sb(t_linked_list **b)
 		return ;
 	first = *b;
 	second = first->next;
-	first->next = second->next;
 	first->prev = second;
 	second->prev = first->prev;
 	second->next = first;
 	first->next->prev = first;
 	second->prev->next = second;
-
 	*b = second;
 }
 
@@ -35,8 +33,6 @@ void pb(t_linked_list **a, t_linked_list **b)
 {
     t_linked_list *top_a;
 
-	if(!(*a))
-		return ;
 	top_a = *a;
 	if (*a == (*a)->next)
 		*a = NULL;

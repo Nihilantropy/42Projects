@@ -6,39 +6,22 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 17:50:10 by crea              #+#    #+#             */
-/*   Updated: 2024/03/20 15:47:33 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/21 13:54:05 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/push_swap.h"
+#include "../include/push_swap.h"
 
-int	check_double(t_linked_list *a, int nbr)
-{
-	t_linked_list	*current;
-	
-	current = a;
-	if (!a)
-		return (0);
-	while (1)
-	{
-		if (current->data == nbr)
-			exit (ft_printf(ERROR_DOUBLE_NBR));
-		current = current->next;
-		if (current == a)
-			break ;
-	}
-	return (0);
-}
-
-void	push(t_linked_list **a, int nbr)
+void	create_node(t_linked_list **a, int nbr)
 {
 	t_linked_list	*new_node;
 	t_linked_list	*last_node;
 
 	new_node = malloc(sizeof(t_linked_list));
 	if (!new_node)
-		exit(1);
+		ft_print_error(ERROR_NEW_NODE_ALLOC);
 	new_node->data = nbr;
+	new_node->cheapest = NULL;
 	if (!*a)
 	{
 		new_node->next = new_node;
@@ -59,32 +42,15 @@ void	init_stack(t_linked_list **a, char **matrix)
 {
 	long	nbr;
 
+	if (!check_format(matrix))
+			ft_print_error(ERROR_ARG_FORMAT);
 	while (*matrix)
 	{
 		nbr = ft_atol(*matrix);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			exit(1);
+			ft_print_error(ERROR_INPUT_OVERFLOW);
 		if (!check_double(*a, (int)nbr))
-			push(a, (int)nbr);
+			create_node(a, (int)nbr);
 		matrix++;
-	}
-}
-
-void	free_stack(t_linked_list *a)
-{
-	if (!a)
-		return;
-
-	t_linked_list	*current;
-	t_linked_list	*next_node;
-
-	current = a;
-	while (1)
-	{
-		next_node = current->next;
-		free(current);
-		if (next_node == a)
-			break ;
-		current = next_node;
 	}
 }
