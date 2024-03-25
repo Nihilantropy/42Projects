@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/03/03 01:38:39 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/18 08:53:41 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,22 @@
 # include <../mlx/mlx.h>
 # include "messages.h"
 # include "keys.h"
+# include "images.h"
 # include "../libft/include/libft.h"
 # include "../ft_printf/include/ft_printf.h"
 
-# define WALL_SPRITE "Tiles/wall_64_.xpm"
-# define FLOOR_SPRITE "Tiles/floor_64_.xpm"
-# define PLAYER_SPRITE "Tiles/player_64_.xpm"
-# define PLAYER_INV_SPRITE "Tiles/player_invert_64_.xpm"
-# define COLLECT_SPRITE "Tiles/collectable_64_.xpm"
-# define EXIT_SPRITE "Tiles/exit_64_.xpm"
+/* game frame rate */
+# define FRAME_RATE 6
+# define FRAME_TIME_US (100000 / FRAME_RATE)
 
 # define DISPLAY_NAME "So_longo!"
-# define TILE_SIZE 64
 
 /* enum for display size */
 typedef enum window
 {
     WIDTH,
     HEIGHT
-}       window;
+}   window;
 
 /* enum for boolean var type */
 typedef enum e_bool
@@ -62,7 +59,7 @@ typedef struct s_display
 {
     int width;
     int height;
-}   t_display;
+}       t_display;
 
 /* struct for player position axis */
 typedef struct s_axis
@@ -82,25 +79,65 @@ typedef struct s_reachable
 /* struct for all map specifics */
 typedef struct s_map
 {
-    char    **matrix;
-    int     row;
-    int     col;
-    int     collect;
-    int     player;
-    int     exit;
-    t_reachable  reachable;
-    t_axis  player_pos;
+    char        **matrix;
+    int         row;
+    int         col;
+    int         collect;
+    int         player;
+    int         exit;
+    t_reachable reachable;
+    t_axis      player_pos;
 }           t_map;
+
+/* struct for wall animated tiles */
+typedef struct s_wall_anim_sprite
+{
+    void *frames[WALL_ANIM_FRAMES];
+    int current_frame;
+    int anim_counter;
+} t_wall_anim_sprite;
+
+/* struct for player animated tiles */
+typedef struct s_player_anim_sprite
+{
+    void *frames[PLAYER_ANIM_FRAMES];
+    int current_frame;
+    int anim_counter;
+} t_player_anim_sprite;
+
+/* struct for inverted player animated tiles */
+typedef struct s_player_inv_anim_sprite
+{
+    void *frames[PLAYER_ANIM_FRAMES];
+    int current_frame;
+    int anim_counter;
+} t_player_inv_anim_sprite;
+
+/* struct for exit animated tiles */
+typedef struct s_exit_anim_sprite
+{
+    void *frames[EXIT_ANIM_FRAMES];
+    int current_frame;
+    int anim_counter;
+} t_exit_anim_sprite;
+
+/* struct for collect animated tiles */
+typedef struct s_collect_anim_sprite
+{
+    void *frames[COLLECT_ANIM_FRAMES];
+    int current_frame;
+    int anim_counter;
+} t_collect_anim_sprite;
 
 /* struct for all tiles & sprites specifics */
 typedef struct s_tiles
 {
-    void    *wall;
     void    *floor;
-    void    *player;
-    void    *player_inv;
-    void    *collect;
-    void    *exit;
+    t_wall_anim_sprite  wall;
+    t_player_anim_sprite    player;
+    t_player_inv_anim_sprite    player_inv;
+    t_collect_anim_sprite    collect;
+    t_exit_anim_sprite    exit;
     int     width;
     int     height;
     int     x;
@@ -121,7 +158,8 @@ typedef struct s_game
 /* inline function to initialize the game map, tiles, player_pos & moves, and all checks */
 static inline t_game    init_game(void)
 {
-    return ((t_game) {
+    return ((t_game)
+    {
         .map.matrix = NULL,
         .map.row = 0,
         .map.col = 0,
@@ -131,12 +169,17 @@ static inline t_game    init_game(void)
         .map.reachable.collect_reachable = 0,
         .map.reachable.exit_reachable = false,
         .map.player_pos.facing_left = false,
-        .tiles.wall = NULL,
         .tiles.floor = NULL,
-        .tiles.player = NULL,
-        .tiles.player_inv = NULL,
-        .tiles.collect = NULL,
-        .tiles.exit = NULL,
+        .tiles.wall.current_frame = 0,
+        .tiles.wall.anim_counter = 0,
+        .tiles.player.current_frame = 0,
+        .tiles.player.anim_counter = 0,
+        .tiles.player_inv.current_frame = 0,
+        .tiles.player_inv.anim_counter = 0,
+        .tiles.collect.current_frame = 0,
+        .tiles.collect.anim_counter = 0,
+        .tiles.exit.current_frame = 0,
+        .tiles.exit.anim_counter = 0,
         .tiles.width = TILE_SIZE,
         .tiles.height = TILE_SIZE,
         .tiles.x = 0,
@@ -172,6 +215,33 @@ int check_map_player(t_game *game);
 int check_map_exit(t_game *game);
 int check_map_collect(t_game *game);
 int is_map_complete(t_game *game);
+
+/* animation handler */
+int     update_animations(t_game *game);
+void    handle_animations(t_game *game);
+
+/* walls sprites animation */
+void    load_wall_images(t_game *game);
+void    handle_wall_anim(t_game *game);
+void    free_wall_images(t_game *game);
+
+/* player sprites animation */
+void    load_player_images(t_game *game);
+void    handle_player_anim(t_game *game);
+void    free_player_images(t_game *game);
+void    load_player_inv_images(t_game *game);
+void    handle_player_inv_anim(t_game *game);
+void    free_player_inv_images(t_game *game);
+
+/* collectable sprites animation */
+void    load_collect_images(t_game *game);
+void    handle_collect_anim(t_game *game);
+void    free_collect_images(t_game *game);
+
+/* exit sprites animation */
+void    load_exit_images(t_game *game);
+void    handle_exit_anim(t_game *game);
+void    free_exit_images(t_game *game);
 
 /* sprites render */
 void    init_sprites(t_game *game);

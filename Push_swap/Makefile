@@ -3,7 +3,9 @@ NAME		= push_swap
 PUSHSWAP_DIR	= ./srcs
 PUSHSWAP_HEAD	= ./include
 
-SRCS		= main.c
+SRCS		= main.c main_utils.c init_stack.c init_stack_utils.c rules_a.c \
+				rules_b.c rules_ab.c sort_stack.c sort_stack_utils.c ft_print_result.c \
+				algorithm.c algorithm_2.c sort_stack_utils_2.c tiny_sort.c 
 
 OBJS		= $(patsubst %.c, $(PUSHSWAP_DIR)/%.o, $(SRCS))
 
@@ -46,6 +48,7 @@ clean:
 			$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean:		clean
+			$(RM) $(NAME)
 			$(MAKE) -C $(LIBFT_DIR) fclean
 			$(MAKE) -C $(PRINTF_DIR) fclean
 
@@ -53,8 +56,7 @@ re:			fclean all
 
 rec:		clean all
 
-# Run this from another terminal while game is running
-test: 		
+test:
 			leaks $(NAME)
 
 .PHONY:		all clean fclean re rec test

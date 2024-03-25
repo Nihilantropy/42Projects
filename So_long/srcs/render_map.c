@@ -9,12 +9,12 @@ void    init_sprites(t_game *game)
     width = game->tiles.width;
     height = game->tiles.height;
     mlx_ptr = game->mlx_ptr;
-    game->tiles.wall = mlx_xpm_file_to_image(mlx_ptr, WALL_SPRITE, &width, &height);
     game->tiles.floor = mlx_xpm_file_to_image(mlx_ptr, FLOOR_SPRITE, &width, &height);
-    game->tiles.player = mlx_xpm_file_to_image(mlx_ptr, PLAYER_SPRITE, &width, &height);
-    game->tiles.player_inv = mlx_xpm_file_to_image(mlx_ptr, PLAYER_INV_SPRITE, &width, &height);
-    game->tiles.collect = mlx_xpm_file_to_image(mlx_ptr, COLLECT_SPRITE, &width, &height);
-    game->tiles.exit = mlx_xpm_file_to_image(mlx_ptr, EXIT_SPRITE, &width, &height);
+    load_wall_images(game);
+    load_player_images(game);
+    load_player_inv_images(game);
+    load_collect_images(game);
+    load_exit_images(game);
 }
 
 void    render_tiles(t_game *game, char tile)
@@ -22,18 +22,18 @@ void    render_tiles(t_game *game, char tile)
     void *image;
 
     image = NULL;
-    if (tile == WALL)
-        image = game->tiles.wall;
-    else if (tile == FLOOR)
+    if (tile == FLOOR)
         image = game->tiles.floor;
+    else if (tile == WALL)
+        image = game->tiles.wall.frames[game->tiles.wall.current_frame];
     else if (tile == PLAYER && game->map.player_pos.facing_left == 1)
-        image = game->tiles.player_inv;
+        image = game->tiles.player_inv.frames[game->tiles.player.current_frame];
     else if (tile == PLAYER)
-        image = game->tiles.player;
+        image = game->tiles.player.frames[game->tiles.player.current_frame];
     else if (tile == COLLECT)
-        image = game->tiles.collect;
+        image = game->tiles.collect.frames[game->tiles.collect.current_frame];
     else if (tile == EXIT)
-        image = game->tiles.exit;
+        image = game->tiles.exit.frames[game->tiles.exit.current_frame];
     if (image)
         mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
             image, game->tiles.x * TILE_SIZE, game->tiles.y * TILE_SIZE);
@@ -60,12 +60,16 @@ void    draw_map(t_game *game)
     }
 }
 
-void    free_images(t_game *game)
+void free_images(t_game *game)
 {
-    mlx_destroy_image(game->mlx_ptr, game->tiles.wall);
+    if (!game->mlx_ptr || !game->tiles.floor || !game->tiles.wall.frames[0] ||
+        !game->tiles.player.frames[0] || !game->tiles.player_inv.frames[0] ||
+        !game->tiles.collect.frames[0] || !game->tiles.exit.frames[0])
+        exit(ft_printf(ERROR_FREE_IMAGE));
     mlx_destroy_image(game->mlx_ptr, game->tiles.floor);
-    mlx_destroy_image(game->mlx_ptr, game->tiles.player);
-    mlx_destroy_image(game->mlx_ptr, game->tiles.player_inv);
-    mlx_destroy_image(game->mlx_ptr, game->tiles.collect);
-    mlx_destroy_image(game->mlx_ptr, game->tiles.exit);
+    free_wall_images(game);
+    free_player_images(game);
+    free_player_inv_images(game);
+    free_collect_images(game);
+    free_exit_images(game);
 }

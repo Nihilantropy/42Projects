@@ -7,11 +7,13 @@ int main(int argc, char **argv)
     else if (!check_map_ext(argv[1]))
         return (0);
     t_game game;
+
     game = init_game();
     game.mlx_ptr = mlx_init();
 	if (!game.mlx_ptr)
 		exit(0);
     get_map(&game, argv[1]);
     handle_key_event(&game);
+    mlx_loop_hook(game.mlx_ptr, update_animations, &game);
     mlx_loop(game.mlx_ptr);
 }
