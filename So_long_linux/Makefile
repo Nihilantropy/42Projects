@@ -1,0 +1,68 @@
+NAME		= so_long
+
+SOLONG_DIR	= ./srcs
+SOLONG_HEAD	= ./include
+
+SRCS		= 	main.c check_map_extention.c get_map.c get_map_utils.c check_map_edges.c check_map_interior.c \
+				check_if_map_is_complete_utils.c check_if_map_is_complete.c manage_display.c render_map.c player_movement.c \
+				player_movement_utils.c handle_closure.c
+
+OBJS		= $(patsubst %.c, $(SOLONG_DIR)/%.o, $(SRCS))
+
+LIBFT_DIR	= ./libft
+LIBFT		= libft.a
+
+PRINTF_DIR	= ./ft_printf
+PRINTF_LIB	= libft_printf.a
+
+MLX_DIR		= ./mlx
+MLX_LIB		= libmlx.a
+
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror
+RM = rm -f
+
+# Include directory for header files
+INC 		= -I$(SOLONG_HEAD) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MLX_DIR)
+
+# Compilation rule for the program
+$(NAME): $(LIBFT) $(PRINTF_LIB) $(MLX_LIB) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lft_printf -L$(MLX_DIR) -lmlx -lX11 -lXext -lm -o $(NAME)
+
+# Rule to compile object files
+$(SOLONG_DIR)/%.o: $(SOLONG_DIR)/%.c
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
+# Rule to make libft
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+# Rule to make libft_printf
+$(PRINTF_LIB):
+	$(MAKE) -C $(PRINTF_DIR)
+
+# Rule to make libmlx and copy to root
+$(MLX_LIB):
+	$(MAKE) -C $(MLX_DIR)
+	cp $(MLX_DIR)/$(MLX_LIB) ./
+
+all:		$(NAME)
+
+clean:
+			$(RM) $(OBJS)
+			$(MAKE) -C $(LIBFT_DIR) clean
+			$(MAKE) -C $(PRINTF_DIR) clean
+
+fclean:		clean
+			$(RM) $(NAME) $(MLX_LIB)
+			$(MAKE) -C $(LIBFT_DIR) fclean
+			$(MAKE) -C $(PRINTF_DIR) fclean
+			$(MAKE) -C $(MLX_DIR) clean
+
+re:			fclean all
+
+# Run this from another terminal while game is running
+test: 		
+			valgrind --leak-check=full ./so_long map/map00.ber
+
+.PHONY:		all clean fclean re rec test
