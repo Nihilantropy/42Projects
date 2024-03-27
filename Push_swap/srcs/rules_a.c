@@ -1,72 +1,101 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rules_a.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/19 18:37:24 by crea              #+#    #+#             */
-/*   Updated: 2024/03/21 14:33:54 by crea             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/push_swap.h"
 
-void	sa(t_linked_list **a)
+void	sa(t_stack	**a, bool write)
 {
-	t_linked_list	*first;
-	t_linked_list	*second;
+	t_stack	*first;
+	t_stack	*second;
 
-	if (!(*a) || !(*a)->next || *a == (*a)->next)
+	if (!(*a) || !(*a)->next)
 		return ;
 	first = *a;
 	second = first->next;
-	first->prev = second;
-	second->prev = first->prev;
+	if (second->next)
+		second->prev = first->prev;
+	else
+		second->prev = first;
+	first->next = second->next;
 	second->next = first;
-	first->next->prev = first;
-	second->prev->next = second;
+	first->prev = second;
 	*a = second;
+	if (write)
+		ft_putstr("sa\n");
 }
 
-void pa(t_linked_list **a, t_linked_list **b)
+void	pa(t_stack **a, t_stack **b, bool write)
 {
-    t_linked_list *top_b;
+	t_stack	*new_head;
 
-	top_b = *b;
-	if (*b == (*b)->next)
-		*b = NULL;
-	else
-	{
-		*b = (*b)->next;
-		(*b)->prev = top_b->prev;
-		top_b->prev->next = *b;
-	}
+	if (!(*b))
+		return ;
+	new_head = *b;
+	*b = (*b)->next;
+	if (*b)
+		(*b)->prev = new_head->prev;
 	if (*a)
 	{
-		top_b->next = *a;
-		top_b->prev = (*a)->prev;
-		(*a)->prev->next = top_b;
-		(*a)->prev = top_b;
+		new_head->prev = (*a)->prev;
+		new_head->next = *a;
+		(*a)->prev = new_head;		
 	}
-	else
+	else if (!(*a))
 	{
-		top_b->next = top_b;
-		top_b->prev = top_b;
+		new_head->next = NULL;
+		new_head->prev = new_head;
 	}
-	(*a) = top_b;
+	*a = new_head;
+	if (write)
+		ft_putstr("pa\n");
 }
 
-void	ra(t_linked_list **a)
+void	ra(t_stack **a, bool write)
 {
-	if (!(*a) || (*a)->next == *a)
+	t_stack	*first;
+	t_stack	*last;
+
+	if (!(*a) || !(*a)->next)
 		return ;
-	*a = (*a)->next;
+	first = *a;
+	last = first->prev;
+	*a = first->next;
+	(*a)->prev = first;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
+	if (write)
+		ft_putstr("ra\n");
 }
 
-void	rra(t_linked_list **a)
+void	rra(t_stack **a, bool write)
 {
-	if (!(*a) || (*a)->next == *a)
+	t_stack	*first;
+	t_stack	*last;
+
+	if (!(*a) || !(*a)->next)
 		return ;
-	*a = (*a)->prev;
+	first = *a;
+	last = first->prev;
+	*a = last;
+	(*a)->next = first;
+	last->prev->next = NULL;
+	if (write)
+		ft_putstr("rra\n");
+}
+
+void	swap_2(t_stack **stack)
+{
+	t_stack	*first;
+	t_stack	*second;
+
+	if (!(*stack) || !(*stack)->next)
+		return ;
+	first = *stack;
+	second = first->next;
+	if (second->next)
+		second->prev = first->prev;
+	else
+		second->prev = first;
+	first->next = second->next;
+	second->next = first;
+	first->prev = second;
+	*stack = second;
 }

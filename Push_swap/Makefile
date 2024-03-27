@@ -3,9 +3,10 @@ NAME		= push_swap
 PUSHSWAP_DIR	= ./srcs
 PUSHSWAP_HEAD	= ./include
 
-SRCS		= main.c main_utils.c init_stack.c init_stack_utils.c rules_a.c \
-				rules_b.c rules_ab.c sort_stack.c sort_stack_utils.c ft_print_result.c \
-				algorithm.c algorithm_2.c sort_stack_utils_2.c tiny_sort.c 
+SRCS		= main.c main_utils.c init_stack.c utils.c print.c checks.c rules_a.c \
+				rules_b.c rules_ab.c tiny_sort.c sort_stacks.c sort_stack_utils_1.c sort_stack_utils_2.c \
+				sort_stack_utils_3.c
+
 
 OBJS		= $(patsubst %.c, $(PUSHSWAP_DIR)/%.o, $(SRCS))
 

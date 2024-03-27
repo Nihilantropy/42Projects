@@ -5,22 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 13:09:14 by crea              #+#    #+#             */
-/*   Updated: 2024/03/21 13:15:56 by crea             ###   ########.fr       */
+/*   Created: 2024/03/26 13:14:51 by crea              #+#    #+#             */
+/*   Updated: 2024/03/27 11:57:44 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	tiny_sort(t_linked_list **a)
+void	tiny_sort(t_stack **a)
 {
-	t_linked_list	*biggest;
+	t_stack	*biggest;
 
-	biggest = find_biggest_node(*a);
+	biggest = find_max(*a);
 	if (*a == biggest)
-		ra(a);
+		ra(a, true);
 	else if ((*a)->next == biggest)
-		rra(a);
-	if ((*a)-> value > (*a)->next->value)
-		sa(a);
+		rra(a, true);
+	if ((*a)->data > (*a)->next->data)
+		sa(a, true);
 }

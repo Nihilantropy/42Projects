@@ -5,42 +5,80 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 18:28:31 by crea              #+#    #+#             */
-/*   Updated: 2024/03/21 18:37:41 by crea             ###   ########.fr       */
+/*   Created: 2024/03/26 17:14:01 by crea              #+#    #+#             */
+/*   Updated: 2024/03/27 13:36:11 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	rotate_both(t_linked_list **a,
-					t_linked_list **b,
-					t_linked_list *cheapest_node)
+void	set_cheapest_node(t_stack *stack)
 {
-	while (*b != cheapest_node->target_node && *a != cheapest_node)
-		rr(a, b);
-	current_index(*a);
-	current_index(*b);
+	t_stack	*cheapest_node;
+	int		cheapest;
+
+	if (!stack)
+		return ;
+	cheapest = INT_MAX;
+	cheapest_node = stack;
+	while (stack)
+	{
+		if (stack->push_cost == 1)
+		{
+			stack->isCheapest = true;
+			return ;
+		}
+		if (stack->push_cost < cheapest)
+		{
+			cheapest = stack->push_cost;
+			cheapest_node = stack;
+		}
+		stack = stack->next;
+	}
+	cheapest_node->isCheapest = true;
 }
 
-void	prep_for_push(t_linked_list **stack,
-						t_linked_list **top_node,
-						char stack_name)
+void	current_index(t_stack *stack)
 {
-	while (*stack != top_node)
+	int	median;
+	int	index;
+
+	if (!stack)
+		return ;
+	median = stack_size(stack) / 2;
+	index = 0;
+	while (stack)
 	{
-		if (stack_name == 'a')
-		{
-			if (top_node->above_median)
-				ra(stack);
-			else
-				rra(stack);
-		}
-		else if (stack_name == 'b')
-		{
-			if (top_node->above_median)
-				rb(stack);
-			else
-				rrb(stack);
-		}
+		stack->index = index;
+		if (index <= median)
+			stack->isAboveMedian = true;
+		else
+			stack->isAboveMedian = false;
+		stack = stack->next;
+		index++;
 	}
 }
+
+void	push_a_to_b(t_stack **a, t_stack **b)
+{
+	t_stack	*cheapest_node;
+
+	cheapest_node = get_cheapest_node(*a);
+	if (cheapest_node->isAboveMedian 
+		&& cheapest_node->target_node->isAboveMedian)
+		rotate_ab(a, b, cheapest_node);
+	else if (!(cheapest_node->isAboveMedian
+			&& !(cheapest_node->target_node->isAboveMedian)))
+		rev_rotate_ab(a, b, cheapest_node);
+	prep_for_push(a, cheapest_node, 'a');
+	prep_for_push(b, cheapest_node->target_node, 'b');
+	pb(a, b, true);
+}
+
+void	push_b_to_a(t_stack **a, t_stack **b)
+{
+	prep_for_push(a, (*b)->target_node, 'a');
+	pa(a, b, true);
+}
+
+

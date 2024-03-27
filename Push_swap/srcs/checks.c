@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 11:52:10 by crea              #+#    #+#             */
-/*   Updated: 2024/03/23 12:27:11 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/26 13:37:15 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,17 @@ int	check_double(t_stack *stack, int nbr)
 		stack = stack->next;
 	}
 	return (0);
+}
+
+bool	check_if_sorted(t_stack *stack)
+{
+	if (!stack || !stack->next)
+		return (true);
+	while (stack->next)
+	{
+		if (stack->data > stack->next->data)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
 }

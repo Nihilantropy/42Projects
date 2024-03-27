@@ -5,69 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 18:10:31 by crea              #+#    #+#             */
-/*   Updated: 2024/03/21 18:39:13 by crea             ###   ########.fr       */
+/*   Created: 2024/03/26 15:21:12 by crea              #+#    #+#             */
+/*   Updated: 2024/03/27 13:48:36 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	move_a_to_b(t_linked_list **a, t_linked_list **b)
+void	choose_sort(t_stack **a, t_stack **b)
 {
-	t_linked_list	*cheapest_node;
-
-	cheapest_node = get_cheapest(*a);
-	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
-		rotate_both(a, b, cheapest_node);
-	else if (!(cheapest_node->above_median)
-			&& !(cheapest_node->target_node->above_median))
-		rev_rotate_both(a, b, cheapest_node);
-	prep_for_push(a, cheapest_node, 'a');
-	prep_for_push(b, cheapest_node->target_node, 'b');
-	pb(a, b);
-}
-
-static void	move_b_to_a(t_linked_list **a, t_linked_list **b)
-{
-	prep_for_push(a, (*b)->target_node, 'a');
-	pa(a, b);
-}
-
-static void	min_on_top(t_linked_list **a)
-{
-	while ((*a)->data != find_min(*a)->data)
+	if (!check_if_sorted(*a))
 	{
-		if (find_min(*a)->above_median)
-			ra(a);
+		if (stack_size(*a) == 2)
+		{
+			sa(a, true);
+			ft_exit_success(STACK_SORTED);
+		}
+		else if (stack_size(*a) == 3)
+			tiny_sort(a);
 		else
-			rra(a);
+			sort_stacks(a, b);
 	}
+	else
+		ft_exit_success(INPUT_STACK_SORTED);
 }
 
-void	sort_stacks(t_linked_list **a, t_linked_list **b)
+void	sort_stacks(t_stack **a, t_stack **b)
 {
-	int				size_a;
-	t_linked_list	*current_b;
+	int	size_a;
 
 	size_a = stack_size(*a);
-	if(size_a-- > 3 && !check_if_sorted(*a))
-		pb(a, b);
-	if(size_a-- > 3 && !check_if_sorted(*a))
-		pb(a, b);
+	if (size_a-- > 3 && !check_if_sorted(*a))
+		pb(a, b, true);
+	if (size_a-- > 3 && !check_if_sorted(*a))
+		pb(a, b, true);
 	while (size_a-- > 3 && !check_if_sorted(*a))
 	{
-		init_nodes_a(*a, *b);
-		move_a_to_b(a, b);
+		init_stack_a(*a, *b);
+		push_a_to_b(a, b);
 	}
-	tiny_sort(a, b);
-	while (1)
+	tiny_sort(a);
+	while (*b)
 	{
-		init_nodes_b(*a, *b);
-		move_b_to_a(a, b);
-		if (current_b = *b)
-			break ;
-		current_b = current_b->next;
+		init_stack_b(*a, *b);
+		push_b_to_a(a, b);
 	}
 	current_index(*a);
 	min_on_top(a);
+}
+
+void	init_stack_a(t_stack *a, t_stack *b)
+{
+	current_index(a);
+	current_index(b);
+	set_target_a(a, b);
+	find_target_cost(a, b);
+	set_cheapest_node(a);
+}
+
+void	init_stack_b(t_stack *a, t_stack *b)
+{
+	current_index(a);
+	current_index(b);
+	set_target_b(a, b);
 }

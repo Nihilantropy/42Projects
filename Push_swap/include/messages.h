@@ -9,4 +9,6 @@
 
 # define INPUT_STACK_SORTED "The stack you provided is already correctly sorted.\n"
 
+# define STACK_SORTED "Stack succesfully sorted!\n"
+
 #endif

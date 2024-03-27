@@ -11,78 +11,91 @@
 # include "../ft_printf/include/ft_printf.h"
 
 /* defining double circular struct list */
-typedef struct s_linked_list
+typedef struct s_stack
 {
-	long					data;
-	long					index;
-	long					push_cost;
-	bool					above_median;
-	bool					cheapest;
-	struct s_linked_list	*target_node;
-	struct s_linked_list	*prev;
-	struct s_linked_list	*next;
-}	t_linked_list;
+	int				data;
+	int				index;
+	int				push_cost;
+	bool			isAboveMedian;
+	bool			isCheapest;
+	struct s_stack	*target_node;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+}	t_stack;
 
 /* init stack functions to set up and free the stack */
-void	init_stack(t_linked_list **a, char **matrix);
-void	create_node(t_linked_list **a, int nbr);
+void	init_stack(t_stack **a, char **matrix);
+void	create_node(t_stack **stack, int nbr);
 
 /* main utils */
 char	**build_matrix(int argc, char **argv);
-int		check_format(char **matrix);
-void	check_sort(t_linked_list **a, t_linked_list **b);
-bool	check_if_sorted(t_linked_list *a);
-void	print_list(t_linked_list *a);
 
-/* init stack utils */
-int		check_double(t_linked_list *a, int nbr);
-void	free_stack(t_linked_list **head);
+/* checks */
+int		check_format(char **matrix);
+int		check_double(t_stack *a, int nbr);
+bool	check_if_sorted(t_stack *a);
+
+/* utils 1 */
+int		stack_size(t_stack *a);
+void	free_stack(t_stack **head);
+
+/* utils 2 */
+void	print_list(t_stack *a);
+void	print_nodes_addr(t_stack *stack);
+void	print_target_node(t_stack *stack);
+void	print_push_cost(t_stack *stack);
+void	print_node_median(t_stack *stack);
 
 /* tiny sort with stack == 3 */
-void	tiny_sort(t_linked_list **a);
+void	tiny_sort(t_stack **a);
 
 /* sort stack */
-void	sort_stacks(t_linked_list **a, t_linked_list **b);
-void	count_moves(t_linked_list *a, t_linked_list *b);
+void	choose_sort(t_stack **a, t_stack **b);
+void	sort_stacks(t_stack **a, t_stack **b);
+void	init_stack_a(t_stack *a, t_stack *b);
+void	init_stack_b(t_stack *a, t_stack *b);
 
-/* sort stack utils */
-t_linked_list	*find_last_node(t_linked_list *a);
-t_linked_list	*return_cheapest(t_linked_list *a);
-t_linked_list	*find_min(t_linked_list *a);
-t_linked_list	*find_max(t_linked_list *a);
-int				stack_size(t_linked_list *a);
+/* sort stack utils 1 */
+t_stack	*find_min(t_stack *a);
+t_stack	*find_max(t_stack *a);
+void	set_target_a(t_stack *a, t_stack *b);
+void	set_target_b(t_stack *a, t_stack *b);
+void	find_target_cost(t_stack *a, t_stack *b);
 
 /* sort stack utils 2 */
-void	rotate_both(t_linked_list **a,
-					t_linked_list **b,
-					t_linked_list *cheapest_node);
-void	prep_for_push(t_linked_list **stack,
-						t_linked_list **top_node,
+void	set_cheapest_node(t_stack *stack);
+void	current_index(t_stack *stack);
+void	push_a_to_b(t_stack **a, t_stack **b);
+void	push_b_to_a(t_stack **a, t_stack **b);
+
+/* sort stack utils 3 */
+t_stack	*get_cheapest_node(t_stack *stack);
+void	rotate_ab(t_stack **a,
+					t_stack **b,
+					t_stack *cheapest_node);
+void	rev_rotate_ab(t_stack **a,
+						t_stack **b,
+						t_stack *cheapest_node);
+void	min_on_top(t_stack **a);
+void	prep_for_push(t_stack **stack,
+						t_stack *cheapest_node,
 						char stack_name);
 
-/* algorithm */
-void	init_nodes_a(t_linked_list *a, t_linked_list *b);
-void	init_nodes_b(t_linked_list *a, t_linked_list *b);
-
 /* rules for stack a */
-void	sa(t_linked_list **a);
-void	pa(t_linked_list **a, t_linked_list **b);
-void	ra(t_linked_list **a);
-void	rra(t_linked_list **a);
+void	sa(t_stack **a, bool write);
+void	pa(t_stack **a, t_stack **b, bool write);
+void	ra(t_stack **a, bool write);
+void	rra(t_stack **a, bool write);
 
 /* rules for stack b */
-void	sb(t_linked_list **b);
-void	pb(t_linked_list **a, t_linked_list **b);
-void	rb(t_linked_list **b);
-void	rrb(t_linked_list **a);
+void	sb(t_stack **b, bool write);
+void	pb(t_stack **a, t_stack **b, bool write);
+void	rb(t_stack **b, bool write);
+void	rrb(t_stack **a, bool write);
 
 /* rules for both stacks a and b */
-void	ss(t_linked_list **a, t_linked_list **b);
-void	rr(t_linked_list **a, t_linked_list **b);
-void	rrr(t_linked_list **a, t_linked_list **b);
-
-/* print error / success msg */
-void	ft_print_error(char *error);
-void	ft_print_success(char *success);
+void	ss(t_stack **a, t_stack **b, bool write);
+void	rr(t_stack **a, t_stack **b, bool write);
+void	rrr(t_stack **a, t_stack **b, bool write);
 
 #endif

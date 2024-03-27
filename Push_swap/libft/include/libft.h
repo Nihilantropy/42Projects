@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:56:04 by crea              #+#    #+#             */
-/*   Updated: 2024/03/20 12:36:07 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/23 11:48:49 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int 	ft_putchar(char c);
 long	ft_atol(const char *str);
 void	ft_putnl(void);
+void	ft_exit_error(char *error);
+void	ft_exit_success(char *success);
+int		ft_isdigit_str(char *str);
 
 /* get_next_line */
-
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 1024
 #endif
