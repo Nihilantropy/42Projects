@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:04:59 by crea              #+#    #+#             */
-/*   Updated: 2024/03/25 16:52:05 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/28 11:47:07 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,17 @@
 # define ERROR_CANT_REACH_COLLECT "Error\nSome of your bones are trapped! Oh no! Your boner!!!.\n"
 # define ERROR_CANT_REACH_EXIT "Error\nSomeone doesn't want you to escape... What a coward.\n"
 # define ERROR_MAP_CANT_BE_COMPLETED "You won't be able to escape hell... Ask your daddy for help.\n"
-# define ERROR_BOLL_MATRIX_ALLOC "Error\nCan't allocate the boolean matrix.\n"
+# define ERROR_BOOL_MATRIX_ALLOC "Error\nCan't allocate the boolean matrix.\n"
+
+/* images upload */
+# define ERROR_WALL_IMG_UPLOAD "Error\nCan't upload wall images.\n"
+# define ERROR_PLAYER_IMG_UPLOAD "Error\nCan't upload player images.\n"
+# define ERROR_PLAYER_INV_IMG_UPLOAD "Error\nCan't upload player inverted images.\n"
+# define ERROR_COLLECT_IMG_UPLOAD "Error\nCan't upload collectable images.\n"
+# define ERROR_EXIT_IMG_UPLOAD "Error\nCan't upload exit images.\n"
+
+/* render map */
+# define ERROR_FREE_IMAGE "Error\nCan't deallocate memory for some images.\n"
 
 /* player_movement_utils */
 # define ERROR_INVALID_ROUT "Error\nAre you trying to brake the wall? What are you, a Pink floyd fan?\n\n"

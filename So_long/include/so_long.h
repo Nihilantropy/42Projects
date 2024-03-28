@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/03/18 08:53:41 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/28 11:34:46 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,159 +33,161 @@
 /* enum for display size */
 typedef enum window
 {
-    WIDTH,
-    HEIGHT
+	WIDTH,
+	HEIGHT
 }   window;
 
 /* enum for boolean var type */
 typedef enum e_bool
 {
-    false = 0,
-    true = 1
+	false = 0,
+	true = 1
 }   t_bool;
 
 /* enum for map tiles symbols */
 typedef enum map_tiles
 {
-    FLOOR = '0',
-    WALL = '1',
-    PLAYER = 'P',
-    COLLECT = 'C',
-    EXIT = 'E'
+	FLOOR = '0',
+	WALL = '1',
+	PLAYER = 'P',
+	COLLECT = 'C',
+	EXIT = 'E',
+	ENEMY = 'N'
 }   map_tiles;
 
 /* struct for display size */
 typedef struct s_display
 {
-    int width;
-    int height;
+	int width;
+	int height;
 }       t_display;
 
 /* struct for player position axis */
 typedef struct s_axis
 {
-    int x;
-    int y;
-    t_bool  facing_left;
+	int x;
+	int y;
+	t_bool  facing_left;
 }           t_axis;
 
 /* struct for checking reachable collectables and exit */
 typedef struct s_reachable
 {
-    int     collect_reachable;
-    t_bool  exit_reachable;
+	int     collect_reachable;
+	t_bool  exit_reachable;
 }           t_reachable;
 
 /* struct for all map specifics */
 typedef struct s_map
 {
-    char        **matrix;
-    int         row;
-    int         col;
-    int         collect;
-    int         player;
-    int         exit;
-    t_reachable reachable;
-    t_axis      player_pos;
-}           t_map;
+	char        **matrix;
+	int         row;
+	int         col;
+	int         collect;
+	int         player;
+	int         exit;
+	int			enemy;
+	t_reachable reachable;
+	t_axis      player_pos;
+}	t_map;
 
 /* struct for wall animated tiles */
 typedef struct s_wall_anim_sprite
 {
-    void *frames[WALL_ANIM_FRAMES];
-    int current_frame;
-    int anim_counter;
+	void *frames[WALL_ANIM_FRAMES];
+	int current_frame;
+	int anim_counter;
 } t_wall_anim_sprite;
 
 /* struct for player animated tiles */
 typedef struct s_player_anim_sprite
 {
-    void *frames[PLAYER_ANIM_FRAMES];
-    int current_frame;
-    int anim_counter;
+	void *frames[PLAYER_ANIM_FRAMES];
+	int current_frame;
+	int anim_counter;
 } t_player_anim_sprite;
 
 /* struct for inverted player animated tiles */
 typedef struct s_player_inv_anim_sprite
 {
-    void *frames[PLAYER_ANIM_FRAMES];
-    int current_frame;
-    int anim_counter;
+	void *frames[PLAYER_ANIM_FRAMES];
+	int current_frame;
+	int anim_counter;
 } t_player_inv_anim_sprite;
 
 /* struct for exit animated tiles */
 typedef struct s_exit_anim_sprite
 {
-    void *frames[EXIT_ANIM_FRAMES];
-    int current_frame;
-    int anim_counter;
+	void *frames[EXIT_ANIM_FRAMES];
+	int current_frame;
+	int anim_counter;
 } t_exit_anim_sprite;
 
 /* struct for collect animated tiles */
 typedef struct s_collect_anim_sprite
 {
-    void *frames[COLLECT_ANIM_FRAMES];
-    int current_frame;
-    int anim_counter;
+	void *frames[COLLECT_ANIM_FRAMES];
+	int current_frame;
+	int anim_counter;
 } t_collect_anim_sprite;
 
 /* struct for all tiles & sprites specifics */
 typedef struct s_tiles
 {
-    void    *floor;
-    t_wall_anim_sprite  wall;
-    t_player_anim_sprite    player;
-    t_player_inv_anim_sprite    player_inv;
-    t_collect_anim_sprite    collect;
-    t_exit_anim_sprite    exit;
-    int     width;
-    int     height;
-    int     x;
-    int     y;
+	void    *floor;
+	t_wall_anim_sprite  wall;
+	t_player_anim_sprite    player;
+	t_player_inv_anim_sprite    player_inv;
+	t_collect_anim_sprite    collect;
+	t_exit_anim_sprite    exit;
+	int     width;
+	int     height;
+	int     x;
+	int     y;
 }           t_tiles;
 
 /* struct for all game's specifics */
 typedef struct s_game
 {
-    t_map   map;
-    void    *mlx_ptr;
-    void    *mlx_win;
-    t_tiles tiles;
-    t_display win;
-    int     moves;
+	t_map   map;
+	void    *mlx_ptr;
+	void    *mlx_win;
+	t_tiles tiles;
+	t_display win;
+	int     moves;
 }           t_game;
 
 /* inline function to initialize the game map, tiles, player_pos & moves, and all checks */
 static inline t_game    init_game(void)
 {
-    return ((t_game)
-    {
-        .map.matrix = NULL,
-        .map.row = 0,
-        .map.col = 0,
-        .map.collect = 0,
-        .map.player = 0,
-        .map.exit = 0,
-        .map.reachable.collect_reachable = 0,
-        .map.reachable.exit_reachable = false,
-        .map.player_pos.facing_left = false,
-        .tiles.floor = NULL,
-        .tiles.wall.current_frame = 0,
-        .tiles.wall.anim_counter = 0,
-        .tiles.player.current_frame = 0,
-        .tiles.player.anim_counter = 0,
-        .tiles.player_inv.current_frame = 0,
-        .tiles.player_inv.anim_counter = 0,
-        .tiles.collect.current_frame = 0,
-        .tiles.collect.anim_counter = 0,
-        .tiles.exit.current_frame = 0,
-        .tiles.exit.anim_counter = 0,
-        .tiles.width = TILE_SIZE,
-        .tiles.height = TILE_SIZE,
-        .tiles.x = 0,
-        .tiles.y = 0,
-        .moves = 0,
-    });
+	return ((t_game)
+	{
+		.map.matrix = NULL,
+		.map.row = 0,
+		.map.col = 0,
+		.map.collect = 0,
+		.map.player = 0,
+		.map.exit = 0,
+		.map.reachable.collect_reachable = 0,
+		.map.reachable.exit_reachable = false,
+		.map.player_pos.facing_left = false,
+		.tiles.floor = NULL,
+		.tiles.wall.current_frame = 0,
+		.tiles.wall.anim_counter = 0,
+		.tiles.player.current_frame = 0,
+		.tiles.player.anim_counter = 0,
+		.tiles.player_inv.current_frame = 0,
+		.tiles.player_inv.anim_counter = 0,
+		.tiles.collect.current_frame = 0,
+		.tiles.collect.anim_counter = 0,
+		.tiles.exit.current_frame = 0,
+		.tiles.exit.anim_counter = 0,
+		.tiles.width = TILE_SIZE,
+		.tiles.height = TILE_SIZE,
+		.tiles.x = 0,
+		.tiles.y = 0,
+		.moves = 0,
+	});
 }
 
 /* map extention control */
@@ -201,7 +203,7 @@ void    get_map_size(t_game *game, char *map_file);
 void    get_map_col(t_game *game);
 void    save_player_pos(t_game *game);
 void    print_matrix(t_game *game);
-void    printf_flood_matrix(t_game *game, t_bool visited[][game->map.col]);
+void    printf_flood_matrix(t_game *game, char **visited);
 
 /* map edges controls */
 int check_top_map(t_game *game);

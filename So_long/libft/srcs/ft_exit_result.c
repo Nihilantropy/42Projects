@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_exit_result.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 16:04:47 by crea              #+#    #+#             */
-/*   Updated: 2024/03/25 16:04:47 by crea             ###   ########.fr       */
+/*   Created: 2024/03/25 17:26:34 by crea              #+#    #+#             */
+/*   Updated: 2024/03/25 17:29:04 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../include/libft.h"
 
-void    ft_strrev(char *str)
+void	ft_exit_error(char *error)
 {
-	char	c;
-	int		i;
-	int		n;
-
-	if (!str)
-		return ;
-	i = 0;
-	n = ft_strlen(str);
-	while (i < n / 2)
-	{
-		c = str[n - i - 1];
-		str[n - i - 1] = str[i];
-		str[i] = c;
-		i++;
-	}
-    ft_putstr(str);
+	ft_putstr_fd(error, 2);
+	exit (1);
 }

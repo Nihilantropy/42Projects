@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:08:58 by crea              #+#    #+#             */
-/*   Updated: 2024/03/25 16:34:54 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/28 11:35:35 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	open_display(t_game *game)
 {
-	t_window	width;
-	t_window	height;
+	window	width;
+	window	height;
 
 	width = game->win.width;
 	height = game->win.height;

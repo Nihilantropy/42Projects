@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 21:56:04 by crea              #+#    #+#             */
-/*   Updated: 2024/02/29 12:06:01 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/25 17:30:05 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stdarg.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
@@ -72,12 +73,13 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 */
 /* PLUS */
-int 	ft_putchar(char c);
+int		ft_putchar(char c);
+void	ft_exit_error(char *error);
 
 /* get_next_line */
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 1024
+# define BUFFER_SIZE 1024
 #endif
 
 typedef struct	s_list {

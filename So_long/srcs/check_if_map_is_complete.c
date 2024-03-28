@@ -1,26 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_if_map_is_complete.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/25 16:08:32 by crea              #+#    #+#             */
+/*   Updated: 2024/03/25 17:46:23 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-static void	flood_fill(t_game *game, int x, int y, t_bool visited[][game->map.col]);
-static int verify_collectibles_and_exit(t_game *game, t_bool visited[][game->map.col]);
-static int verify_result(t_game *game);
+static void	flood_fill(t_game *game, int x, int y,
+				char **visited);
+static int	verify_collectibles_and_exit(t_game *game,
+				char **visited);
+static int	verify_result(t_game *game);
 
-static void flood_fill(t_game *game, int x, int y, t_bool visited[][game->map.col])
+static void	flood_fill(t_game *game, int x, int y,
+				char **visited);
+
+void		build_bool_matrix(t_game *game, char ***visited);
+
+static void	flood_fill(t_game *game, int x, int y, char **visited)
 {
-	if (x < 0 || y < 0 || x >= game->map.col || y >= game->map.row || visited[y][x] || game->map.matrix[y][x] == WALL)
+	if (x < 0 || y < 0 || x >= game->map.col || y >= game->map.row
+		|| visited[y][x] || game->map.matrix[y][x] == WALL)
 		return ;
-
-	visited[y][x] = true;
-
+	visited[y][x] = 1;
 	flood_fill(game, x + 1, y, visited);
 	flood_fill(game, x - 1, y, visited);
 	flood_fill(game, x, y + 1, visited);
 	flood_fill(game, x, y - 1, visited);
 }
 
-static int verify_collectibles_and_exit(t_game *game, t_bool visited[][game->map.col])
+static int	verify_collectibles_and_exit(t_game *game,
+										char **visited)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (y < game->map.row)
@@ -31,7 +50,7 @@ static int verify_collectibles_and_exit(t_game *game, t_bool visited[][game->map
 			if (visited[y][x] && game->map.matrix[y][x] == COLLECT)
 				game->map.reachable.collect_reachable++;
 			if (visited[y][x] && game->map.matrix[y][x] == EXIT)
-				game->map.reachable.exit_reachable = true;
+				game->map.reachable.exit_reachable = 1;
 			x++;
 		}
 		y++;
@@ -41,7 +60,7 @@ static int verify_collectibles_and_exit(t_game *game, t_bool visited[][game->map
 	return (0);
 }
 
-static int verify_result(t_game *game)
+static int	verify_result(t_game *game)
 {
 	if (game->map.reachable.collect_reachable == game->map.collect
 		&& game->map.reachable.exit_reachable == 1)
@@ -59,10 +78,12 @@ static int verify_result(t_game *game)
 	}
 }
 
-int is_map_complete(t_game *game)
+int	is_map_complete(t_game *game)
 {
-	t_bool visited[game->map.row][game->map.col];
-	ft_memset(visited, false, sizeof(visited));
+	char	**visited;
+
+	visited = NULL;
+	build_bool_matrix(game, &visited);
 	flood_fill(game, game->map.player_pos.x, game->map.player_pos.y, visited);
 	printf_flood_matrix(game, visited);
 	if (verify_collectibles_and_exit(game, visited))
