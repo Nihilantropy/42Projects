@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:04:59 by crea              #+#    #+#             */
-/*   Updated: 2024/03/28 11:46:56 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/29 17:52:47 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 /* get_map_utils */
 # define PLAYER_POS "Skeletronk position is {%d} {%d}\n", x, y
+# define ENEMY_POS "Enemy %d, pos is {%d} {%d}\n", i + 1, x, y
 # define ERROR_CANT_OPEN_MAP_FILE "Error\nMap file can't be open. Have you checked the name of the map file?\n"
 
 /* check_map_interior */
@@ -37,6 +38,9 @@
 # define ERROR_COLLECT_NBR "Error\nNot enoght bones: %d. What about your boner? It's sad, isn't it?\n", game->map.collect
 # define CORRECT_SYMBOLS_IN_MAP "All symbols in map are good! Great job my hellwalker!\n"
 # define ERROR_SYMBOL_IN_MAP "Error\nWrong symbol in map! Cheating isn't allowd here! Try in 42...\n"
+# define ENEMY_NBR "1 ENEMY in hell right now. Try to avoid, or give him the punta\n"
+# define ENEMIES_NBR "%d ENEMIES in hell right now. Try to avoid, or give them the punta!\n", game->map.enemy
+# define NO_ENEMY "There are no enemies in hell... what an easy life for your lazy ass.\n"
 
 /* check_map_edges */
 # define ERROR_MAP_TOP "Error\nHell top isn't closed! Angles will pee on you!\n"
@@ -61,11 +65,12 @@
 # define ERROR_PLAYER_INV_IMG_UPLOAD "Error\nCan't upload player inverted images.\n"
 # define ERROR_COLLECT_IMG_UPLOAD "Error\nCan't upload collectable images.\n"
 # define ERROR_EXIT_IMG_UPLOAD "Error\nCan't upload exit images.\n"
+# define ERROR_ENEMY_IMG_UPLOAD "Error\nCan't upload enemy images.\n"
 
 /* render map */
 # define ERROR_FREE_IMAGE "Error\nCan't deallocate memory for some images.\n"
 
-/* player_movement_utils */
+/* player movement_utils */
 # define ERROR_INVALID_ROUT "Error\nAre you trying to brake the wall? What are you, a Pink floyd fan?\n\n"
 # define ERROR_INVALID_KEY "Error\nTry to smash another button... Or I'll smash your sis.\n"
 # define COLLECTABLES_NBR "Remaining bones: %d. You're boner is getting harder!\n\n", game->map.collect
@@ -75,11 +80,19 @@
 # define NEW_PLAYER_POS "Your new position is {%d} {%d}! Keep navigate hell!\n", game->map.player_pos.x, game->map.player_pos.y
 # define FINAL_PLAYER_POS "You've reached the portal, on position {%d} {%d}!\n", game->map.player_pos.x, game->map.player_pos.y
 
-/* player_movement */
+/* player movement */
 # define EARLY_GAME_CLOSE "Leaving hell? already? what about your boner???\n"
 # define FINAL_MOVE "\nYou got that boner with only %d moves! You're a real champ!\n", game->moves
 # define FINAL_MOVE_JOKE "\n%d moves to get a boner??? Should i call you Rocco or just turtle? Anyway...\n", game->moves
 # define WIN_MSG "\n##########################\n#                        #\n# WHAT AN AMAZING BONER! #\n#                        #\n#        CONGRATS!       #\n#                        #\n##########################\n"
 # define WIN_MSG_JOKE "\n##################################\n#                                #\n# A PERFECTLY RESPECTABLE BONER! #\n#                                #\n#        CONGRATS TURTLE!        #\n#                                #\n##################################\n"
+
+/* losing msg */
+# define PLAYER_GOT_CAUGHT "\n\nYOU DIED\n\n"
+# define ENEMY_GOT_PLAYER "\n\nHELL GOT YOU\n\n"
+# define GAME_LOST "Game lost.\nMaybe you can try minecraft...\n\n"
+
+/* enemy mechanics utils */
+# define ERROR_ENEMY_ALLOC "Error\nCan't allocate memory for enemy array.\n"
 
 #endif

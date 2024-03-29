@@ -54,6 +54,18 @@
 # define EXIT_SPRITE_FRAME_9 "Tiles/exit/exit(frame9).xpm"
 # define EXIT_SPRITE_FRAME_10 "Tiles/exit/exit(frame10).xpm"
 
+/* enemy animation sprites */
+# define ENEMY_SPRITE_FRAME_1 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_2 "Tiles/enemy/enemy(frame2).xpm"
+# define ENEMY_SPRITE_FRAME_3 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_4 "Tiles/enemy/enemy(frame2).xpm"
+# define ENEMY_SPRITE_FRAME_5 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_6 "Tiles/enemy/enemy(frame2).xpm"
+# define ENEMY_SPRITE_FRAME_7 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_8 "Tiles/enemy/enemy(frame2).xpm"
+# define ENEMY_SPRITE_FRAME_9 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_10 "Tiles/enemy/enemy(frame2).xpm"
+
 # define TILE_SIZE 64
 
 /* wall animation frames */
@@ -67,5 +79,8 @@
 
 /* exit animation frames */
 # define EXIT_ANIM_FRAMES 10
+
+/* exit animation frames */
+# define ENEMY_ANIM_FRAMES 10
 
 #endif

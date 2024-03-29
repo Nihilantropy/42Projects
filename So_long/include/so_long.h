@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/03/28 11:34:46 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/29 18:11:03 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <limits.h>
+# include <time.h>
 # include <../mlx/mlx.h>
 # include "messages.h"
 # include "keys.h"
@@ -77,6 +79,12 @@ typedef struct s_reachable
 	t_bool  exit_reachable;
 }           t_reachable;
 
+/* struct for enemy patrol */
+typedef struct	s_enemy
+{
+	t_axis	*enemy_pos;
+}			t_enemy;
+
 /* struct for all map specifics */
 typedef struct s_map
 {
@@ -86,7 +94,8 @@ typedef struct s_map
 	int         collect;
 	int         player;
 	int         exit;
-	int			enemy;
+	int			enemies;
+	t_enemy		enemy;
 	t_reachable reachable;
 	t_axis      player_pos;
 }	t_map;
@@ -131,6 +140,14 @@ typedef struct s_collect_anim_sprite
 	int anim_counter;
 } t_collect_anim_sprite;
 
+/* struct for collect animated tiles */
+typedef struct s_enemy_anim_sprite
+{
+	void *frames[ENEMY_ANIM_FRAMES];
+	int current_frame;
+	int anim_counter;
+} t_enemy_anim_sprite;
+
 /* struct for all tiles & sprites specifics */
 typedef struct s_tiles
 {
@@ -140,6 +157,7 @@ typedef struct s_tiles
 	t_player_inv_anim_sprite    player_inv;
 	t_collect_anim_sprite    collect;
 	t_exit_anim_sprite    exit;
+	t_enemy_anim_sprite	enemy;
 	int     width;
 	int     height;
 	int     x;
@@ -155,6 +173,7 @@ typedef struct s_game
 	t_tiles tiles;
 	t_display win;
 	int     moves;
+	t_bool	lose;
 }           t_game;
 
 /* inline function to initialize the game map, tiles, player_pos & moves, and all checks */
@@ -168,6 +187,7 @@ static inline t_game    init_game(void)
 		.map.collect = 0,
 		.map.player = 0,
 		.map.exit = 0,
+		.map.enemies = 0,
 		.map.reachable.collect_reachable = 0,
 		.map.reachable.exit_reachable = false,
 		.map.player_pos.facing_left = false,
@@ -182,11 +202,14 @@ static inline t_game    init_game(void)
 		.tiles.collect.anim_counter = 0,
 		.tiles.exit.current_frame = 0,
 		.tiles.exit.anim_counter = 0,
+		.tiles.enemy.current_frame = 0,
+		.tiles.enemy.anim_counter = 0,
 		.tiles.width = TILE_SIZE,
 		.tiles.height = TILE_SIZE,
 		.tiles.x = 0,
 		.tiles.y = 0,
 		.moves = 0,
+		.lose = false,
 	});
 }
 
@@ -216,6 +239,7 @@ int check_wrong_symb(t_game *game);
 int check_map_player(t_game *game);
 int check_map_exit(t_game *game);
 int check_map_collect(t_game *game);
+int	check_map_enemy(t_game *game);
 int is_map_complete(t_game *game);
 
 /* animation handler */
@@ -245,6 +269,11 @@ void    load_exit_images(t_game *game);
 void    handle_exit_anim(t_game *game);
 void    free_exit_images(t_game *game);
 
+/* enemy sprites animation */
+void    load_enemy_images(t_game *game);
+void    handle_enemy_anim(t_game *game);
+void    free_enemy_images(t_game *game);
+
 /* sprites render */
 void    init_sprites(t_game *game);
 void    render_tiles(t_game *game, char tile);
@@ -263,11 +292,32 @@ void    handle_player_movement(t_game *game, int keycode);
 void    handle_movement_changes(t_game *game, int new_x, int new_y);
 
 /* player movement utils */
-int     is_valide_move(t_game *game, int new_x, int new_y, int keycode);
+int     is_valid_move(t_game *game, int new_x, int new_y, int keycode);
 void    check_if_player_facing_left(t_game *game, int new_x);
 void    update_player_pos(t_game *game, int new_x, int new_y);
 void    update_collect_count(t_game *game, int new_x, int new_y);
 int     check_if_win(t_game *game);
+
+/* game mechanics */
+void	player_lose(t_game *game, char *reason);
+void	exit_lose(t_game *game);
+
+/* game mechanics utils */
+int random_range(unsigned int min, unsigned int max);
+
+/* enemy mechanics */
+int		player_got_caught(t_game *game, int new_x, int new_y);
+int		enemy_got_player(t_game *game, int new_x, int new_y);
+int		enemy_patrol(t_game *game);
+void	move_enemy(t_game *game, int enemy_index);
+void	update_enemy_pos(t_game *game, int new_x, int new_y, int enemy_index);
+
+/* enemy mechanics utils */
+void	build_enemy_arr(t_game *game);
+void	save_enemy_pos(t_game *game);
+int		is_valid_enemy_move(t_game *game, int new_x, int new_y);
+void	free_enemy_arr(t_game *game);
+void	handle_enemy(t_game *game);
 
 /* handle closure */
 void    clean_matrix(t_game *game);

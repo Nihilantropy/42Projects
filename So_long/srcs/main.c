@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 12:56:09 by crea              #+#    #+#             */
+/*   Updated: 2024/03/29 18:19:22 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 int main(int argc, char **argv)
@@ -15,5 +27,6 @@ int main(int argc, char **argv)
     get_map(&game, argv[1]);
     handle_key_event(&game);
     mlx_loop_hook(game.mlx_ptr, update_animations, &game);
+	//mlx_loop_hook(game.mlx_ptr, enemy_patrol, &game);
     mlx_loop(game.mlx_ptr);
 }

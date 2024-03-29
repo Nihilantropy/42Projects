@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:08:32 by crea              #+#    #+#             */
-/*   Updated: 2024/03/25 17:46:23 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/29 17:21:44 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void		build_bool_matrix(t_game *game, char ***visited);
 static void	flood_fill(t_game *game, int x, int y, char **visited)
 {
 	if (x < 0 || y < 0 || x >= game->map.col || y >= game->map.row
-		|| visited[y][x] || game->map.matrix[y][x] == WALL)
+		|| visited[y][x] || game->map.matrix[y][x] == WALL
+		|| game->map.matrix[y][x] == ENEMY)
 		return ;
 	visited[y][x] = 1;
 	flood_fill(game, x + 1, y, visited);

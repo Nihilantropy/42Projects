@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_animations.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 12:56:02 by crea              #+#    #+#             */
+/*   Updated: 2024/03/29 12:56:03 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 void    handle_animations(t_game *game)
@@ -7,6 +19,7 @@ void    handle_animations(t_game *game)
     handle_player_inv_anim(game);
     handle_collect_anim(game);
     handle_exit_anim(game);
+	handle_enemy_anim(game);
 }
 
 int update_animations(t_game *game)

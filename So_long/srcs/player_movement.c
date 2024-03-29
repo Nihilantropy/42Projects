@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:06 by crea              #+#    #+#             */
-/*   Updated: 2024/03/25 16:36:05 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/29 17:49:41 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	handle_player_movement(t_game *game, int keycode)
 		delta_x = 1;
 	new_x = game->map.player_pos.x + delta_x;
 	new_y = game->map.player_pos.y + delta_y;
-	if (is_valide_move(game, new_x, new_y, keycode))
+	if (is_valid_move(game, new_x, new_y, keycode)
+		&& !player_got_caught(game, new_x, new_y))
 		handle_movement_changes(game, new_x, new_y);
-	else
-		return ;
+	return ;
 }
 
 void	handle_movement_changes(t_game *game, int new_x, int new_y)

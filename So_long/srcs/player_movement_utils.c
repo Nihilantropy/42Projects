@@ -6,13 +6,13 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:01 by crea              #+#    #+#             */
-/*   Updated: 2024/03/25 16:35:55 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/29 17:34:14 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	is_valide_move(t_game *game, int new_x, int new_y, int keycode)
+int	is_valid_move(t_game *game, int new_x, int new_y, int keycode)
 {
 	if (game->map.matrix[new_y][new_x] == WALL)
 	{

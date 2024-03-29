@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 12:56:30 by crea              #+#    #+#             */
+/*   Updated: 2024/03/29 12:56:30 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 void    init_sprites(t_game *game)
@@ -15,6 +27,7 @@ void    init_sprites(t_game *game)
     load_player_inv_images(game);
     load_collect_images(game);
     load_exit_images(game);
+	load_enemy_images(game);
 }
 
 void    render_tiles(t_game *game, char tile)
@@ -26,7 +39,7 @@ void    render_tiles(t_game *game, char tile)
         image = game->tiles.floor;
     else if (tile == WALL)
         image = game->tiles.wall.frames[game->tiles.wall.current_frame];
-    else if (tile == PLAYER && game->map.player_pos.facing_left == 1)
+    else if (tile == PLAYER && game->map.player_pos.facing_left)
         image = game->tiles.player_inv.frames[game->tiles.player.current_frame];
     else if (tile == PLAYER)
         image = game->tiles.player.frames[game->tiles.player.current_frame];
@@ -34,6 +47,8 @@ void    render_tiles(t_game *game, char tile)
         image = game->tiles.collect.frames[game->tiles.collect.current_frame];
     else if (tile == EXIT)
         image = game->tiles.exit.frames[game->tiles.exit.current_frame];
+	else if (tile == ENEMY)
+		image = game->tiles.enemy.frames[game->tiles.enemy.current_frame];
     if (image)
         mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
             image, game->tiles.x * TILE_SIZE, game->tiles.y * TILE_SIZE);
@@ -62,9 +77,10 @@ void    draw_map(t_game *game)
 
 void free_images(t_game *game)
 {
-    if (!game->mlx_ptr || !game->tiles.floor || !game->tiles.wall.frames[0] ||
-        !game->tiles.player.frames[0] || !game->tiles.player_inv.frames[0] ||
-        !game->tiles.collect.frames[0] || !game->tiles.exit.frames[0])
+    if (!game->mlx_ptr || !game->tiles.floor || !game->tiles.wall.frames[0]
+		|| !game->tiles.player.frames[0] || !game->tiles.player_inv.frames[0]
+		|| !game->tiles.collect.frames[0] || !game->tiles.exit.frames[0]
+		|| !game->tiles.enemy.frames[0])
         exit(ft_printf(ERROR_FREE_IMAGE));
     mlx_destroy_image(game->mlx_ptr, game->tiles.floor);
     free_wall_images(game);
@@ -72,4 +88,5 @@ void free_images(t_game *game)
     free_player_inv_images(game);
     free_collect_images(game);
     free_exit_images(game);
+	free_enemy_images(game);
 }
