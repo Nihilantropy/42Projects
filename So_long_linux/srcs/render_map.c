@@ -26,7 +26,7 @@ void    render_tiles(t_game *game, char tile)
         image = game->tiles.floor;
     else if (tile == WALL)
         image = game->tiles.wall.frames[game->tiles.wall.current_frame];
-    else if (tile == PLAYER && game->map.player_pos.facing_left == 1)
+    else if (tile == PLAYER && game->map.player_pos.facing_left)
         image = game->tiles.player_inv.frames[game->tiles.player.current_frame];
     else if (tile == PLAYER)
         image = game->tiles.player.frames[game->tiles.player.current_frame];

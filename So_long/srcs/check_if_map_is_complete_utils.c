@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:54:10 by crea              #+#    #+#             */
-/*   Updated: 2024/03/28 11:40:11 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/30 14:13:53 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,14 @@ void	build_bool_matrix(t_game *game, char ***visited)
 			(*visited)[y][x++] = 0;
 		y++;
 	}
+}
+
+void	free_bool_matrix(t_game *game, char **visited)
+{
+	int	y;
+
+	y = game->map.row;
+	while (y-- > 0)
+		free(visited[y]);
+	free(visited);
 }

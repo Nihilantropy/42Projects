@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:08:32 by crea              #+#    #+#             */
-/*   Updated: 2024/03/29 17:21:44 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/30 23:20:08 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	flood_fill(t_game *game, int x, int y,
 				char **visited);
 
 void		build_bool_matrix(t_game *game, char ***visited);
+
+void		free_bool_matrix(t_game *game, char **visited);
 
 static void	flood_fill(t_game *game, int x, int y, char **visited)
 {
@@ -86,12 +88,16 @@ int	is_map_complete(t_game *game)
 	visited = NULL;
 	build_bool_matrix(game, &visited);
 	flood_fill(game, game->map.player_pos.x, game->map.player_pos.y, visited);
-	printf_flood_matrix(game, visited);
+	//printf_flood_matrix(game, visited);
 	if (verify_collectibles_and_exit(game, visited))
+	{
+		free_bool_matrix(game, visited);
 		return (1);
+	}
 	else
 	{
 		ft_printf(ERROR_MAP_CANT_BE_COMPLETED);
+		free_bool_matrix(game, visited);
 		return (0);
 	}
 }

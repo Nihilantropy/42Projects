@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:01 by crea              #+#    #+#             */
-/*   Updated: 2024/03/29 17:34:14 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/30 23:22:35 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,16 @@ int	is_valid_move(t_game *game, int new_x, int new_y, int keycode)
 		ft_printf(ERROR_INVALID_ROUT);
 		return (0);
 	}
-	if (new_x <= 0 || new_y <= 0 || new_x >= game->map.col
-		|| new_y >= game->map.row)
+	if (new_x <= 0 || new_y <= 0 ||
+		new_x >= game->map.col || new_y >= game->map.row)
 		return (0);
 	if (game->map.collect != 0 && game->map.matrix[new_y][new_x] == EXIT)
 	{
 		ft_printf(ERROR_EXIT_NOT_OPEN);
 		return (0);
 	}
-	if (keycode == W || keycode == A || keycode == S || keycode == D
-		|| keycode == UP || keycode == LEFT || keycode == DOWN
-		|| keycode == RIGHT)
+	if (keycode == W || keycode == A || keycode == S || keycode == D ||
+		keycode == UP || keycode == LEFT || keycode == DOWN || keycode == RIGHT)
 	{
 		game->moves++;
 		return (1);
@@ -46,14 +45,17 @@ void	update_player_pos(t_game *game, int new_x, int new_y)
 	game->map.matrix[new_y][new_x] = PLAYER;
 	game->map.player_pos.x = new_x;
 	game->map.player_pos.y = new_y;
-	if (!check_if_win(game))
+	if (game->victory == true)
 	{
-		ft_printf(NEW_PLAYER_POS);
+		ft_printf(FINAL_PLAYER_POS);
+		return ;
+	}
+	else
+	{
+		//ft_printf(NEW_PLAYER_POS);
 		ft_printf(MOVES_NBR);
 		return ;
 	}
-	ft_printf(FINAL_PLAYER_POS);
-	return ;
 }
 
 void	update_collect_count(t_game *game, int new_x, int new_y)
@@ -65,6 +67,7 @@ void	update_collect_count(t_game *game, int new_x, int new_y)
 		else if (game->map.collect == 1)
 			ft_printf(ALL_COLLECT_PICKEDUP);
 		game->map.collect--;
+		power_of_the_d(game);
 	}
 }
 
@@ -83,22 +86,13 @@ void	check_if_player_facing_left(t_game *game, int new_x)
 	return ;
 }
 
-int	check_if_win(t_game *game)
+void	check_if_win(t_game *game, int new_x, int new_y)
 {
-	int	y;
-	int	x;
-
-	y = 1;
-	while (y < game->map.row)
+	if (game->map.matrix[new_y][new_x] == EXIT && game->map.collect == 0)
 	{
-		x = 1;
-		while (x < game->map.col)
-		{
-			if (game->map.matrix[y][x] == EXIT)
-				return (0);
-			x++;
-		}
-		y++;
+		game->victory = true;
+		return ;
 	}
-	return (1);
+	else
+		return ;
 }

@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:04:59 by crea              #+#    #+#             */
-/*   Updated: 2024/03/29 17:52:47 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/30 23:23:49 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@
 
 /* get_map_utils */
 # define PLAYER_POS "Skeletronk position is {%d} {%d}\n", x, y
-# define ENEMY_POS "Enemy %d, pos is {%d} {%d}\n", i + 1, x, y
+# define ENEMY_POS "Enemy %d, pos is {%d} {%d}\n", enemy_index + 1, x, y
+# define ENEMY_ALIVE "Enemy %d, is alive.\n", enemy_index + 1
+# define ENEMY_INDEX "Enemy index is %d\n", enemy_index
+# define ENEMY_NEW_POS "Enemy %d new position is {%d} {%d}\n", enemy_index + 1, new_x, new_y
 # define ERROR_CANT_OPEN_MAP_FILE "Error\nMap file can't be open. Have you checked the name of the map file?\n"
 
 /* check_map_interior */
@@ -39,7 +42,7 @@
 # define CORRECT_SYMBOLS_IN_MAP "All symbols in map are good! Great job my hellwalker!\n"
 # define ERROR_SYMBOL_IN_MAP "Error\nWrong symbol in map! Cheating isn't allowd here! Try in 42...\n"
 # define ENEMY_NBR "1 ENEMY in hell right now. Try to avoid, or give him the punta\n"
-# define ENEMIES_NBR "%d ENEMIES in hell right now. Try to avoid, or give them the punta!\n", game->map.enemy
+# define ENEMIES_NBR "%d ENEMIES in hell right now. Try to avoid, or give them the punta!\n", game->map.enemies
 # define NO_ENEMY "There are no enemies in hell... what an easy life for your lazy ass.\n"
 
 /* check_map_edges */
@@ -62,7 +65,9 @@
 /* images upload */
 # define ERROR_WALL_IMG_UPLOAD "Error\nCan't upload wall images.\n"
 # define ERROR_PLAYER_IMG_UPLOAD "Error\nCan't upload player images.\n"
+# define ERROR_PLAYER_D_IMG_UPLOAD "Error\nCan't upload player d images.\n"
 # define ERROR_PLAYER_INV_IMG_UPLOAD "Error\nCan't upload player inverted images.\n"
+# define ERROR_PLAYER_D_INV_IMG_UPLOAD "Error\nCan't upload player d inverted images.\n"
 # define ERROR_COLLECT_IMG_UPLOAD "Error\nCan't upload collectable images.\n"
 # define ERROR_EXIT_IMG_UPLOAD "Error\nCan't upload exit images.\n"
 # define ERROR_ENEMY_IMG_UPLOAD "Error\nCan't upload enemy images.\n"
@@ -88,11 +93,23 @@
 # define WIN_MSG_JOKE "\n##################################\n#                                #\n# A PERFECTLY RESPECTABLE BONER! #\n#                                #\n#        CONGRATS TURTLE!        #\n#                                #\n##################################\n"
 
 /* losing msg */
-# define PLAYER_GOT_CAUGHT "\n\nYOU DIED\n\n"
+# define PLAYER_GOT_CAUGHT "\nYOU DIED\n\n"
 # define ENEMY_GOT_PLAYER "\n\nHELL GOT YOU\n\n"
 # define GAME_LOST "Game lost.\nMaybe you can try minecraft...\n\n"
 
+/* enemy mechanics */
+# define ENEMY_BUMP_PLAYER "They really want to die... what a bunch of idiots!\n"
+
+/* player mechanics */
+# define ON_FIRE "Your pipi is on fire!!! It's time to give some punta\n"
+# define RUN_OUT "Chill now. You're gonna die for dehydration...\n"
+# define PLAYER_DESTROY_ENEMY "Ulala! That's some hard smashing D! Right between the eyes!\n"
+# define LAST_ENEMY "All enemies are gone!\nYou could break a wall with that you know? That's some nasty shi...\n"
+
 /* enemy mechanics utils */
 # define ERROR_ENEMY_ALLOC "Error\nCan't allocate memory for enemy array.\n"
+
+/* player mechanics utils */
+# define ERROR_REALLOC_ENEMY_ARR "Error\nReallocation of enemy array failed.\n"
 
 #endif
