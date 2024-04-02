@@ -6,18 +6,21 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:27:09 by crea              #+#    #+#             */
-/*   Updated: 2024/03/30 22:59:32 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/31 17:33:30 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MECHANICS_H
-#define MECHANICS_H
+# define MECHANICS_H
+
+/* game frame rate */
+# define FRAME_RATE 6
+# define FRAME_TIME_US (100000 / FRAME_RATE)
 
 /* enemy patrol */
 # define ENEMY_MOVE_PROB 25
 
 /* player power up time */
 # define THE_D_BURNS 3000
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:08:43 by crea              #+#    #+#             */
-/*   Updated: 2024/03/29 16:50:08 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/31 14:35:31 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	check_map_enemy(t_game *game)
 		}
 		y++;
 	}
+	game->map.enemies_alive = game->map.enemies;
 	if (game->map.enemies == 1)
 		return (ft_printf(ENEMY_NBR));
 	else if (game->map.enemies > 1)

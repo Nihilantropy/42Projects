@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   outer_messages.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/30 11:13:25 by crea              #+#    #+#             */
-/*   Updated: 2024/03/31 14:57:32 by crea             ###   ########.fr       */
+/*   Created: 2024/03/31 17:33:25 by crea              #+#    #+#             */
+/*   Updated: 2024/04/02 20:14:11 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#ifndef OUTER_MESSAGES_H
+# define OUTER_MESSAGES_H
 
-int	game_update(t_game *game)
-{
-	if (current_timestamp() - game->powerup.time >= THE_D_BURNS)
-		depression_of_the_d(game);
-	update_animations(game);
-	enemy_patrol(game);
-	return (0);
-}
+# define UISQFUT "\noek uisqfut vhec xubb!\n"
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:55:33 by crea              #+#    #+#             */
-/*   Updated: 2024/03/30 12:50:41 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/31 17:16:24 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,20 @@ void	exit_lose(t_game *game)
 {
 	if (game->lose == true)
 		ft_printf(GAME_LOST);
+	close_game(game);
+}
+
+void	player_win(t_game *game)
+{
+	if (game->moves <= 50)
+	{
+		ft_printf(WIN_MSG);
+		ft_printf(FINAL_MOVE);
+	}
+	else
+	{
+		ft_printf(FINAL_MOVE_JOKE);
+		ft_printf(WIN_MSG_JOKE);
+	}
 	close_game(game);
 }

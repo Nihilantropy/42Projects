@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/03/30 22:50:14 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/02 19:25:19 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@
 # include <time.h>
 # include <../mlx/mlx.h>
 # include "messages.h"
+# include "outer_messages.h"
 # include "keys.h"
 # include "images.h"
 # include "mechanics.h"
 # include "../libft/include/libft.h"
 # include "../ft_printf/include/ft_printf.h"
-
-/* game frame rate */
-# define FRAME_RATE 6
-# define FRAME_TIME_US (100000 / FRAME_RATE)
 
 # define DISPLAY_NAME "So_longo!"
 
@@ -189,9 +186,11 @@ typedef struct s_map
 	int			enemies;
 	int			enemy_index;
 	int			enemy_target;
+	int			enemies_alive;
 	t_enemy		*enemy;
 	t_reachable reachable;
 	t_axis      player_pos;
+	int			xebui;
 }				t_map;
 
 /* struct for all game's specifics */
@@ -205,6 +204,7 @@ typedef struct s_game
 	int			moves;
 	t_bool		lose;
 	t_bool		victory;
+	t_bool		sqd_uisqfu;
 	t_powerup	powerup;
 }				t_game;
 
@@ -222,9 +222,11 @@ static inline t_game    init_game(void)
 		.map.enemies = 0,
 		.map.enemy_index = 0,
 		.map.enemy_target = -1,
+		.map.enemies_alive = 0,
 		.map.reachable.collect_reachable = 0,
 		.map.reachable.exit_reachable = false,
 		.map.player_pos.facing_left = false,
+		.map.xebui = 0,
 		.tiles.floor = NULL,
 		.tiles.wall.current_frame = 0,
 		.tiles.wall.anim_counter = 0,
@@ -249,6 +251,7 @@ static inline t_game    init_game(void)
 		.moves = 0,
 		.lose = false,
 		.victory = false,
+		.sqd_uisqfu = false,
 		.powerup.the_d = false,
 		.powerup.time = 0,
 	});
@@ -344,6 +347,7 @@ void	handle_key_event(t_game *game);
 int		key_press(int keycode, t_game *game);
 void	handle_player_movement(t_game *game, int keycode);
 void	handle_movement_changes(t_game *game, int new_x, int new_y);
+int		try_to_drill(t_game *game, int new_x, int new_y);
 
 /* player movement utils */
 int		is_valid_move(t_game *game, int new_x, int new_y, int keycode);
@@ -362,6 +366,7 @@ int		close_game(void *param);
 /* game mechanics */
 void	player_lose(t_game *game, char *reason);
 void	exit_lose(t_game *game);
+void	player_win(t_game *game);
 
 /* game mechanics utils */
 int 	random_range(unsigned int min, unsigned int max);
@@ -384,6 +389,7 @@ void	handle_enemy(t_game *game);
 /* player mechanics */
 int		player_bump_enemy(t_game *game, int new_x, int new_y);
 void	power_of_the_d(t_game *game);
+void	depression_of_the_d(t_game *game);
 void	destroy_enemy(t_game *game);
 
 /* player mechanics utils */

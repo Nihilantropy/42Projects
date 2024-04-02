@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:04:59 by crea              #+#    #+#             */
-/*   Updated: 2024/03/30 23:23:49 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/31 17:47:11 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define ERROR_COLLECT_NBR "Error\nNot enoght bones: %d. What about your boner? It's sad, isn't it?\n", game->map.collect
 # define CORRECT_SYMBOLS_IN_MAP "All symbols in map are good! Great job my hellwalker!\n"
 # define ERROR_SYMBOL_IN_MAP "Error\nWrong symbol in map! Cheating isn't allowd here! Try in 42...\n"
-# define ENEMY_NBR "1 ENEMY in hell right now. Try to avoid, or give him the punta\n"
+# define ENEMY_NBR "1 ENEMY in hell right now. It's time to turno your punta into a drill!\n"
 # define ENEMIES_NBR "%d ENEMIES in hell right now. Try to avoid, or give them the punta!\n", game->map.enemies
 # define NO_ENEMY "There are no enemies in hell... what an easy life for your lazy ass.\n"
 
@@ -91,20 +91,23 @@
 # define FINAL_MOVE_JOKE "\n%d moves to get a boner??? Should i call you Rocco or just turtle? Anyway...\n", game->moves
 # define WIN_MSG "\n##########################\n#                        #\n# WHAT AN AMAZING BONER! #\n#                        #\n#        CONGRATS!       #\n#                        #\n##########################\n"
 # define WIN_MSG_JOKE "\n##################################\n#                                #\n# A PERFECTLY RESPECTABLE BONER! #\n#                                #\n#        CONGRATS TURTLE!        #\n#                                #\n##################################\n"
+# define SECRET_LOCKED "\nSecret is locked! Try to make secret come true\n"
 
 /* losing msg */
 # define PLAYER_GOT_CAUGHT "\nYOU DIED\n\n"
 # define ENEMY_GOT_PLAYER "\n\nHELL GOT YOU\n\n"
-# define GAME_LOST "Game lost.\nMaybe you can try minecraft...\n\n"
+# define GAME_LOST "\nGame lost.\nMaybe you can try minecraft...\n\n"
 
 /* enemy mechanics */
-# define ENEMY_BUMP_PLAYER "They really want to die... what a bunch of idiots!\n"
+# define ENEMY_BUMP_PLAYER "\nThey really want to die... what a bunch of idiots!\n"
 
 /* player mechanics */
-# define ON_FIRE "Your pipi is on fire!!! It's time to give some punta\n"
+# define ON_FIRE "\nYour pipi is on fire!!! It's time to give some punta\n"
 # define RUN_OUT "Chill now. You're gonna die for dehydration...\n"
-# define PLAYER_DESTROY_ENEMY "Ulala! That's some hard smashing D! Right between the eyes!\n"
-# define LAST_ENEMY "All enemies are gone!\nYou could break a wall with that you know? That's some nasty shi...\n"
+# define PLAYER_DESTROY_ENEMY "\nUlala! That's some hard smashing D! Right between the eyes!\n"
+# define ENEMIES_ALIVE_NBR "\nStill %d enemies alive! Someone has to do all the work...\n", game->map.enemies_alive
+# define LAST_ENEMY_ALIVE "\nOnly %d enemy alive! Dig that hole dwarf! Diggy diggy hole!\n", game->map.enemies_alive
+# define NO_MORE_ENEMIES "\nAll enemies are gone!\nYou could break a wall with that you know? That's some nasty shi...\n"
 
 /* enemy mechanics utils */
 # define ERROR_ENEMY_ALLOC "Error\nCan't allocate memory for enemy array.\n"

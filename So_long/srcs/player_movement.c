@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:06 by crea              #+#    #+#             */
-/*   Updated: 2024/03/30 23:20:43 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/31 19:55:20 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,22 @@ void	handle_movement_changes(t_game *game, int new_x, int new_y)
 	update_player_pos(game, new_x, new_y);
 	draw_map(game);
 	if (game->victory == true)
+		player_win(game);
+}
+
+int	try_to_drill(t_game *game, int new_x, int new_y)
+{
+	if (game->map.matrix[new_y][new_x] == WALL && !game->sqd_uisqfu)
 	{
-		if (game->moves <= 50)
-		{
-			ft_printf(WIN_MSG);
-			ft_printf(FINAL_MOVE);
-		}
-		else
-		{
-			ft_printf(FINAL_MOVE_JOKE);
-			ft_printf(WIN_MSG_JOKE);
-		}
-		close_game(game);
+		ft_printf(ERROR_INVALID_ROUT);
+		return (0);
 	}
-	//print_matrix(game);
+	else if (game->map.matrix[new_y][new_x] == WALL && game->sqd_uisqfu)
+	{
+		game->map.xebui++;
+		if (game->map.xebui == 10)
+			ft_printf(SECRET_LOCKED);
+		return (0);
+	}
+	return (1);
 }

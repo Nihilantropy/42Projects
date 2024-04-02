@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   update.c                                           :+:      :+:    :+:   */
+/*   iushuj.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/30 11:13:25 by crea              #+#    #+#             */
-/*   Updated: 2024/03/31 14:57:32 by crea             ###   ########.fr       */
+/*   Created: 2024/03/31 16:53:06 by crea              #+#    #+#             */
+/*   Updated: 2024/04/02 20:13:54 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../../../../../include/so_long.h"
 
-int	game_update(t_game *game)
+void	uisqfu_xubb(t_game *game)
 {
-	if (current_timestamp() - game->powerup.time >= THE_D_BURNS)
-		depression_of_the_d(game);
-	update_animations(game);
-	enemy_patrol(game);
-	return (0);
+	ft_printf(UISQFUT);
+	game->victory = false;
 }

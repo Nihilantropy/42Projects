@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:01 by crea              #+#    #+#             */
-/*   Updated: 2024/03/30 23:22:35 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/31 20:20:17 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 int	is_valid_move(t_game *game, int new_x, int new_y, int keycode)
 {
-	if (game->map.matrix[new_y][new_x] == WALL)
-	{
-		ft_printf(ERROR_INVALID_ROUT);
+	if (!try_to_drill(game, new_x, new_y))
 		return (0);
-	}
 	if (new_x <= 0 || new_y <= 0 ||
 		new_x >= game->map.col || new_y >= game->map.row)
 		return (0);
@@ -52,8 +49,7 @@ void	update_player_pos(t_game *game, int new_x, int new_y)
 	}
 	else
 	{
-		//ft_printf(NEW_PLAYER_POS);
-		ft_printf(MOVES_NBR);
+		//ft_printf(MOVES_NBR);
 		return ;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:47:51 by crea              #+#    #+#             */
-/*   Updated: 2024/03/30 23:05:06 by crea             ###   ########.fr       */
+/*   Updated: 2024/03/31 15:29:05 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	enemy_bump_player(t_game *game, int new_x, int new_y)
 	else if (game->map.matrix[new_y][new_x] == PLAYER && game->powerup.the_d)
 	{
 		self_destroy(game);
-		ft_printf(ENEMY_BUMP_PLAYER);
 		return (1);
 	}
-	return (0);
+	else
+	 	return (0);
 }
 
 /* enemy movement probability logic */
@@ -86,7 +86,28 @@ void	update_enemy_pos(t_game *game, int new_x, int new_y)
 
 void	self_destroy(t_game *game)
 {
+	int	enemy_pos_y;
+	int	enemy_pos_x;
+
+	enemy_pos_y = game->map.enemy[game->map.enemy_index].enemy_pos.y;
+	enemy_pos_x = game->map.enemy[game->map.enemy_index].enemy_pos.x;
 	game->map.enemy[game->map.enemy_index].alive = false;
-	game->map.matrix[game->map.enemy[game->map.enemy_index].enemy_pos.y][game->map.enemy[game->map.enemy_index].enemy_pos.x] = FLOOR;
+	if (!game->map.enemy[game->map.enemy_index].alive)
+	{
+		game->map.enemies_alive--;
+		if (game->map.enemies_alive > 1)
+		{
+			ft_printf(ENEMY_BUMP_PLAYER);
+			ft_printf(ENEMIES_ALIVE_NBR);
+		}
+		else if (game->map.enemies_alive == 1)
+		{
+			ft_printf(ENEMY_BUMP_PLAYER);
+			ft_printf(LAST_ENEMY_ALIVE);
+		}
+		else if (game->map.enemies_alive == 0)
+			ft_printf(NO_MORE_ENEMIES);
+	}
+	game->map.matrix[enemy_pos_y][enemy_pos_x] = FLOOR;
 	return ;
 }
