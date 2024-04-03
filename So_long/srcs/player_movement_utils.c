@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:01 by crea              #+#    #+#             */
-/*   Updated: 2024/03/31 20:20:17 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/03 22:50:35 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ void	update_player_pos(t_game *game, int new_x, int new_y)
 		return ;
 	}
 	else
-	{
-		//ft_printf(MOVES_NBR);
 		return ;
-	}
 }
 
 void	update_collect_count(t_game *game, int new_x, int new_y)

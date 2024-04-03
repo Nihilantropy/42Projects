@@ -6,7 +6,17 @@ player_movement_file="$script_dir/../srcs/player_movement.c"
 
 so_long_file="$script_dir/../include/so_long.h"
 
-sed -i '' 's/uisqfu_xubb(game);/ft_printf(SECRET_LOCKED);/g' "$player_movement_file"
+update_file="$script_dir/../srcs/update.c"
+
+sed -i '' 's/SECRET_UNLOCKED/SECRET_LOCKED/g' "$player_movement_file"
 
 sed -i '' '/\* oek sqddej ru ijeffut \*/d' "$so_long_file"
 sed -i '' '/void uisqfu_xubb(t_game \*game);/,+1d' "$so_long_file"
+sed -i '' '/int sedwhqjkbqjyed(t_game \*game);/,+1d' "$so_long_file"
+sed -i '' '/int	iushuj_wqcu_kftqju(t_game \*game);/,+1d' "$so_long_file"
+
+sed -i '' '/if (game->uisqfut)/d' "$update_file"
+sed -i '' '/mlx_loop_hook(game->mlx_ptr, sedwhqjkbqjyed, game);/d' "$update_file"
+sed -i '' '/if (game->iushuj_xubb)/,+1d' "$update_file"
+sed -i '' '/uisqfu_xubb(game);/d' "$update_file"
+sed -i '' '/mlx_loop_hook(game->mlx_ptr, iushuj_wqcu_kftqju, game);/,+1d' "$update_file"

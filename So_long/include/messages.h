@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:04:59 by crea              #+#    #+#             */
-/*   Updated: 2024/03/31 17:47:11 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/03 22:39:39 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@
 # define ERROR_COLLECT_IMG_UPLOAD "Error\nCan't upload collectable images.\n"
 # define ERROR_EXIT_IMG_UPLOAD "Error\nCan't upload exit images.\n"
 # define ERROR_ENEMY_IMG_UPLOAD "Error\nCan't upload enemy images.\n"
+# define ERROR_NUMBER_IMG_UPLOAD "Error\nCan't upload number images.\n"
 
 /* render map */
+# define ERROR_NUMBER_IMG_ALLOC "Error\nNumber images can't be allocated.\n"
 # define ERROR_FREE_IMAGE "Error\nCan't deallocate memory for some images.\n"
 
 /* player movement_utils */
@@ -92,6 +94,7 @@
 # define WIN_MSG "\n##########################\n#                        #\n# WHAT AN AMAZING BONER! #\n#                        #\n#        CONGRATS!       #\n#                        #\n##########################\n"
 # define WIN_MSG_JOKE "\n##################################\n#                                #\n# A PERFECTLY RESPECTABLE BONER! #\n#                                #\n#        CONGRATS TURTLE!        #\n#                                #\n##################################\n"
 # define SECRET_LOCKED "\nSecret is locked! Try to make secret come true\n"
+# define SECRET_UNLOCKED "\nSecret has been discovered! Congratulation mighty hero!\n"
 
 /* losing msg */
 # define PLAYER_GOT_CAUGHT "\nYOU DIED\n\n"

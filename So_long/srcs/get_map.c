@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:08:48 by crea              #+#    #+#             */
-/*   Updated: 2024/03/30 23:20:34 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/03 15:37:18 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	get_map(t_game *game, char *map_file)
 	get_map_size(game, map_file);
 	game->map.matrix = malloc(game->map.row * sizeof(char *));
 	if (!game->map.matrix)
-	{
-		printf(ERROR_MATRIX_ALLOC);
-		return ;
-	}
+		ft_exit_error(ERROR_MATRIX_ALLOC);
 	if (!build_matrix(game, map_file))
 		exit(0);
 	else

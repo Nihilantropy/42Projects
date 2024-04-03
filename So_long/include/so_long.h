@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/04/02 19:25:19 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/04 00:11:16 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,14 @@ typedef struct	s_enemy
 }			t_enemy;
 
 /* struct for player power ups */
-typedef struct s_powerup
+typedef struct	s_powerup
 {
 	t_bool		the_d;
 	long long	time;
 }			t_powerup;
 
 /* struct for wall animated tiles */
-typedef struct s_wall_anim_sprite
+typedef struct	s_wall_anim_sprite
 {
 	void	*frames[WALL_ANIM_FRAMES];
 	int		current_frame;
@@ -101,7 +101,7 @@ typedef struct s_wall_anim_sprite
 }			t_wall_anim_sprite;
 
 /* struct for player animated tiles */
-typedef struct s_player_anim_sprite
+typedef struct	s_player_anim_sprite
 {
 	void	*frames[PLAYER_ANIM_FRAMES];
 	int		current_frame;
@@ -109,7 +109,7 @@ typedef struct s_player_anim_sprite
 }			t_player_anim_sprite;
 
 /* struct for player d animated tiles */
-typedef struct s_player_d_anim_sprite
+typedef struct	s_player_d_anim_sprite
 {
 	void	*frames[PLAYER_ANIM_FRAMES];
 	int		current_frame;
@@ -117,7 +117,7 @@ typedef struct s_player_d_anim_sprite
 }			t_player_d_anim_sprite;
 
 /* struct for inverted player animated tiles */
-typedef struct s_player_inv_anim_sprite
+typedef struct	s_player_inv_anim_sprite
 {
 	void	*frames[PLAYER_ANIM_FRAMES];
 	int		current_frame;
@@ -125,7 +125,7 @@ typedef struct s_player_inv_anim_sprite
 }			t_player_inv_anim_sprite;
 
 /* struct for inverted player animated tiles */
-typedef struct s_player_d_inv_anim_sprite
+typedef struct	s_player_d_inv_anim_sprite
 {
 	void	*frames[PLAYER_ANIM_FRAMES];
 	int		current_frame;
@@ -133,7 +133,7 @@ typedef struct s_player_d_inv_anim_sprite
 }			t_player_d_inv_anim_sprite;
 
 /* struct for exit animated tiles */
-typedef struct s_exit_anim_sprite
+typedef struct	s_exit_anim_sprite
 {
 	void	*frames[EXIT_ANIM_FRAMES];
 	int		current_frame;
@@ -141,7 +141,7 @@ typedef struct s_exit_anim_sprite
 }			t_exit_anim_sprite;
 
 /* struct for collect animated tiles */
-typedef struct s_collect_anim_sprite
+typedef struct	s_collect_anim_sprite
 {
 	void	*frames[COLLECT_ANIM_FRAMES];
 	int		current_frame;
@@ -149,12 +149,17 @@ typedef struct s_collect_anim_sprite
 }			t_collect_anim_sprite;
 
 /* struct for collect animated tiles */
-typedef struct s_enemy_anim_sprite
+typedef struct	s_enemy_anim_sprite
 {
 	void	*frames[ENEMY_ANIM_FRAMES];
 	int		current_frame;
 	int		anim_counter;
 }			t_enemy_anim_sprite;
+
+typedef struct	s_number_sprite
+{
+	void	**count;
+}			t_number_sprite;
 
 /* struct for all tiles & sprites specifics */
 typedef struct s_tiles
@@ -168,6 +173,7 @@ typedef struct s_tiles
 	t_collect_anim_sprite		collect;
 	t_exit_anim_sprite			exit;
 	t_enemy_anim_sprite			enemy;
+	t_number_sprite				number;
 	int							width;
 	int							height;
 	int							x;
@@ -205,7 +211,10 @@ typedef struct s_game
 	t_bool		lose;
 	t_bool		victory;
 	t_bool		sqd_uisqfu;
+	t_bool		uisqfut;
+	t_bool		iushuj_xubb;
 	t_powerup	powerup;
+	long		screenup;
 }				t_game;
 
 /* inline function to initialize the game map, tiles, player_pos & moves, and all checks */
@@ -248,12 +257,17 @@ static inline t_game    init_game(void)
 		.tiles.height = TILE_SIZE,
 		.tiles.x = 0,
 		.tiles.y = 0,
+		.win.width = 0,
+		.win.height = 0,
 		.moves = 0,
 		.lose = false,
 		.victory = false,
 		.sqd_uisqfu = false,
+		.uisqfut = false,
+		.iushuj_xubb = false,
 		.powerup.the_d = false,
 		.powerup.time = 0,
+		.screenup = 0,
 	});
 }
 
@@ -330,6 +344,11 @@ void	free_exit_images(t_game *game);
 void	load_enemy_images(t_game *game);
 void	handle_enemy_anim(t_game *game);
 void	free_enemy_images(t_game *game);
+
+/* number sprites */
+void	load_number_images(t_game *game);
+void	draw_text(t_game *game);
+void    free_number_images(t_game *game);
 
 /* sprites render */
 void	init_sprites(t_game *game);

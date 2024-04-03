@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:33:41 by crea              #+#    #+#             */
-/*   Updated: 2024/03/31 17:33:41 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/03 15:05:00 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,18 @@
 # define ENEMY_SPRITE_FRAME_9 "Tiles/enemy/enemy(frame2).xpm"
 # define ENEMY_SPRITE_FRAME_10 "Tiles/enemy/enemy(frame2).xpm"
 # define ENEMY_SPRITE_FRAME_10 "Tiles/enemy/enemy(frame2).xpm"
+
+/* numbers sprites */
+# define NUMBER_0_SPIRTE "Tiles/numbers/0.xpm"
+# define NUMBER_1_SPIRTE "Tiles/numbers/1.xpm"
+# define NUMBER_2_SPIRTE "Tiles/numbers/2.xpm"
+# define NUMBER_3_SPIRTE "Tiles/numbers/3.xpm"
+# define NUMBER_4_SPIRTE "Tiles/numbers/4.xpm"
+# define NUMBER_5_SPIRTE "Tiles/numbers/5.xpm"
+# define NUMBER_6_SPIRTE "Tiles/numbers/6.xpm"
+# define NUMBER_7_SPIRTE "Tiles/numbers/7.xpm"
+# define NUMBER_8_SPIRTE "Tiles/numbers/8.xpm"
+# define NUMBER_9_SPIRTE "Tiles/numbers/9.xpm"
 
 # define TILE_SIZE 64
 

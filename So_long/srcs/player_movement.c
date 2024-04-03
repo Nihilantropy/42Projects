@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:06 by crea              #+#    #+#             */
-/*   Updated: 2024/03/31 19:55:20 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/03 22:36:35 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ int	try_to_drill(t_game *game, int new_x, int new_y)
 	{
 		game->map.xebui++;
 		if (game->map.xebui == 10)
+		{
+			game->uisqfut = true;
 			ft_printf(SECRET_LOCKED);
+		}
 		return (0);
 	}
 	return (1);
