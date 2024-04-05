@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:46:01 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 14:57:26 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 18:18:49 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ void	power_of_the_d(t_game *game)
 	game->powerup.the_d = true;
 	game->powerup.time = current_timestamp();
 	if (!game->map.enemies_alive && game->powerup.the_d)
-		game->sqd_uisqfu = true;
+		game->can_escape = true;
 	ft_printf(ON_FIRE);
 }
 
 void	depression_of_the_d(t_game *game)
 {
 	game->powerup.the_d = false;
-	game->sqd_uisqfu = false;
+	game->can_escape = false;
 	game->powerup.time = 0;
-	game->map.xebui = 0;
+	game->map.holes = 0;
 }
 
 void	destroy_enemy(t_game *game)

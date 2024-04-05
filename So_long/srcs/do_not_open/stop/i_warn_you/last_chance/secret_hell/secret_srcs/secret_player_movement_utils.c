@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iushuj_xubbiushuj_fbqouh_celucudj_kjybi.c          :+:      :+:    :+:   */
+/*   secret_player_movement_utils.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 11:42:20 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 16:23:45 by crea             ###   ########.fr       */
+/*   Created: 2024/04/05 18:04:28 by crea              #+#    #+#             */
+/*   Updated: 2024/04/06 00:11:04 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../secret_include/iushuj_xubb.h"
+#include "../secret_include/secret_hell.h"
 
 static void	secret_check_if_player_facing_left(t_secret_game *secret_game, int new_x);
 
 int	secret_is_valid_move(t_secret_game *secret_game, int new_x, int new_y, int keycode)
 {
 	if (secret_game->game->map.matrix[new_y][new_x] == WALL)
+		return (0);
+	if (secret_game->game->map.matrix[new_y][new_x] == BOSS &&
+		secret_game->boss.is_alive)
 		return (0);
 	if (new_x <= 0 || new_y <= 0 ||
 		new_x >= secret_game->game->map.col || new_y >= secret_game->game->map.row)
@@ -42,9 +45,9 @@ void	secret_update_collect_count(t_secret_game *secret_game, int new_x, int new_
 	if (secret_game->game->map.matrix[new_y][new_x] == COLLECT)
 	{
 		secret_game->game->map.collect--;
-		if (secret_game->game->map.collect > 1)
+		if (secret_game->game->map.collect > 0)
 			ft_printf(SECRET_COLLECTABLES_NBR);
-		else if (secret_game->game->map.collect == 1)
+		else if (secret_game->game->map.collect == 0)
 			ft_printf(SECRET_ALL_COLLECT_PICKEDUP);
 		power_of_the_d(secret_game->game);
 	}
@@ -89,7 +92,7 @@ static void	secret_check_if_player_facing_left(t_secret_game *secret_game, int n
 void	secret_check_if_win(t_secret_game *secret_game, int new_x, int new_y)
 {
 	if (secret_game->game->map.matrix[new_y][new_x] == EXIT
-		&& secret_game->game->map.collect == 0)
+		&& secret_game->game->map.collect == 0 && !secret_game->boss.is_alive)
 	{
 		secret_game->game->victory = true;
 		player_win(secret_game->game);

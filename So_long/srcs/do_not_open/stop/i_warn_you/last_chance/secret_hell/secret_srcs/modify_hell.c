@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cetyvo_xubb.c                                      :+:      :+:    :+:   */
+/*   modify_hell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 00:03:00 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 16:23:29 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 18:19:43 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../secret_include/iushuj_xubb.h"
+#include "../secret_include/secret_hell.h"
 
-static void	vybb_cqf(t_secret_game *secret_game);
+static void	fill_map(t_secret_game *secret_game);
 
-static void	fkj_reii(t_secret_game *secret_game);
+static void	put_boss(t_secret_game *secret_game);
 
-void	sxqdwu_cqf(t_secret_game *secret_game)
+void	change_map(t_secret_game *secret_game)
 {
 	int	x;
 	int	y;
@@ -38,12 +38,12 @@ void	sxqdwu_cqf(t_secret_game *secret_game)
 		secret_game->game->map.matrix[y][secret_game->game->map.col - 1] = WALL;
 		y++;
 	}
-	vybb_cqf(secret_game);
-	fkj_reii(secret_game);
+	fill_map(secret_game);
+	put_boss(secret_game);
 	return ;
 }
 
-static void	vybb_cqf(t_secret_game *secret_game)
+static void	fill_map(t_secret_game *secret_game)
 {
 	int	x;
 	int	y;
@@ -73,7 +73,7 @@ static void	vybb_cqf(t_secret_game *secret_game)
 	return ;
 }
 
-static void	fkj_reii(t_secret_game *secret_game)
+static void	put_boss(t_secret_game *secret_game)
 {
 	int	x;
 	int	y;

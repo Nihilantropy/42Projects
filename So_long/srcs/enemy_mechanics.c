@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:47:51 by crea              #+#    #+#             */
-/*   Updated: 2024/03/31 15:29:05 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 22:58:21 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void move_enemy(t_game *game)
 		&& !enemy_bump_player(game, new_x, new_y))
 		update_enemy_pos(game, new_x, new_y);
 }
+
 void	update_enemy_pos(t_game *game, int new_x, int new_y)
 {
 	game->map.matrix[game->map.enemy[game->map.enemy_index].enemy_pos.y][game->map.enemy[game->map.enemy_index].enemy_pos.x] = FLOOR;

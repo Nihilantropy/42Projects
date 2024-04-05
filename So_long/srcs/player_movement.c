@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:06 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 11:07:11 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 18:18:12 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	key_press(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 	{
-		game->uisqfut = true;
+		game->escaped = true;
 		ft_printf(EARLY_GAME_CLOSE);
 		//close_game(game);
 	}
@@ -68,17 +68,17 @@ void	handle_movement_changes(t_game *game, int new_x, int new_y)
 
 int	try_to_drill(t_game *game, int new_x, int new_y)
 {
-	if (game->map.matrix[new_y][new_x] == WALL && !game->sqd_uisqfu)
+	if (game->map.matrix[new_y][new_x] == WALL && !game->can_escape)
 	{
 		ft_printf(ERROR_INVALID_ROUT);
 		return (0);
 	}
-	else if (game->map.matrix[new_y][new_x] == WALL && game->sqd_uisqfu)
+	else if (game->map.matrix[new_y][new_x] == WALL && game->can_escape)
 	{
-		game->map.xebui++;
-		if (game->map.xebui == 10)
+		game->map.holes++;
+		if (game->map.holes == BREACH)
 		{
-			game->uisqfut = true;
+			game->escaped = true;
 			ft_printf(SECRET_LOCKED);
 		}
 		return (0);

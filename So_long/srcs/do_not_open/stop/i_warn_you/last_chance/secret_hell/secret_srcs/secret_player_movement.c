@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iushuj_xubbiushuj_fbqouh_celucudj.c                :+:      :+:    :+:   */
+/*   secret_player_movement.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 11:29:20 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 16:23:47 by crea             ###   ########.fr       */
+/*   Created: 2024/04/05 18:04:41 by crea              #+#    #+#             */
+/*   Updated: 2024/04/05 23:35:20 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../secret_include/iushuj_xubb.h"
+#include "../secret_include/secret_hell.h"
 
-void	xqdtbu_iushuj_fbqouh_celucudj(t_secret_game *secret_game, int keycode)
+void	handle_secret_player_movement(t_secret_game *secret_game, int keycode)
 {
 	int	delta_x;
 	int	delta_y;
@@ -31,18 +31,16 @@ void	xqdtbu_iushuj_fbqouh_celucudj(t_secret_game *secret_game, int keycode)
 		delta_x = 1;
 	new_x = secret_game->game->map.player_pos.x + delta_x;
 	new_y = secret_game->game->map.player_pos.y + delta_y;
-	if (secret_is_valid_move(secret_game, new_x, new_y, keycode)
-		&& !player_bump_boss(secret_game, new_x, new_y))
-		xqdtbu_iushuj_celucudj_sxqdwui(secret_game, new_x, new_y);
+	if (player_bump_boss(secret_game, new_x, new_y) == 0 &&
+		secret_is_valid_move(secret_game, new_x, new_y, keycode))
+		handle_secret_movement_changes(secret_game, new_x, new_y);
 	return ;
 }
 
-void	xqdtbu_iushuj_celucudj_sxqdwui(t_secret_game *secret_game, int new_x, int new_y)
+void	handle_secret_movement_changes(t_secret_game *secret_game, int new_x, int new_y)
 {
 	secret_update_collect_count(secret_game, new_x, new_y);
 	secret_check_if_win(secret_game, new_x, new_y);
 	secret_update_player_pos(secret_game, new_x, new_y);
 	secret_draw_map(secret_game);
-	if (secret_game->game->victory == true)
-		player_win(secret_game->game);
 }

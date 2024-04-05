@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 17:40:13 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 23:26:40 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ typedef struct s_map
 	t_enemy		*enemy;
 	t_reachable reachable;
 	t_axis      player_pos;
-	int			xebui;
+	int			holes;
 }				t_map;
 
 /* struct for all game's specifics */
@@ -210,9 +210,9 @@ typedef struct s_game
 	int			moves;
 	t_bool		lose;
 	t_bool		victory;
-	t_bool		sqd_uisqfu;
-	t_bool		uisqfut;
-	t_bool		iushuj_xubb;
+	t_bool		can_escape;
+	t_bool		escaped;
+	t_bool		secret_hell;
 	t_powerup	powerup;
 	long		screenup;
 }				t_game;
@@ -235,7 +235,7 @@ static inline t_game    init_game(void)
 		.map.reachable.collect_reachable = 0,
 		.map.reachable.exit_reachable = false,
 		.map.player_pos.facing_left = false,
-		.map.xebui = 0,
+		.map.holes = 0,
 		.tiles.floor = NULL,
 		.tiles.wall.current_frame = 0,
 		.tiles.wall.anim_counter = 0,
@@ -262,9 +262,9 @@ static inline t_game    init_game(void)
 		.moves = 0,
 		.lose = false,
 		.victory = false,
-		.sqd_uisqfu = false,
-		.uisqfut = false,
-		.iushuj_xubb = false,
+		.can_escape = false,
+		.escaped = false,
+		.secret_hell = false,
 		.powerup.the_d = false,
 		.powerup.time = 0,
 		.screenup = 0,
@@ -414,5 +414,7 @@ void	destroy_enemy(t_game *game);
 /* player mechanics utils */
 void	get_enemy_target(t_game *game, int new_x, int new_y);
 void	remove_enemy_from_matrix(t_game *game);
+
+int congratulation(t_game *game);
 
 #endif

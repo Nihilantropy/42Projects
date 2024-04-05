@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:27:09 by crea              #+#    #+#             */
-/*   Updated: 2024/04/04 00:01:26 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/06 00:24:55 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@
 
 /* player power up time */
 # define THE_D_BURNS 3000
+
+# define BREACH 20
 
 #endif

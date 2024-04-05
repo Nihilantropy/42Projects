@@ -1,0 +1,13 @@
+#ifndef SECRET_MECHANICS_H
+# define SECRET_MECHANICS_H
+
+# define CONGRATS 500
+
+# define BOSS_HEALTH 16
+# define PLAYER_HEALTH 4
+
+# define REGEN_TIME 7000
+
+# define BOSS_MOVE_PROB 100
+
+#endif

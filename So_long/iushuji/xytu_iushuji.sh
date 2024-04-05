@@ -10,11 +10,10 @@ update_file="$script_dir/../srcs/update.c"
 
 sed -i '' 's/SECRET_UNLOCKED/SECRET_LOCKED/g' "$player_movement_file"
 
-sed -i '' '/\* oek sqddej ru ijeffut \*/d' "$so_long_file"
-sed -i '' '/void uisqfu_xubb(t_game \*game);/,+1d' "$so_long_file"
-sed -i '' '/int sedwhqjkbqjyed(t_game \*game);/,+1d' "$so_long_file"
+sed -i '' '/void escape_hell(t_game \*game);/,+1d' "$so_long_file"
+sed -i '' '/int congratulation(t_game \*game);/,+1d' "$so_long_file"
 
-sed -i '' '/if (game->uisqfut)/d' "$update_file"
-sed -i '' '/mlx_loop_hook(game->mlx_ptr, sedwhqjkbqjyed, game);/d' "$update_file"
-sed -i '' '/if (game->iushuj_xubb)/d' "$update_file"
-sed -i '' '/uisqfu_xubb(game);/d' "$update_file"
+sed -i '' '/if (game->escaped)/d' "$update_file"
+sed -i '' '/mlx_loop_hook(game->mlx_ptr, congratulation, game);/d' "$update_file"
+sed -i '' '/if (game->secret_hell)/d' "$update_file"
+sed -i '' '/escape_hell(game);/d' "$update_file"

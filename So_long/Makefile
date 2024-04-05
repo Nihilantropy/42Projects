@@ -14,9 +14,9 @@ SRCS		= main.c check_map_extention.c get_map.c get_map_utils.c check_map_edges.c
 				collect_animation.c exit_animation.c enemy_animation.c game_mechanics.c game_mechanics_utils.c enemy_mechanics.c enemy_mechanics_utils.c \
 				update.c player_mechanics.c player_mechanics_utils.c player_d_animation.c player_d_inv_animation.c number_sprites.c
 						
-SECRET_SRCS	= iushuj.c sedwhqjkbqjyed.c cetyvo_xubb.c iushuj_xubbiushuj_fbqouh_celucudj.c iushuj_xubbiushuj_fbqouh_celucudj_kjybi.c \
+SECRET_SRCS	= congratulation.c secret_main.c modify_hell.c secret_player_movement.c secret_player_movement_utils.c \
 				secret_render_map.c secret_handle_animations.c secret_handle_closure.c hell_boss_init.c hell_boss_animation.c hell_boss_mechanics.c \
-				hell_boss_mechanics_utils.c
+				hell_boss_mechanics_utils.c hell_boss_movement.c hell_boss_movement_utils.c player_health_utils.c
 
 OBJS		= $(patsubst %.c, $(SOLONG_DIR)/%.o, $(SRCS))
 

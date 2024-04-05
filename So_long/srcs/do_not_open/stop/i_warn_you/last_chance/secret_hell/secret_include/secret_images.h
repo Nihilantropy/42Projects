@@ -39,8 +39,15 @@
 # define BOSS_HEALTH_SPRITE_15 "srcs/do_not_open/stop/i_warn_you/last_chance/secret_hell/secret_tiles/boss_health/boss_health(15).xpm"
 # define BOSS_HEALTH_SPRITE_16 "srcs/do_not_open/stop/i_warn_you/last_chance/secret_hell/secret_tiles/boss_health/boss_health(16).xpm"
 
+# define PLAYER_HEALTH_SPRITE_1 "srcs/do_not_open/stop/i_warn_you/last_chance/secret_hell/secret_tiles/player_health/player_health(1).xpm"
+# define PLAYER_HEALTH_SPRITE_2 "srcs/do_not_open/stop/i_warn_you/last_chance/secret_hell/secret_tiles/player_health/player_health(2).xpm"
+# define PLAYER_HEALTH_SPRITE_3 "srcs/do_not_open/stop/i_warn_you/last_chance/secret_hell/secret_tiles/player_health/player_health(3).xpm"
+# define PLAYER_HEALTH_SPRITE_4 "srcs/do_not_open/stop/i_warn_you/last_chance/secret_hell/secret_tiles/player_health/player_health(4).xpm"
+
 # define BOSS_ANIM_FRAMES 8
 
 # define BOSS_HEALTH_FRAMES 16
+
+# define PLAYER_HEALTH_FRAMES 4
 
 #endif

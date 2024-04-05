@@ -6,18 +6,19 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:50:48 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 17:37:09 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 23:41:58 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../secret_include/iushuj_xubb.h"
+#include "../secret_include/secret_hell.h"
 
-static void	draw_boss_health(t_secret_game *secret_game);
+static void	draw_health(t_secret_game *secret_game);
 
 void	secret_init_sprites(t_secret_game *secret_game)
 {
 	load_boss_images(secret_game);
 	load_boss_health_images(secret_game);
+	load_player_health_images(secret_game);
 }
 
 void	secret_render_tiles(t_secret_game *secret_game, char tile)
@@ -61,7 +62,7 @@ void	secret_draw_map(t_secret_game *secret_game)
 		}
 		y++;
 	}
-	draw_boss_health(secret_game);
+	draw_health(secret_game);
 	draw_text(secret_game->game);
 }
 
@@ -73,7 +74,7 @@ void secret_free_images(t_secret_game *secret_game)
 		!secret_game->game->tiles.player_d.frames[0] || !secret_game->game->tiles.collect.frames[0] ||
 		!secret_game->game->tiles.exit.frames[0] || !secret_game->game->tiles.enemy.frames[0] ||
 		!secret_game->game->tiles.number.count[0] || !secret_game->tiles.boss.frames[0] ||
-		!secret_game->tiles.boss.health[0])
+		!secret_game->tiles.boss.health[0] || !secret_game->player.health_bar[0])
 		ft_exit_error(ERROR_FREE_IMAGE);
 	mlx_destroy_image(secret_game->game->mlx_ptr, secret_game->game->tiles.floor);
 	free_wall_images(secret_game->game);
@@ -87,16 +88,21 @@ void secret_free_images(t_secret_game *secret_game)
 	free_number_images(secret_game->game);
 	free_boss_images(secret_game);
 	free_boss_health_images(secret_game);
+	free_player_health_images(secret_game);
 }
 
-static void	draw_boss_health(t_secret_game *secret_game)
+static void	draw_health(t_secret_game *secret_game)
 {
-	void	*image;
+	void	*image_1;
+	void	*image_2;
 	int		x;
 	int		y;
 
-	x = secret_game->game->win.width - (TILE_SIZE * 3);
+	x = (secret_game->game->win.width / 2) + (TILE_SIZE * 3);
 	y = TILE_SIZE;
-	image = secret_game->tiles.boss.health[secret_game->tiles.boss.current_health];
-	mlx_put_image_to_window(secret_game->mlx_ptr, secret_game->mlx_win, image, x, y);
+	image_1 = secret_game->tiles.boss.health[secret_game->tiles.boss.current_health];
+	mlx_put_image_to_window(secret_game->mlx_ptr, secret_game->mlx_win, image_1, x, y);
+	x = (secret_game->game->win.width / 2) - (TILE_SIZE * 3);
+	image_2 = secret_game->player.health_bar[secret_game->player.current_health];
+	mlx_put_image_to_window(secret_game->mlx_ptr, secret_game->mlx_win, image_2, x, y);
 }
