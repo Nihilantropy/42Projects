@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:56:30 by crea              #+#    #+#             */
-/*   Updated: 2024/04/03 18:34:44 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 17:35:10 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void free_images(t_game *game)
 {
 	if (!game->mlx_ptr || !game->tiles.floor || !game->tiles.wall.frames[0] ||
 		!game->tiles.player.frames[0] || !game->tiles.player_inv.frames[0] ||
+		!game->tiles.player_d.frames[0] || !game->tiles.player_d_inv.frames[0] ||
 		!game->tiles.collect.frames[0] || !game->tiles.exit.frames[0] ||
 		!game->tiles.enemy.frames[0] || !game->tiles.number.count[0])
 		ft_exit_error(ERROR_FREE_IMAGE);

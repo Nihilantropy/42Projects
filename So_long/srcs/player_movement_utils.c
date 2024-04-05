@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:01 by crea              #+#    #+#             */
-/*   Updated: 2024/04/03 22:50:35 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/04 18:49:44 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	update_collect_count(t_game *game, int new_x, int new_y)
 {
 	if (game->map.matrix[new_y][new_x] == COLLECT)
 	{
+		game->map.collect--;
 		if (game->map.collect > 1)
 			ft_printf(COLLECTABLES_NBR);
 		else if (game->map.collect == 1)
 			ft_printf(ALL_COLLECT_PICKEDUP);
-		game->map.collect--;
 		power_of_the_d(game);
 	}
 }

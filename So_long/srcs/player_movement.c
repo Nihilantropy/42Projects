@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:06 by crea              #+#    #+#             */
-/*   Updated: 2024/04/03 22:36:35 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 11:07:11 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int	key_press(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 	{
+		game->uisqfut = true;
 		ft_printf(EARLY_GAME_CLOSE);
-		close_game(game);
+		//close_game(game);
 	}
 	else
 		handle_player_movement(game, keycode);

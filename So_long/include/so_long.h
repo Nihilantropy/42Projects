@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/04/04 00:11:16 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 17:40:13 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef enum map_tiles
 	PLAYER = 'P',
 	COLLECT = 'C',
 	EXIT = 'E',
-	ENEMY = 'N'
+	ENEMY = 'N',
 }	map_tiles;
 
 /* struct for display size */

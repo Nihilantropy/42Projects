@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 17:33:41 by crea              #+#    #+#             */
-/*   Updated: 2024/04/03 15:05:00 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 16:50:22 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,7 @@
 # define ENEMY_SPRITE_FRAME_7 "Tiles/enemy/enemy(frame1).xpm"
 # define ENEMY_SPRITE_FRAME_8 "Tiles/enemy/enemy(frame2).xpm"
 # define ENEMY_SPRITE_FRAME_9 "Tiles/enemy/enemy(frame2).xpm"
-# define ENEMY_SPRITE_FRAME_10 "Tiles/enemy/enemy(frame2).xpm"
-# define ENEMY_SPRITE_FRAME_10 "Tiles/enemy/enemy(frame2).xpm"
+# define ENEMY_SPRITE_FRAME_10 "Tiles/enemy/enemy(frame1).xpm"
 
 /* numbers sprites */
 # define NUMBER_0_SPIRTE "Tiles/numbers/0.xpm"

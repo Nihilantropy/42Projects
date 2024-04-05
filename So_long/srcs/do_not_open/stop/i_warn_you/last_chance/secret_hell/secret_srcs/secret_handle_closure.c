@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_closure.c                                   :+:      :+:    :+:   */
+/*   secret_handle_closure.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 16:08:51 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 12:45:54 by crea             ###   ########.fr       */
+/*   Created: 2024/04/04 19:16:14 by crea              #+#    #+#             */
+/*   Updated: 2024/04/05 17:41:05 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../secret_include/iushuj_xubb.h"
 
-int	close_game(void *param)
+int	secret_close_game(void *param)
 {
-	t_game	*game;
+	t_secret_game	*secret_game;
 
-	game = param;
-	mlx_clear_window(game->mlx_ptr, game->mlx_win);
-	free_images(game);
-	clean_matrix(game);
-	if (game->map.enemies > 0)
-		free_enemy_arr(game);
-	mlx_destroy_window(game->mlx_ptr, game->mlx_win);
+	secret_game = param;
+	mlx_clear_window(secret_game->mlx_ptr, secret_game->mlx_win);
+	secret_free_images(secret_game);
+	clean_matrix(secret_game->game);
+	if (secret_game->game->map.enemies > 0)
+		free_enemy_arr(secret_game->game);
+	mlx_destroy_window(secret_game->mlx_ptr, secret_game->mlx_win);
 	exit (0);
-}
-
-void	clean_matrix(t_game *game)
-{
-	int	y;
-
-	y = game->map.row;
-	while (y-- > 0)
-		free(game->map.matrix[y]);
-	free(game->map.matrix);
 }

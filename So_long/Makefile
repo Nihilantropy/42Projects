@@ -5,7 +5,8 @@ SECRET_NAME	= so_longo
 SOLONG_DIR	= ./srcs
 SOLONG_HEAD	= ./include
 
-SECRET_DIR	= ./srcs/do_not_open/stop/i_warn_you/last_chance/secret_hell
+SECRET_HEAD = ./srcs/do_not_open/stop/i_warn_you/last_chance/secret_hell/secret_include
+SECRET_DIR	= ./srcs/do_not_open/stop/i_warn_you/last_chance/secret_hell/secret_srcs
 
 SRCS		= main.c check_map_extention.c get_map.c get_map_utils.c check_map_edges.c check_map_interior.c \
 				check_if_map_is_complete.c check_if_map_is_complete_utils.c manage_display.c render_map.c player_movement.c \
@@ -13,7 +14,9 @@ SRCS		= main.c check_map_extention.c get_map.c get_map_utils.c check_map_edges.c
 				collect_animation.c exit_animation.c enemy_animation.c game_mechanics.c game_mechanics_utils.c enemy_mechanics.c enemy_mechanics_utils.c \
 				update.c player_mechanics.c player_mechanics_utils.c player_d_animation.c player_d_inv_animation.c number_sprites.c
 						
-SECRET_SRCS	= iushuj.c sedwhqjkbqjyed.c modify_hell.c
+SECRET_SRCS	= iushuj.c sedwhqjkbqjyed.c cetyvo_xubb.c iushuj_xubbiushuj_fbqouh_celucudj.c iushuj_xubbiushuj_fbqouh_celucudj_kjybi.c \
+				secret_render_map.c secret_handle_animations.c secret_handle_closure.c hell_boss_init.c hell_boss_animation.c hell_boss_mechanics.c \
+				hell_boss_mechanics_utils.c
 
 OBJS		= $(patsubst %.c, $(SOLONG_DIR)/%.o, $(SRCS))
 
@@ -35,6 +38,8 @@ RM = rm -f
 # Include directory for header files
 INC 		= -I$(SOLONG_HEAD) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MLX_DIR)
 
+SECRET_INC	= -I$(SOLONG_HEAD) -I$(SECRET_HEAD) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(MLX_DIR)
+
 # Compilation rule for the program
 $(NAME): $(LIBFT) $(PRINTF_LIB) $(MLX_LIB) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lft_printf -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
@@ -48,7 +53,7 @@ $(SOLONG_DIR)/%.o: $(SOLONG_DIR)/%.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(SECRET_DIR)/%.o: $(SECRET_DIR)/%.c
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(SECRET_INC) -c $< -o $@
 
 # Rule to make libft
 $(LIBFT):

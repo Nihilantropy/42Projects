@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:46:01 by crea              #+#    #+#             */
-/*   Updated: 2024/03/31 20:19:37 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 14:57:26 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /* player moves and bump into an enemy */
 int	player_bump_enemy(t_game *game, int new_x, int new_y)
 {
-
 	if (game->map.matrix[new_y][new_x] == ENEMY && !game->powerup.the_d)
 	{
 		player_lose(game, PLAYER_GOT_CAUGHT);
