@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 12:09:42 by crea              #+#    #+#             */
-/*   Updated: 2024/04/09 14:57:34 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/09 21:50:17 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	secret_key_close(t_secret_game *secret_game, int keycode)
 {
 	if (keycode == ESC)
 	{
-		ft_printf(EARLY_GAME_CLOSE);
+		ft_printf(SECRET_EARLY_GAME_CLOSE);
 		secret_close_game(secret_game);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 18:04:28 by crea              #+#    #+#             */
-/*   Updated: 2024/04/09 15:50:19 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/09 21:46:21 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	secret_is_valid_move(t_secret_game *secret_game, int new_x, int new_y, int k
 		return (0);
 	if (secret_game->game->map.collect != 0 && secret_game->game->map.matrix[new_y][new_x] == EXIT)
 	{
-		ft_printf(ERROR_EXIT_NOT_OPEN);
+		ft_printf(SECRET_ERROR_EXIT_NOT_OPEN);
 		return (0);
 	}
 	if (keycode == W || keycode == A || keycode == S || keycode == D ||
@@ -36,7 +36,7 @@ int	secret_is_valid_move(t_secret_game *secret_game, int new_x, int new_y, int k
 		return (1);
 	}
 	else
-		ft_printf(ERROR_INVALID_KEY);
+		ft_printf(SECRET_ERROR_INVALID_KEY);
 	return (0);
 }
 

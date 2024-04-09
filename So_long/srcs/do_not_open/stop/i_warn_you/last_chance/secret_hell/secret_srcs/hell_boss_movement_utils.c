@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 17:52:32 by crea              #+#    #+#             */
-/*   Updated: 2024/04/09 15:12:28 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/09 21:49:15 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int player_bump_boss(t_secret_game *secret_game, int new_x, int new_y)
 			else
 			{
 				if (secret_game->cheat_done)
-					ft_printf(BOSS_DEFEATED_CHEAT);
+					ft_printf(BOSS_CHEAT);
 				else
 					ft_printf(BOSS_DEFEATED);
 				return (0);

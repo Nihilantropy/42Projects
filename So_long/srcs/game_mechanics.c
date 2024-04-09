@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:55:33 by crea              #+#    #+#             */
-/*   Updated: 2024/03/31 17:16:24 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/09 21:38:15 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	player_win(t_game *game)
 	}
 	else
 	{
-		ft_printf(FINAL_MOVE_JOKE);
-		ft_printf(WIN_MSG_JOKE);
+		ft_printf(FINAL_JOKE);
+		ft_printf(WIN_JOKE);
 	}
 	close_game(game);
 }

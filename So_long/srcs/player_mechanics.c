@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 12:46:01 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 18:18:49 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/09 21:39:27 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	destroy_enemy(t_game *game)
 	else if (game->map.enemies_alive == 1)
 	{
 		ft_printf(PLAYER_DESTROY_ENEMY);
-		ft_printf(LAST_ENEMY_ALIVE);
+		ft_printf(ENEMY_ALIVE_1);
 	}
 	else if (game->map.enemies_alive == 0)
 		ft_printf(NO_MORE_ENEMIES);

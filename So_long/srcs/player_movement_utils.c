@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:01 by crea              #+#    #+#             */
-/*   Updated: 2024/04/04 18:49:44 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/09 21:35:49 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ void	update_player_pos(t_game *game, int new_x, int new_y)
 	game->map.player_pos.x = new_x;
 	game->map.player_pos.y = new_y;
 	if (game->victory == true)
-	{
-		ft_printf(FINAL_PLAYER_POS);
-		return ;
-	}
-	else
 		return ;
 }
 
