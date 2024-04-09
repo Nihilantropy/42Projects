@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:46:20 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 23:26:40 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/09 15:40:06 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ typedef struct s_game
 	t_bool		escaped;
 	t_bool		secret_hell;
 	t_powerup	powerup;
-	long		screenup;
+	long long	screenup;
 }				t_game;
 
 /* inline function to initialize the game map, tiles, player_pos & moves, and all checks */
@@ -414,7 +414,5 @@ void	destroy_enemy(t_game *game);
 /* player mechanics utils */
 void	get_enemy_target(t_game *game, int new_x, int new_y);
 void	remove_enemy_from_matrix(t_game *game);
-
-int congratulation(t_game *game);
 
 #endif

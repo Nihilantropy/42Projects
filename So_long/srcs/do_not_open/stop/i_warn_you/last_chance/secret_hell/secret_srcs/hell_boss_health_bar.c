@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 15:06:59 by crea              #+#    #+#             */
-/*   Updated: 2024/04/05 18:19:36 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/07 11:45:45 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	load_boss_health_images(t_secret_game *secret_game)
 	}
 }
 
-
 void    free_boss_health_images(t_secret_game *secret_game)
 {
 	int i;
@@ -53,4 +52,11 @@ void    free_boss_health_images(t_secret_game *secret_game)
 	i = 0;
 	while (i < BOSS_HEALTH_FRAMES)
 		mlx_destroy_image(secret_game->mlx_ptr, secret_game->tiles.boss.health[i++]);
+}
+
+void	reset_boss_health(t_secret_game *secret_game)
+{
+	secret_game->boss.health = BOSS_HEALTH;
+	secret_game->tiles.boss.current_health = 0;
+	secret_game->boss.is_hit = false;
 }
