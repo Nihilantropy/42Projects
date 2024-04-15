@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:08:51 by crea              #+#    #+#             */
-/*   Updated: 2024/03/25 16:27:24 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/05 12:45:54 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	close_game(void *param)
 	mlx_clear_window(game->mlx_ptr, game->mlx_win);
 	free_images(game);
 	clean_matrix(game);
+	if (game->map.enemies > 0)
+		free_enemy_arr(game);
 	mlx_destroy_window(game->mlx_ptr, game->mlx_win);
 	exit (0);
 }

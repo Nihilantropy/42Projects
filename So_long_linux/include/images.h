@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   images.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/31 17:33:41 by crea              #+#    #+#             */
+/*   Updated: 2024/04/05 16:50:22 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef IMAGES_H
 # define IMAGES_H
 
@@ -23,6 +35,16 @@
 # define PLAYER_SPRITE_FRAME_7 "Tiles/player/player(frame7).xpm"
 # define PLAYER_SPRITE_FRAME_8 "Tiles/player/player(frame8).xpm"
 
+/* player d animation sprites */
+# define PLAYER_D_SPRITE_FRAME_1 "Tiles/player/player_d/player_d(frame1).xpm"
+# define PLAYER_D_SPRITE_FRAME_2 "Tiles/player/player_d/player_d(frame2).xpm"
+# define PLAYER_D_SPRITE_FRAME_3 "Tiles/player/player_d/player_d(frame3).xpm"
+# define PLAYER_D_SPRITE_FRAME_4 "Tiles/player/player_d/player_d(frame4).xpm"
+# define PLAYER_D_SPRITE_FRAME_5 "Tiles/player/player_d/player_d(frame4).xpm"
+# define PLAYER_D_SPRITE_FRAME_6 "Tiles/player/player_d/player_d(frame4).xpm"
+# define PLAYER_D_SPRITE_FRAME_7 "Tiles/player/player_d/player_d(frame4).xpm"
+# define PLAYER_D_SPRITE_FRAME_8 "Tiles/player/player_d/player_d(frame4).xpm"
+
 /* player inverted animation sprites */
 # define PLAYER_INV_SPRITE_FRAME_1 "Tiles/player_inv/player_inv(frame1).xpm"
 # define PLAYER_INV_SPRITE_FRAME_2 "Tiles/player_inv/player_inv(frame2).xpm"
@@ -32,6 +54,16 @@
 # define PLAYER_INV_SPRITE_FRAME_6 "Tiles/player_inv/player_inv(frame6).xpm"
 # define PLAYER_INV_SPRITE_FRAME_7 "Tiles/player_inv/player_inv(frame7).xpm"
 # define PLAYER_INV_SPRITE_FRAME_8 "Tiles/player_inv/player_inv(frame8).xpm"
+
+/* player inverted d animation sprites */
+# define PLAYER_D_INV_SPRITE_FRAME_1 "Tiles/player_inv/player_d_inv/player_d_inv(frame1).xpm"
+# define PLAYER_D_INV_SPRITE_FRAME_2 "Tiles/player_inv/player_d_inv/player_d_inv(frame2).xpm"
+# define PLAYER_D_INV_SPRITE_FRAME_3 "Tiles/player_inv/player_d_inv/player_d_inv(frame3).xpm"
+# define PLAYER_D_INV_SPRITE_FRAME_4 "Tiles/player_inv/player_d_inv/player_d_inv(frame4).xpm"
+# define PLAYER_D_INV_SPRITE_FRAME_5 "Tiles/player_inv/player_d_inv/player_d_inv(frame4).xpm"
+# define PLAYER_D_INV_SPRITE_FRAME_6 "Tiles/player_inv/player_d_inv/player_d_inv(frame4).xpm"
+# define PLAYER_D_INV_SPRITE_FRAME_7 "Tiles/player_inv/player_d_inv/player_d_inv(frame4).xpm"
+# define PLAYER_D_INV_SPRITE_FRAME_8 "Tiles/player_inv/player_d_inv/player_d_inv(frame4).xpm"
 
 /* collectable animation sprites */
 # define COLLECT_SPRITE_FRAME_1 "Tiles/collectable/collectable(frame1).xpm"
@@ -54,6 +86,30 @@
 # define EXIT_SPRITE_FRAME_9 "Tiles/exit/exit(frame9).xpm"
 # define EXIT_SPRITE_FRAME_10 "Tiles/exit/exit(frame10).xpm"
 
+/* enemy animation sprites */
+# define ENEMY_SPRITE_FRAME_1 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_2 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_3 "Tiles/enemy/enemy(frame2).xpm"
+# define ENEMY_SPRITE_FRAME_4 "Tiles/enemy/enemy(frame2).xpm"
+# define ENEMY_SPRITE_FRAME_5 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_6 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_7 "Tiles/enemy/enemy(frame1).xpm"
+# define ENEMY_SPRITE_FRAME_8 "Tiles/enemy/enemy(frame2).xpm"
+# define ENEMY_SPRITE_FRAME_9 "Tiles/enemy/enemy(frame2).xpm"
+# define ENEMY_SPRITE_FRAME_10 "Tiles/enemy/enemy(frame1).xpm"
+
+/* numbers sprites */
+# define NUMBER_0_SPIRTE "Tiles/numbers/0.xpm"
+# define NUMBER_1_SPIRTE "Tiles/numbers/1.xpm"
+# define NUMBER_2_SPIRTE "Tiles/numbers/2.xpm"
+# define NUMBER_3_SPIRTE "Tiles/numbers/3.xpm"
+# define NUMBER_4_SPIRTE "Tiles/numbers/4.xpm"
+# define NUMBER_5_SPIRTE "Tiles/numbers/5.xpm"
+# define NUMBER_6_SPIRTE "Tiles/numbers/6.xpm"
+# define NUMBER_7_SPIRTE "Tiles/numbers/7.xpm"
+# define NUMBER_8_SPIRTE "Tiles/numbers/8.xpm"
+# define NUMBER_9_SPIRTE "Tiles/numbers/9.xpm"
+
 # define TILE_SIZE 64
 
 /* wall animation frames */
@@ -67,5 +123,8 @@
 
 /* exit animation frames */
 # define EXIT_ANIM_FRAMES 10
+
+/* exit animation frames */
+# define ENEMY_ANIM_FRAMES 10
 
 #endif

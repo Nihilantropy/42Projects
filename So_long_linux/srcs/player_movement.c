@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:06 by crea              #+#    #+#             */
-/*   Updated: 2024/03/25 16:36:05 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/09 21:52:01 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,38 @@ void	handle_player_movement(t_game *game, int keycode)
 		delta_x = 1;
 	new_x = game->map.player_pos.x + delta_x;
 	new_y = game->map.player_pos.y + delta_y;
-	if (is_valide_move(game, new_x, new_y, keycode))
+	if (is_valid_move(game, new_x, new_y, keycode)
+		&& !player_bump_enemy(game, new_x, new_y))
 		handle_movement_changes(game, new_x, new_y);
-	else
-		return ;
+	return ;
 }
 
 void	handle_movement_changes(t_game *game, int new_x, int new_y)
 {
 	update_collect_count(game, new_x, new_y);
+	check_if_win(game, new_x, new_y);
 	update_player_pos(game, new_x, new_y);
 	draw_map(game);
-	if (check_if_win(game))
+	if (game->victory == true)
+		player_win(game);
+}
+
+int	try_to_drill(t_game *game, int new_x, int new_y)
+{
+	if (game->map.matrix[new_y][new_x] == WALL && !game->can_escape)
 	{
-		if (game->moves <= 30)
-		{
-			ft_printf(WIN_MSG);
-			ft_printf(FINAL_MOVE);
-		}
-		else
-		{
-			ft_printf(FINAL_MOVE_JOKE);
-			ft_printf(WIN_MSG_JOKE);
-		}
-		close_game(game);
+		ft_printf(ERROR_INVALID_ROUT);
+		return (0);
 	}
-	print_matrix(game);
+	else if (game->map.matrix[new_y][new_x] == WALL && game->can_escape)
+	{
+		game->map.holes++;
+		if (game->map.holes == BREACH)
+		{
+			game->escaped = true;
+			ft_printf(SECRET_LOCKED);
+		}
+		return (0);
+	}
+	return (1);
 }

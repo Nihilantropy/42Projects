@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:02:34 by crea              #+#    #+#             */
-/*   Updated: 2024/02/05 14:43:16 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/06 12:19:46 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t sz)
 	i = 0;
 	if (sz != 0)
 	{
-		while (src[i] && i < (sz -1))
+		while (src[i] && i < (sz - 1))
 		{
 			dest[i] = src[i];
 			i++;
