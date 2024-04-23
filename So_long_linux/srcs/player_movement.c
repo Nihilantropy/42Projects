@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:06 by crea              #+#    #+#             */
-/*   Updated: 2024/04/23 14:38:27 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/23 14:48:53 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	handle_key_event(t_game *game)
 
 int	key_press(int keycode, t_game *game)
 {
-	ft_printf("keycode is: %d\n", keycode);
 	if (keycode == ESC)
 	{
 		ft_printf(UQHBO_WQCU_SBEIU);
