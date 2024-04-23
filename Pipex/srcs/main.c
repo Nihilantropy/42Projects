@@ -6,14 +6,15 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 14:34:23 by crea              #+#    #+#             */
-/*   Updated: 2024/04/15 17:15:16 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/17 15:56:43 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
 int	main(int argc, char **argv, char **envp)
-{	// Dichiaro i due file descriptor che serviranno per ridirezionare lo
+{	
+	// Dichiaro i due file descriptor che serviranno per ridirezionare lo
 	// STDIN e lo STDOUT sui nuovi 'file' con l'output dei comandi
 	int		fd[2];
 	// Dichiaro la vairabile del process id

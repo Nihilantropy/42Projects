@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:04:35 by crea              #+#    #+#             */
-/*   Updated: 2024/04/15 16:37:46 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/16 09:41:02 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	**find_total_path(char **envp)
 	while (!ft_strnstr(envp[i], "PATH=", 5))
 		i++;
 	// Splitto i vari percorsi delle cartelle, che sono separati dai ':'
+	// Es. /usr/bin:/usr/sbin:/ etc...
 	total_path = ft_split(envp[i] + 5, ':');
 	return (total_path);
 }

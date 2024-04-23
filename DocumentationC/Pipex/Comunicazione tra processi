@@ -1,0 +1,5 @@
+La comunicazione tra i processi figlio e padre avviene attraverso una pipe, che è un meccanismo di comunicazione inter-processo (IPC) che permette a un processo di inviare dati a un altro processo. In questo caso, la pipe viene utilizzata per passare l'output del primo comando (processo figlio) come input al secondo comando (processo padre).
+
+Pipe: Un'istanza di pipe viene creata con la chiamata a pipe(fd). Questo crea due file descriptor: fd[0] per la lettura e fd[1] per la scrittura.
+Ridirezionamento: I file descriptor della pipe vengono ridirezionati rispettivamente all'input standard (stdin) e all'output standard (stdout) dei processi figlio e padre. Questo permette ai dati di essere passati dalla pipe da un processo all'altro.
+In sintesi, il programma utilizza il ridirezionamento dell'input e dell'output standard e le pipe per gestire la comunicazione tra i processi figlio e padre, permettendo l'esecuzione di comandi in sequenza con l'output di un comando che diventa l'input del successivo.

@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:04:28 by crea              #+#    #+#             */
-/*   Updated: 2024/04/15 17:23:15 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/16 09:44:38 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	exe_cmd(t_cmd *cmd, char *command, char **envp)
 	char	*path;
 	// Dichiaro una variabile per tenere traccia di eventuali flag.
 	// La funzione deve cercare la path solo con il comando principale, non con le flag
+	// Es. se ho "ls -la", la path deve essere costruita solo con 'ls'
 	char	**raw_command;
 
 	raw_command = ft_split(command, ' ');
@@ -80,7 +81,8 @@ void	exe_cmd(t_cmd *cmd, char *command, char **envp)
 		return ;
 	}
 	// Eseguo execve per far partire il comando specificato, ovvero il programma
-	// con eventuali flag, all'interno dell'ambiente envp
+	// con eventuali flag, all'interno dell'ambiente envp.
+	// Es. se ho "ls -la", execve eseguirà il programma ls anche con la flag la.
 	if (execve(path, raw_command, envp) == -1)
 	{
 		// Se execve fallisce 
@@ -103,9 +105,11 @@ char	*find_cmd_path(t_cmd *cmd, char *command)
 	while (cmd->total_path[i])
 	{
 		// Costruisco i percorsi relativi, aggiungendo il '/'
+		// Es. /usr/bin/(aggiungo il '/' per continuare il percorso)
 		relative_path = ft_strjoin(cmd->total_path[i], "/");
 		// Unisco il percorso relativo al comando passato come parametro, in modo
 		// da poter verificare se si trova all'interno della cartella
+		// Es. /usr/bin/ls (aggiungo il comando preso dall'input)
 		cmd_path = ft_strjoin(relative_path, command);
 		// Libero immediatamente la memoria per il percorso relativo, avendo già
 		// quello specifico del comando
