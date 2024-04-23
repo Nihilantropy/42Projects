@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/17 12:22:16 by crea              #+#    #+#             */
+/*   Updated: 2024/04/17 12:22:23 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/ft_printf.h"
 
-void    ft_strrev(char *str)
+void	ft_strrev(char *str)
 {
 	char	c;
 	int		i;
@@ -17,5 +29,5 @@ void    ft_strrev(char *str)
 		str[i] = c;
 		i++;
 	}
-    ft_putstr(str);
+	ft_putstr(str);
 }

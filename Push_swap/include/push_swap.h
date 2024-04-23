@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/12 17:56:17 by crea              #+#    #+#             */
+/*   Updated: 2024/04/17 13:21:49 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -16,8 +28,8 @@ typedef struct s_stack
 	int				data;
 	int				index;
 	int				push_cost;
-	bool			isAboveMedian;
-	bool			isCheapest;
+	bool			is_above_median;
+	bool			is_cheapest;
 	struct s_stack	*target_node;
 	struct s_stack	*prev;
 	struct s_stack	*next;
@@ -29,6 +41,7 @@ void	create_node(t_stack **stack, int nbr);
 
 /* main utils */
 char	**build_matrix(int argc, char **argv);
+void	free_matrix(char **matrix);
 
 /* checks */
 int		check_format(char **matrix);
@@ -70,16 +83,14 @@ void	push_b_to_a(t_stack **a, t_stack **b);
 
 /* sort stack utils 3 */
 t_stack	*get_cheapest_node(t_stack *stack);
-void	rotate_ab(t_stack **a,
-					t_stack **b,
-					t_stack *cheapest_node);
-void	rev_rotate_ab(t_stack **a,
-						t_stack **b,
-						t_stack *cheapest_node);
+void	rotate_ab(t_stack **a, t_stack **b,
+			t_stack *cheapest_node);
+void	rev_rotate_ab(t_stack **a, t_stack **b,
+			t_stack *cheapest_node);
 void	min_on_top(t_stack **a);
 void	prep_for_push(t_stack **stack,
-						t_stack *cheapest_node,
-						char stack_name);
+			t_stack *cheapest_node,
+			char stack_name);
 
 /* rules for stack a */
 void	sa(t_stack **a, bool write);

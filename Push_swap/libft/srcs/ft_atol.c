@@ -6,15 +6,15 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 09:57:40 by crea              #+#    #+#             */
-/*   Updated: 2024/03/19 09:57:55 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/23 12:18:15 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 long	ft_atol(const char *str)
 {
 	long	nbr;
-	int	sign;
-	int	i;
+	int		sign;
+	int		i;
 
 	nbr = 0;
 	sign = 1;

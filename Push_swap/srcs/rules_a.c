@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rules_a.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/12 17:55:21 by crea              #+#    #+#             */
+/*   Updated: 2024/04/12 17:55:22 by crea             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
 void	sa(t_stack	**a, bool write)
@@ -35,7 +47,7 @@ void	pa(t_stack **a, t_stack **b, bool write)
 	{
 		new_head->prev = (*a)->prev;
 		new_head->next = *a;
-		(*a)->prev = new_head;		
+		(*a)->prev = new_head;
 	}
 	else if (!(*a))
 	{

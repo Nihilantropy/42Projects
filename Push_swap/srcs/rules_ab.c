@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 13:14:55 by crea              #+#    #+#             */
-/*   Updated: 2024/03/26 13:14:56 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/17 12:45:20 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,4 @@ void	ss(t_stack **a, t_stack **b, bool write)
 	swap_2(b);
 	if (write)
 		ft_putstr("ss\n");
-
 }

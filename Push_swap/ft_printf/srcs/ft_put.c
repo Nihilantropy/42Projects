@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 10:55:41 by crea              #+#    #+#             */
-/*   Updated: 2024/01/26 15:49:24 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/17 12:21:24 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_put(char c, va_list args)
 	int	count;
 
 	count = 0;
-
 	if (c == 'c')
 		count += ft_putchar(va_arg(args, int));
 	else if (c == 's')

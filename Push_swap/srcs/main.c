@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 11:17:39 by crea              #+#    #+#             */
-/*   Updated: 2024/03/27 13:37:15 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/23 13:07:19 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,19 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc < 2 || (argc == 2 && !argv[1][0]))
-		ft_exit_error(ERROR_ARG_NBR);
+		return (0);
 	else if (argc == 2)
 		matrix = ft_split(argv[1], ' ');
 	else
-		matrix = build_matrix(argc, (argv + 1));
+		matrix = build_matrix(argc - 1, (argv + 1));
+	if (!matrix[0])
+		return (0);
 	init_stack(&a, matrix);
 	choose_sort(&a, &b);
 	free_stack(&a);
+	if (argc == 2)
+		free_matrix(matrix);
+	else
+		free(matrix);
 	return (0);
 }

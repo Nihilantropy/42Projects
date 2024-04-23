@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:29:48 by crea              #+#    #+#             */
-/*   Updated: 2024/03/26 13:52:51 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/12 17:51:25 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	pb(t_stack **a, t_stack **b, bool write)
 	{
 		new_head->prev = (*b)->prev;
 		new_head->next = (*b);
-		(*b)->prev = new_head;		
+		(*b)->prev = new_head;
 	}
 	else if (!(*b))
 	{

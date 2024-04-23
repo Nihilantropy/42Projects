@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 20:01:44 by crea              #+#    #+#             */
-/*   Updated: 2024/03/18 22:36:01 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/23 12:28:19 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	count_words(const char *str, char c)
 {
-	int sep;
-	int count;
-	int i;
+	int	sep;
+	int	count;
+	int	i;
 
 	count = 0;
 	i = 0;
@@ -38,11 +38,11 @@ static int	count_words(const char *str, char c)
 	return (count);
 }
 
-static char *alloc_word(const char *str, char c)
+static char	*alloc_word(const char *str, char c)
 {
-	int len;
-	char *word;
-	int i;
+	int		len;
+	char	*word;
+	int		i;
 
 	len = 0;
 	i = 0;
@@ -60,17 +60,18 @@ static char *alloc_word(const char *str, char c)
 	return (word);
 }
 
-char **ft_split(const char *str, char c)
+char	**ft_split(const char *str, char c)
 {
+	char	**matrix;
+	int		words_nbr;
+	int		i;
+
 	if (!str)
 		return (NULL);
-	char **matrix;
-	int words_nbr;
-	int i;
-
 	i = 0;
+	matrix = NULL;
 	words_nbr = count_words(str, c);
-	matrix = (char **)malloc(sizeof(char *) * words_nbr + 1);
+	matrix = (char **)malloc(sizeof(char *) * (words_nbr + 1));
 	if (!matrix)
 		return (NULL);
 	while (*str)
@@ -80,7 +81,7 @@ char **ft_split(const char *str, char c)
 		if (*str != c && *str)
 			matrix[i] = alloc_word(str, c);
 		i++;
-		while (*str != c && *str != '\0')
+		while (*str != c && *str)
 			str++;
 	}
 	matrix[i] = NULL;

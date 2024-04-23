@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:00:15 by crea              #+#    #+#             */
-/*   Updated: 2024/03/27 13:14:07 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/12 17:50:39 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ void	find_target_cost(t_stack *a, t_stack *b)
 	while (a)
 	{
 		a->push_cost = a->index;
-		if(!(a->isAboveMedian))
+		if (!(a->is_above_median))
 			a->push_cost = size_a - (a->index);
-		if (a->target_node->isAboveMedian)
+		if (a->target_node->is_above_median)
 			a->push_cost += a->target_node->index;
 		else
 			a->push_cost += size_b - (a->target_node->index);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_1.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 12:47:43 by crea              #+#    #+#             */
-/*   Updated: 2024/03/27 13:05:05 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/12 17:54:46 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	stack_size(t_stack *stack)
 
 void	free_stack(t_stack **head)
 {
-	if (!head || !*head)
-		return;
 	t_stack	*current;
 	t_stack	*next_node;
 
+	if (!head || !*head)
+		return ;
 	current = *head;
 	next_node = NULL;
 	while (current)

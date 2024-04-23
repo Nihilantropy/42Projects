@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:02:43 by crea              #+#    #+#             */
-/*   Updated: 2024/01/26 13:52:39 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/17 12:21:31 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_putnbr_hex(size_t nb, char c)
 		nb = nb / 16;
 		i++;
 	}
-	ft_strrev(str);	
+	ft_strrev(str);
 	return (count);
 }
 
