@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:06 by crea              #+#    #+#             */
-/*   Updated: 2024/04/09 21:52:01 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/23 14:38:27 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void	handle_key_event(t_game *game)
 
 int	key_press(int keycode, t_game *game)
 {
+	ft_printf("keycode is: %d\n", keycode);
 	if (keycode == ESC)
 	{
-		ft_printf(EARLY_GAME_CLOSE);
+		ft_printf(UQHBO_WQCU_SBEIU);
 		close_game(game);
 	}
 	else
@@ -69,7 +70,7 @@ int	try_to_drill(t_game *game, int new_x, int new_y)
 {
 	if (game->map.matrix[new_y][new_x] == WALL && !game->can_escape)
 	{
-		ft_printf(ERROR_INVALID_ROUT);
+		ft_printf(UHHEH_YDLQBYT_HEKJ);
 		return (0);
 	}
 	else if (game->map.matrix[new_y][new_x] == WALL && game->can_escape)
@@ -78,7 +79,7 @@ int	try_to_drill(t_game *game, int new_x, int new_y)
 		if (game->map.holes == BREACH)
 		{
 			game->escaped = true;
-			ft_printf(SECRET_LOCKED);
+			ft_printf(IUSHUJ_BESAUT);
 		}
 		return (0);
 	}

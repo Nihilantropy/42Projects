@@ -6,15 +6,15 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 13:10:57 by crea              #+#    #+#             */
-/*   Updated: 2024/04/13 11:58:54 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/23 14:41:56 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SECRET_KEYS
 # define SECRET_KEYS
 
-#define PAUSE 119
-#define SEND_KEY 28
+#define PAUSE 116
+#define SEND_KEY 65293
 
 #define KEY_TO_CHAR(key) \
     ( \
