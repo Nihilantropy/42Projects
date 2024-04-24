@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:04:35 by crea              #+#    #+#             */
-/*   Updated: 2024/04/23 21:41:26 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/24 12:25:11 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	check_matrix_format(char **matrix, int argc)
 	return (1);
 }
 
-void	init_cmd(t_cmd *cmd, int argc, char **argv, char **envp)
+void	init_cmd(t_cmd *cmd, char **envp)
 {
-	cmd->matrix = build_cmd_matrix((argc - 3), (argv + 2));
+	//cmd->matrix = build_cmd_matrix((argc - 3), (argv + 2));
 	cmd->index = 0;
 	cmd->total_path = find_total_path(envp);
 }

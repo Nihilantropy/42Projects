@@ -61,7 +61,7 @@ clean:
 			$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean:		clean
-			$(RM) $(NAME)
+			$(RM) $(NAME) $(NAME_BONUS)
 			$(MAKE) -C $(LIBFT_DIR) fclean
 			$(MAKE) -C $(PRINTF_DIR) fclean
 
@@ -87,7 +87,7 @@ test5:
 			valgrind $(LEAKS_FLAG) ./$(NAME) "infile.txt" "ls -la" "wc -l" ""
 
 testbonus1:
-			valgrind $(LEAKS_FLAG) ./$(NAME_BONUS) "infile.txt" "ls -la" "grep 1" "wc -l" "echo 'tester string'" outfile.txt
+			valgrind $(LEAKS_FLAG) ./$(NAME_BONUS) "infile.txt" "touch mami" "pwd" "wc -l" "echo 'tester string 1'" "rm mami" "echo 'tester string 2'" outfile.txt
 
 testbonus2:
 			valgrind $(LEAKS_FLAG) ./$(NAME_BONUS) "infile.txt" "" "wc -l" "echo 'tester string'" outfile.txt
@@ -102,7 +102,7 @@ testbonus5:
 			valgrind $(LEAKS_FLAG) ./$(NAME_BONUS) "infile.txt" "ls -la" "wc -l" ""
 
 testbonus6:
-			valgrind $(LEAKS_FLAG) ./$(NAME_BONUS) here_doc END "ls -la" "wc -l" "echo 'tester string'" outfile.txt
+			valgrind $(LEAKS_FLAG) ./$(NAME_BONUS) here_doc END "touch mami" "pwd" "wc -l" "echo 'tester string 1'" "rm mami" "echo 'tester string 2'" outfile.txt
 
 testbonus7:
 			valgrind $(LEAKS_FLAG) ./$(NAME_BONUS) here_doc END "" "wc -l" "echo 'tester string'" outfile.txt

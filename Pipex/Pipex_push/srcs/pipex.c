@@ -6,13 +6,13 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:04:28 by crea              #+#    #+#             */
-/*   Updated: 2024/04/23 22:38:10 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/24 12:30:19 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	process_child(int *fd, t_cmd *cmd, char **envp, char *in_file)
+void	process_child(int *fd, t_cmd *cmd, char **argv, char **envp, char *in_file)
 {
 	int	read_file;
 
@@ -22,20 +22,20 @@ void	process_child(int *fd, t_cmd *cmd, char **envp, char *in_file)
 	dup2(read_file, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[0]);
-	exe_cmd(cmd, cmd->matrix[cmd->index], envp);
+	exe_cmd(cmd, argv[2], envp);
 }
 
-void	process_parent(int *fd, t_cmd *cmd, char **envp, char *out_file)
+void	process_parent(int *fd, t_cmd *cmd, char **argv, char **envp, char *out_file)
 {
 	int	write_file;
 
 	write_file = open(out_file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (write_file == -1)
 		ft_exit_error(ERROR_PARENT_OPEN);
-	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
 	dup2(write_file, STDOUT_FILENO);
-	exe_cmd(cmd, cmd->matrix[cmd->index], envp);
+	close(fd[1]);
+	exe_cmd(cmd, argv[3], envp);
 }
 
 void	exe_cmd(t_cmd *cmd, char *command, char **envp)
@@ -48,13 +48,10 @@ void	exe_cmd(t_cmd *cmd, char *command, char **envp)
 	if (!path)
 	{
 		free_matrix(raw_command);
-		return ;
+		ft_exit_error("Error. Path not found.\n");
 	}
 	if (execve(path, raw_command, envp) == -1)
-	{
-		ft_printf(ERROR_EXECVE);
-		return ;
-	}
+		ft_exit_error(ERROR_EXECVE);
 }
 
 char	*find_cmd_path(t_cmd *cmd, char *command)

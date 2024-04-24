@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:04:35 by crea              #+#    #+#             */
-/*   Updated: 2024/04/23 22:12:26 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/24 15:26:55 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,19 @@ int	ft_here_doc(t_cmd *cmd, char **argv, int argc, char **envp)
 	int		write_file;
 	char	*line;
 
-	line = get_next_line(STDIN_FILENO);
-	here_doc = open("here_doc.txt", O_WRONLY | O_CREAT | O_TRUNC, 0600);
+	here_doc = open(".here_doc.tmp", O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	if (here_doc == -1)
 		ft_exit_error(ERROR_OPEN_FILE);
-	while (ft_strcmp(ft_strtrim(line, " \t\n\r\f\v"), argv[2]) != 0)
+	while (1)
 	{
-		ft_putstr_fd(line, here_doc);
-		free(line);
+		ft_putstr_fd("pipe heredoc > ", STDOUT_FILENO);
 		line = get_next_line(STDIN_FILENO);
+		if (!line)
+			return (0);
+		ft_putstr_fd(line, here_doc);
+		if (ft_strcmp(ft_strtrim(line, " \t\n\r\v"), argv[2]) == 0)
+			break ;
+		free(line);
 	}
 	free(line);
 	dup2(here_doc, STDIN_FILENO);
@@ -36,6 +40,7 @@ int	ft_here_doc(t_cmd *cmd, char **argv, int argc, char **envp)
 	while (cmd->index < cmd->pipes_nbr)
 		process_child(cmd, cmd->matrix[cmd->index++], envp);
 	wait(NULL);
+	unlink(".here_doc.tmp");
 	dup2(write_file, STDOUT_FILENO);
 	process_parent(cmd, cmd->matrix[cmd->index], envp);
 	return (0);

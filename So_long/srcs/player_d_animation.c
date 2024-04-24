@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 21:51:43 by crea              #+#    #+#             */
-/*   Updated: 2024/03/30 22:18:17 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/23 16:44:58 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void load_player_d_images(t_game *game)
     {
         game->tiles.player_d.frames[i] = mlx_xpm_file_to_image(game->mlx_ptr, player_frames_paths[i], &width, &height);
         if (game->tiles.player_d.frames[i] == NULL)
-            exit(ft_printf(UHHEH_FBQOUH_T_YCW_KFBEQT));
+            exit(ft_printf(ERROR_PLAYER_D_IMG_UPLOAD));
         i++;
     }
 }
