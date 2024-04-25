@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:04:28 by crea              #+#    #+#             */
-/*   Updated: 2024/04/23 22:15:10 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/25 19:07:59 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	exe_cmd(t_cmd *cmd, char *command, char **envp)
 
 	total_command = ft_split(command, ' ');
 	path = find_cmd_path(cmd, total_command[0]);
+	if (!ft_strcmp(total_command[0], "echo"))
+		remove_single_quote(total_command);
 	if (!path)
 	{
 		free_matrix(total_command);

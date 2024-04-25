@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 11:04:35 by crea              #+#    #+#             */
-/*   Updated: 2024/04/24 15:26:55 by crea             ###   ########.fr       */
+/*   Updated: 2024/04/25 19:29:17 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_here_doc(t_cmd *cmd, char **argv, int argc, char **envp)
 		ft_exit_error(ERROR_OPEN_FILE);
 	while (1)
 	{
-		ft_putstr_fd("pipe heredoc > ", STDOUT_FILENO);
+		print_pipe_nbr(cmd);
+		ft_putstr_fd("heredoc> ", STDOUT_FILENO);
 		line = get_next_line(STDIN_FILENO);
 		if (!line)
 			return (0);
@@ -76,4 +77,29 @@ char	**find_total_path(char **envp)
 		i++;
 	total_path = ft_split(envp[i] + 5, ':');
 	return (total_path);
+}
+
+void	print_pipe_nbr(t_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (i < cmd->pipes_nbr)
+	{
+		ft_putstr_fd("pipe ", STDOUT_FILENO);
+		i++;
+	}
+	return ;
+}
+
+void	remove_single_quote(char **echo_matrix)
+{
+	int		i;
+
+	i = 1;
+	echo_matrix[1] = ft_strtrim(echo_matrix[1], "'");
+	while (echo_matrix[i + 1] != NULL)
+		i++;
+	echo_matrix[i] = ft_strtrim(echo_matrix[i], "'");
+	return ;
 }
