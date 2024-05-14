@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:27:02 by crea              #+#    #+#             */
-/*   Updated: 2024/05/14 14:45:06 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/14 15:22:51 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_philo
 	long long		time_to_die;
 	long long		time_for_eat;
 	long long		time_for_sleep;
+	int				nbr_of_meals;
 	pthread_mutex_t	is_sleeping;
 	pthread_mutex_t	is_thinking;
 	pthread_mutex_t	is_eating;
@@ -54,7 +55,7 @@ typedef struct s_table
 }			t_table;
 
 /* main */
-int			init_table(t_table **table, char **argv);
+int			init_table(t_table *table, char **argv);
 
 /* main_utils */
 long long	get_time(void);
@@ -66,8 +67,10 @@ int			ft_checks(int argc, char **argv);
 int			ft_isdigit_str(char *str);
 
 /* create_list */
+int			init_philo(t_philo *philo, char **argv, int index);
+int			create_philo_list(t_philo **philo, char **argv);
 
 /* create_list_utils */
-void		printf_list(t_philo *philo);
+void		print_list(t_philo *philo);
 
 #endif

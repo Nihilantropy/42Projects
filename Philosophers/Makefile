@@ -3,7 +3,7 @@ NAME		= philo
 PHILO_DIR	= ./srcs
 PHILO_HEAD	= ./include
 
-SRCS		= main.c main_utils.c checks.c checks_utils.c create_list.c
+SRCS		= main.c main_utils.c checks.c checks_utils.c create_list.c create_list_utils.c
 
 OBJS		= $(patsubst %.c, $(PHILO_DIR)/%.o, $(SRCS))
 

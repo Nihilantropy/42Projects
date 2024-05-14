@@ -6,21 +6,21 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:39:18 by crea              #+#    #+#             */
-/*   Updated: 2024/05/14 14:44:36 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/14 15:02:17 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	printf_list(t_philo *philo)
+void	print_list(t_philo *philo)
 {
-	if (!table)
+	if (!philo)
 		return ;
 	while (1)
 	{
-		printf("philo index is: %d\n", table->philo->index);
-		if (table->philo->next == table->philo)
+		printf("philo index is: %d\n", philo->index);
+		if (philo->next == philo)
 			break ;
-		table->philo = table->philo->next;
+		philo = philo->next;
 	}
 }
