@@ -6,21 +6,16 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:14:32 by crea              #+#    #+#             */
-/*   Updated: 2024/05/14 13:32:05 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/16 17:00:50 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	ft_checks(int argc, char **argv)
+static int	ft_checks_utils(char **argv)
 {
 	int	i;
 
-	if (argc != 5 && argc != 6)
-	{
-		printf(ERR_NBR_ARG);
-		return (0);
-	}
 	i = 1;
 	while (argv[i])
 	{
@@ -29,12 +24,29 @@ int	ft_checks(int argc, char **argv)
 			printf(ERR_ARG_FORM);
 			return (0);
 		}
-		else if (argv[i][0] == '0')
+		if (!check_positive_input(argv[i]))
 		{
 			printf(ERR_ZERO_INPUT);
 			return (0);
 		}
 		i++;
 	}
+	if (!max_thread(argv[1]))
+	{
+		printf(ERR_MAX_THREAD);
+		return (0);
+	}
+	return (1);
+}
+
+int	ft_checks(int argc, char **argv)
+{
+	if (argc != 5 && argc != 6)
+	{
+		printf(ERR_NBR_ARG);
+		return (0);
+	}
+	if (!ft_checks_utils(argv))
+		return (0);
 	return (1);
 }

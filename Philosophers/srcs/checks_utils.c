@@ -45,3 +45,20 @@ int	ft_isdigit_str(char *str)
 	}
 	return (1);
 }
+
+int	check_positive_input(char *str)
+{
+	int	nbr;
+
+	nbr = ft_atoi(str);
+	if (nbr <= 0 || nbr >= 2147483647)
+		return (0);
+	return (1);
+}
+
+int	max_thread(char *str)
+{
+	if (ft_atoi(str) >= 126269)
+		return (0);
+	return (1);
+}

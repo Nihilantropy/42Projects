@@ -3,7 +3,7 @@ NAME		= philo
 PHILO_DIR	= ./srcs
 PHILO_HEAD	= ./include
 
-SRCS		= main.c main_utils.c checks.c checks_utils.c create_list.c create_list_utils.c
+SRCS		= main.c main_utils.c checks.c checks_utils.c init_table.c create_list.c create_list_utils.c routine_even.c routine_odd.c routine_observer.c
 
 OBJS		= $(patsubst %.c, $(PHILO_DIR)/%.o, $(SRCS))
 
@@ -42,6 +42,9 @@ fclean:		clean
 re:			fclean all
 
 rec:		clean all
+
+test:
+			./$(NAME) 2 800 200 200 5
 
 
 .PHONY:		all clean fclean re rec test

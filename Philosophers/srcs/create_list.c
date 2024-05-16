@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:19:06 by crea              #+#    #+#             */
-/*   Updated: 2024/05/14 15:24:03 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/16 17:40:56 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,25 @@
 
 int	init_mutex(t_philo *philo)
 {
-	if (pthread_mutex_init(&philo->is_sleeping, NULL))
-		return (0);
-	if (pthread_mutex_init(&philo->is_thinking, NULL))
-		return (0);
-	if (pthread_mutex_init(&philo->is_eating, NULL))
-		return (0);
-	if (pthread_mutex_init(&philo->right_fork, NULL))
+	if (pthread_mutex_init(&philo->is_dead, NULL)
+		|| pthread_mutex_init(&philo->right_fork, NULL))
 		return (0);
 	return (1);
 }
 
 int	init_philo(t_philo *philo, char **argv, int index)
 {
-	philo->index = index;
-	printf("philo index is: %d\n", philo->index);
-	philo->is_dead = false;
-	printf("philo is dead? %d\n", philo->is_dead);
+	philo->index = index + 1;
 	philo->time_to_die = ft_atol(argv[2]);
-	printf("philo time to die is: %llu\n", philo->time_to_die);
 	philo->time_for_sleep = ft_atol(argv[4]);
-	printf("philo time for sleep is: %llu\n", philo->time_for_sleep);
 	philo->time_for_eat = ft_atol(argv[3]);
-	printf("philo time for eat is: %llu\n", philo->time_for_eat);
-	if (argv[5])
-		philo->nbr_of_meals = ft_atoi(argv[5]);
-	else
-		philo->nbr_of_meals = -1;
-	printf("philo nbr of meals is: %d\n", philo->nbr_of_meals);
+	philo->is_sleeping = false;
+	philo->is_thinking = false;
+	philo->is_eating = false;
+	philo->current_meal = 0;
 	if (!init_mutex(philo))
 	{
-		printf("can't init philo mutexes\n");
+		printf(ERR_PHILO_MUTEX);
 		return (0);
 	}
 	return (1);
@@ -58,34 +46,30 @@ int	create_philo_list(t_philo **philo, char **argv)
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
-		printf("number of philo is: %d\n", ft_atoi(argv[1]));
 		new_philo = malloc(sizeof(t_philo));
 		if (!new_philo)
 		{
-			printf("can't alloc mem for philo\n");
+			printf(ERR_PHILO_ALLOC);
 			return (0);
 		}
 		if (!init_philo(new_philo, argv, i))
 		{
-			printf("can't init new philo\n");
+			printf(ERR_INIT_PHILO);
 			return (0);
 		}
 		if (!*philo)
 		{
-			new_philo->next = new_philo;
 			new_philo->prev = new_philo;
 			*philo = new_philo;
 		}
 		else
 		{
-			new_philo->next = (*philo);
 			new_philo->prev = (*philo)->prev;
 			(*philo)->prev->next = new_philo;
 			(*philo)->prev = new_philo;
 		}
+		new_philo->next = NULL;
 		i++;
 	}
-	printf("ciao\n");
-	//print_list(*philo);
 	return (1);
 }
