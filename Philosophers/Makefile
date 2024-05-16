@@ -14,7 +14,7 @@ PRINTF_DIR	= ./ft_printf
 PRINTF_LIB	= libft_printf.a
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 RM = rm -f
 
 # Include directory for header files

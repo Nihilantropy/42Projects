@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:39:18 by crea              #+#    #+#             */
-/*   Updated: 2024/05/16 17:56:30 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/16 19:04:02 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ void	free_list(t_philo **philo)
 	current = *philo;
 	if (!current)
 		return ;
-	while (1)
+	while (current)
 	{
 		next = current->next;
 		pthread_mutex_destroy(&current->is_dead);
 		pthread_mutex_destroy(&current->right_fork);
 		free(current);
 		current = next;
-		if (current == *philo)
-			break ;
 	}
 	*philo = NULL;
 }
