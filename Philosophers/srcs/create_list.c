@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:19:06 by crea              #+#    #+#             */
-/*   Updated: 2024/05/16 17:40:56 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/17 13:32:25 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	init_mutex(t_philo *philo)
 {
-	if (pthread_mutex_init(&philo->is_dead, NULL)
+	if (pthread_mutex_init(&philo->dead_lock, NULL)
 		|| pthread_mutex_init(&philo->right_fork, NULL))
 		return (0);
 	return (1);
@@ -26,9 +26,11 @@ int	init_philo(t_philo *philo, char **argv, int index)
 	philo->time_to_die = ft_atol(argv[2]);
 	philo->time_for_sleep = ft_atol(argv[4]);
 	philo->time_for_eat = ft_atol(argv[3]);
+	philo->last_meal = 0;
 	philo->is_sleeping = false;
 	philo->is_thinking = false;
 	philo->is_eating = false;
+	philo->is_dead = false;
 	philo->current_meal = 0;
 	if (!init_mutex(philo))
 	{

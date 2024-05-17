@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:27:02 by crea              #+#    #+#             */
-/*   Updated: 2024/05/16 17:33:28 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/17 13:32:06 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ typedef struct s_philo
 	long long		time_to_die;
 	long long		time_for_eat;
 	long long		time_for_sleep;
+	long long		last_meal;
 	int				current_meal;
 	t_bool			is_sleeping;
 	t_bool			is_thinking;
 	t_bool			is_eating;
-	pthread_mutex_t	is_dead;
+	t_bool			is_dead;
+	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	right_fork;
 	struct s_philo	*next;
 	struct s_philo	*prev;
@@ -47,7 +49,9 @@ typedef struct s_philo
 typedef struct s_table
 {
 	int					nbr_of_philo;
+	int					philo_index;
 	int					nbr_of_meals;
+	pthread_mutex_t		is_sitting;
 	pthread_mutex_t		is_writing;
 	t_bool				dinner_start;
 	t_bool				dinner_end;
@@ -55,8 +59,9 @@ typedef struct s_table
 
 }						t_table;
 
-/* main */
+/* init table */
 int			init_table(t_table *table, char **argv);
+void		destroy_mutexes(t_table *table);
 
 /* main_utils */
 long long	get_time(void);
@@ -83,5 +88,10 @@ void		free_list(t_philo **philo);
 void		*philo_routine_even(void *arg);
 void		*philo_routine_odd(void *arg);
 void		*observer(void *arg);
+
+/* routine actions */
+void		eating(t_table *table, t_philo *current_philo);
+void		sleeping(t_table *table, t_philo *current_philo);
+void		thinking(t_table *table, t_philo *current_philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:41:24 by crea              #+#    #+#             */
-/*   Updated: 2024/05/16 19:01:23 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/17 12:50:27 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ static int	choose_routine(t_table *table, pthread_t *thread)
 	int	i;
 
 	i = 0;
+	if (pthread_create(&thread[table->nbr_of_philo], NULL, observer, (void *)table))
+	{
+		printf(ERR_OBS_THREAD_CREATE);
+		return (0);
+	}
 	while (i < table->nbr_of_philo)
 	{
 		if (table->nbr_of_philo % 2 == 0)
@@ -39,15 +44,10 @@ static int	choose_routine(t_table *table, pthread_t *thread)
 		}
 		i++;
 	}
-	if (pthread_create(&thread[i], NULL, observer, (void *)table))
-	{
-		printf(ERR_OBS_THREAD_CREATE);
-		return (0);
-	}
 	i = 0;
 	while (i <= table->nbr_of_philo)
 		pthread_join(thread[i++], NULL);
-	pthread_mutex_destroy(&table->is_writing);
+	destroy_mutexes(table);
 	free(thread);
 	free_list(&table->philo);
 	return (0);

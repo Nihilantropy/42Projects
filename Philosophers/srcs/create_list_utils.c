@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:39:18 by crea              #+#    #+#             */
-/*   Updated: 2024/05/16 19:04:02 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/17 12:07:48 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_list(t_philo *philo)
 		return ;
 	while (philo)
 	{
-		printf("philo index:**%d**\n", philo->index);
+		printf("philo index: **%d**\n", philo->index);
 		printf("philo time to die: %llu msec\n", philo->time_to_die);
 		printf("philo time for sleep: %llu msec\n", philo->time_for_sleep);
 		printf("philo time for eat: %llu msec\n", philo->time_for_eat);
@@ -38,7 +38,7 @@ void	free_list(t_philo **philo)
 	while (current)
 	{
 		next = current->next;
-		pthread_mutex_destroy(&current->is_dead);
+		pthread_mutex_destroy(&current->dead_lock);
 		pthread_mutex_destroy(&current->right_fork);
 		free(current);
 		current = next;
