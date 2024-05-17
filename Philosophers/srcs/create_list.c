@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:19:06 by crea              #+#    #+#             */
-/*   Updated: 2024/05/17 13:32:25 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/17 22:45:58 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,17 @@ int	create_philo_list(t_philo **philo, char **argv)
 		}
 		if (!*philo)
 		{
+			new_philo->next = new_philo;
 			new_philo->prev = new_philo;
 			*philo = new_philo;
 		}
 		else
 		{
+			new_philo->next = *philo;
 			new_philo->prev = (*philo)->prev;
 			(*philo)->prev->next = new_philo;
 			(*philo)->prev = new_philo;
 		}
-		new_philo->next = NULL;
 		i++;
 	}
 	return (1);

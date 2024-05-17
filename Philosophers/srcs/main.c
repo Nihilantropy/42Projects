@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:41:24 by crea              #+#    #+#             */
-/*   Updated: 2024/05/17 12:50:27 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/17 21:34:46 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	choose_routine(t_table *table, pthread_t *thread)
 	destroy_mutexes(table);
 	free(thread);
 	free_list(&table->philo);
-	return (0);
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -70,6 +70,12 @@ int	main(int argc, char **argv)
 		printf(ERR_THREAD_ALLOC);
 		return (0);
 	}
-	choose_routine(&table, thread);
+	if (!choose_routine(&table, thread))
+	{
+		free(thread);
+		destroy_mutexes(&table);
+		free_list(&table.philo);
+		return (0);
+	}
 	return (0);
 }
