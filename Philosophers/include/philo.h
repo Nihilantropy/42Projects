@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:27:02 by crea              #+#    #+#             */
-/*   Updated: 2024/05/17 13:32:06 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/18 12:29:38 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ typedef struct s_table
 	int					nbr_of_meals;
 	pthread_mutex_t		is_sitting;
 	pthread_mutex_t		is_writing;
-	t_bool				dinner_start;
+	pthread_mutex_t		death;
+	long long			dinner_start;
 	t_bool				dinner_end;
 	t_philo				*philo;
 
