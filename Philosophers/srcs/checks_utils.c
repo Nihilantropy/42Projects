@@ -48,10 +48,10 @@ int	ft_isdigit_str(char *str)
 
 int	check_positive_input(char *str)
 {
-	int	nbr;
+	long	nbr;
 
-	nbr = ft_atoi(str);
-	if (nbr <= 0 || nbr >= 2147483647)
+	nbr = ft_atol(str);
+	if (nbr <= 0 || nbr > 2147483647)
 		return (0);
 	return (1);
 }

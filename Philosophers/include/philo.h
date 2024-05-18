@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:27:02 by crea              #+#    #+#             */
-/*   Updated: 2024/05/18 12:29:38 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/18 17:37:53 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 	long long		time_for_sleep;
 	long long		last_meal;
 	int				current_meal;
+	t_bool			first_meal;
 	t_bool			is_sleeping;
 	t_bool			is_thinking;
 	t_bool			is_eating;
@@ -51,6 +52,7 @@ typedef struct s_table
 	int					nbr_of_philo;
 	int					philo_index;
 	int					nbr_of_meals;
+	t_bool				first_meal;
 	pthread_mutex_t		is_sitting;
 	pthread_mutex_t		is_writing;
 	pthread_mutex_t		death;

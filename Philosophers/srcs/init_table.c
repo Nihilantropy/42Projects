@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:47:12 by crea              #+#    #+#             */
-/*   Updated: 2024/05/18 12:30:27 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/18 18:45:59 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	init_table(t_table *table, char **argv)
 		table->nbr_of_meals = ft_atoi(argv[5]);
 	else
 		table->nbr_of_meals = -1;
+	table->first_meal = true;
 	if (pthread_mutex_init(&table->is_writing, NULL) 
 			|| pthread_mutex_init(&table->is_sitting, NULL)
 				|| pthread_mutex_init(&table->death, NULL))
 		return (0);
-	table->dinner_start = get_time();
-	printf("dinner start %llu\n", table->dinner_start);
+	table->dinner_start = 0;
 	table->dinner_end = false;
 	table->philo = NULL;
 	if (!create_philo_list(&table->philo, argv))

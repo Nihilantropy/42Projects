@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:19:06 by crea              #+#    #+#             */
-/*   Updated: 2024/05/18 12:27:20 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/18 17:38:08 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	init_philo(t_philo *philo, char **argv, int index)
 	philo->time_for_eat = ft_atol(argv[3]);
 	philo->time_for_sleep = ft_atol(argv[4]);
 	philo->last_meal = 0;
+	philo->first_meal = true;
 	philo->is_sleeping = false;
 	philo->is_thinking = false;
 	philo->is_eating = false;

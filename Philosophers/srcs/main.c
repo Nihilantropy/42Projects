@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:41:24 by crea              #+#    #+#             */
-/*   Updated: 2024/05/17 21:34:46 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/18 17:00:13 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	choose_routine(t_table *table, pthread_t *thread)
 		printf(ERR_OBS_THREAD_CREATE);
 		return (0);
 	}
+	usleep(100);
 	while (i < table->nbr_of_philo)
 	{
 		if (table->nbr_of_philo % 2 == 0)
