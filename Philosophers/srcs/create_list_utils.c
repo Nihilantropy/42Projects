@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:39:18 by crea              #+#    #+#             */
-/*   Updated: 2024/05/17 22:47:31 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/20 16:12:49 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	print_list(t_philo *philo)
 	{
 		printf("philo index: **%d**\n", philo->index);
 		printf("philo time to die: %llu msec\n", philo->time_to_die);
-		printf("philo time for sleep: %llu msec\n", philo->time_for_sleep);
-		printf("philo time for eat: %llu msec\n", philo->time_for_eat);
+		printf("philo time for sleep: %llu msec\n", philo->time_to_sleep);
+		printf("philo time for eat: %llu msec\n", philo->time_to_eat);
 		printf("philo current meal: %d\n", philo->current_meal);
 		if (current->next == philo)
 			break ;

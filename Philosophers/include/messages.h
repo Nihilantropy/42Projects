@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:05:50 by crea              #+#    #+#             */
-/*   Updated: 2024/05/16 17:00:29 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/20 02:40:27 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define ERR_PHILO_ALLOC "can't alloc mem for philo\n"
 # define ERR_INIT_PHILO "can't init new philo\n"
 
+# define CHECK_PASSED "Check passed!\n"
 # define TABLE_READY "Table is ready!\n"
 # define PHILO_LIST_READY "Philosophers list is ready!\n"
 

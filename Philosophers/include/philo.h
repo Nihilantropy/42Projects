@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:27:02 by crea              #+#    #+#             */
-/*   Updated: 2024/05/18 17:37:53 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/20 16:12:20 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_philo
 {
 	int				index;
 	long long		time_to_die;
-	long long		time_for_eat;
-	long long		time_for_sleep;
+	long long		time_to_eat;
+	long long		time_to_sleep;
 	long long		last_meal;
 	int				current_meal;
 	t_bool			first_meal;
@@ -87,14 +87,20 @@ int			create_philo_list(t_philo **philo, char **argv);
 void		print_list(t_philo *philo);
 void		free_list(t_philo **philo);
 
-/* routine */
+/* The even and odd refers to the number of philosophers, not their index */
+/* routines */
 void		*philo_routine_even(void *arg);
 void		*philo_routine_odd(void *arg);
 void		*observer(void *arg);
 
-/* routine actions */
-void		eating(t_table *table, t_philo *current_philo);
-void		sleeping(t_table *table, t_philo *current_philo);
-void		thinking(t_table *table, t_philo *current_philo);
+/* routine even actions */
+void		eating_even(t_table *table, t_philo *current_philo);
+void		sleeping_even(t_table *table, t_philo *current_philo);
+void		thinking_even(t_table *table, t_philo *current_philo);
+
+/* routine odd actions */
+void		eating_odd(t_table *table, t_philo *current_philo);
+void		sleeping_odd(t_table *table, t_philo *current_philo);
+void		thinking_odd(t_table *table, t_philo *current_philo);
 
 #endif
