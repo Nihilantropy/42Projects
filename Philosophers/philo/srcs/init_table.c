@@ -6,7 +6,7 @@
 /*   By: crea <crea@student.42roma.it>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:47:12 by crea              #+#    #+#             */
-/*   Updated: 2024/05/20 16:12:26 by crea             ###   ########.fr       */
+/*   Updated: 2024/05/23 14:11:21 by crea             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	init_table(t_table *table, char **argv)
 	else
 		table->nbr_of_meals = -1;
 	table->first_meal = true;
-	if (pthread_mutex_init(&table->is_writing, NULL) 
-			|| pthread_mutex_init(&table->is_sitting, NULL)
-				|| pthread_mutex_init(&table->death, NULL))
+	if (pthread_mutex_init(&table->is_writing, NULL)
+		|| pthread_mutex_init(&table->is_sitting, NULL)
+		|| pthread_mutex_init(&table->eat_count_lock, NULL)
+		|| pthread_mutex_init(&table->death, NULL))
 		return (0);
 	table->dinner_start = 0;
 	table->dinner_end = false;
@@ -38,5 +39,6 @@ void	destroy_mutexes(t_table *table)
 {
 	pthread_mutex_destroy(&table->is_writing);
 	pthread_mutex_destroy(&table->is_sitting);
+	pthread_mutex_destroy(&table->eat_count_lock);
 	pthread_mutex_destroy(&table->death);
 }
