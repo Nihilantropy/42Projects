@@ -16,30 +16,20 @@ CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra
 RM = rm -f
 
-$(NAME):	$(OBJS)	libft
-			@echo "Creazione della libreria..."
-			@$(AR) $(NAME) $(OBJS)
-			@echo "Libreria $(NAME) creata con successo."
+$(NAME):	$(OBJS)
+			$(AR) $(NAME) $(OBJS)
 
 %.o: %.c $(HEADER_DIR)
-			@echo "Compilazione di $<..."
-			@$(CC) -c $< $(CFLAGS) -o $@ -I$(HEADER)
-			@echo "$@ compilato con successo."
+			$(CC) -c $< $(CFLAGS) -o $@ -I$(HEADER)
 
 all:		$(NAME)
-			@echo "Tutti i target sono stati compilati con successo."
 
 clean:
-			@echo "Pulizia dei file oggetto..."
-			@$(RM) $(OBJS)
-			@echo "File oggetto rimossi con successo."
+			$(RM) $(OBJS)
 
 fclean:		clean
-			@echo "Pulizia completa..."
-			@$(RM) $(NAME)
-			@echo "Libreria $(NAME) e file oggetto rimossi con successo."
+			$(RM) $(NAME)
 
 re:			fclean	all
-			@echo "Ricostruzione completata con successo."
 
-.PHONY:		all clean fclean re libft
+.PHONY:		all clean fclean re
